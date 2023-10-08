@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gear_Master", "Gear_Master\Gear_Master.csproj", "{7EDFE5A3-AF4A-4B3A-862D-3F1353A3E3F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", "{7EDFE5A3-AF4A-4B3A-862D-3F1353A3E3F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
