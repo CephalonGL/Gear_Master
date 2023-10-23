@@ -2,6 +2,6 @@
 {
     public class ParametersVM
     {
-        
+        public ParameterVM Parameters { get; set; }
     }
 }
