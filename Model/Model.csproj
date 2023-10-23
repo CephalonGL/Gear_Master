@@ -39,7 +39,13 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Class1.cs"/>
+        <Compile Include="AutoCadBuilder.cs" />
+        <Compile Include="CadBuilderFactory.cs" />
+        <Compile Include="CadName.cs" />
+        <Compile Include="ICadBuilder.cs" />
+        <Compile Include="Parameter.cs" />
+        <Compile Include="ParameterType.cs" />
+        <Compile Include="Project.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
