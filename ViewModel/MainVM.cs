@@ -9,7 +9,18 @@ namespace ViewModel
     {
         private Project _project;
 
-        private RelayCommand BuildCommand;
+        public Project Project
+        {
+            get => _project; 
+            private set => _project = value;
+        }
+
+        MainVM()
+        {
+            Project = new Project();
+        }
+        
+        public RelayCommand BuildCommand;
         
         public List<ParametersVM> Parameters {get; set; }
     }
