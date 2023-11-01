@@ -18,7 +18,7 @@ namespace ViewModel
         /// <summary>
         /// Конструктро без параметров.
         /// </summary>
-        MainVM()
+        private MainVM()
         {
             Project = new Project();
             ParametersVM = new ParametersVM();
