@@ -19,6 +19,18 @@ namespace Model
             Builder = cadBuilderFactory.MakeBuilder(cadName);
         }
 
+        /// <summary>
+        /// Деструктор проекта.
+        /// </summary>
+        ~Project()
+        {
+            DisconnectFromCad();
+        }
+
+        /// <summary>
+        /// Команда построения объекта.
+        /// </summary>
+        /// <param name="parameters">Параметры для построения.</param>
         public void Build(Dictionary<ParameterType, Parameter> parameters)
         {
             throw new NotImplementedException();
@@ -29,7 +41,9 @@ namespace Model
             throw new NotImplementedException();
         }
 
-        public void DisconnectDromCad()
+        /// <summary>
+        /// Выполняет отключение от целевой САПР.
+        /// </summary>
         public void DisconnectFromCad()
         {
             throw new NotImplementedException();
