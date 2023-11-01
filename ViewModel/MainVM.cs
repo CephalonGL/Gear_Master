@@ -21,6 +21,8 @@ namespace ViewModel
         MainVM()
         {
             Project = new Project();
+            ParametersVM = new ParametersVM();
+            BuildCommand = new RelayCommand(() => Project.Build(ParametersVM.Parameters));
         }
         
         /// <summary>
