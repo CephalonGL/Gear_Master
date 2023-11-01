@@ -5,23 +5,32 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace ViewModel
 {
+    /// <summary>
+    /// Главный класс ViewModel. Хранит информацию о всём проекте.
+    /// </summary>
     public class MainVM
     {
-        private Project _project;
+        /// <summary>
+        /// Хранит проект.
+        /// </summary>
+        public Project Project { get; private set; }
 
-        public Project Project
-        {
-            get => _project; 
-            private set => _project = value;
-        }
-
+        /// <summary>
+        /// Конструктро без параметров.
+        /// </summary>
         MainVM()
         {
             Project = new Project();
         }
         
+        /// <summary>
+        /// Команда построения модели в САПР.
+        /// </summary>
         public RelayCommand BuildCommand;
         
-        public List<ParametersVM> Parameters {get; set; }
+        /// <summary>
+        /// Хранит все параметры моделируемого изделия.
+        /// </summary>
+        public ParametersVM ParametersVM {get; set; }
     }
 }
