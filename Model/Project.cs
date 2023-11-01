@@ -30,6 +30,7 @@ namespace Model
         }
 
         public void DisconnectDromCad()
+        public void DisconnectFromCad()
         {
             throw new NotImplementedException();
         }
