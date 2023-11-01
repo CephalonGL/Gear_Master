@@ -19,7 +19,7 @@ namespace Model
             Builder = cadBuilderFactory.MakeBuilder(cadName);
         }
 
-        public void Build(List<Parameter> parameters)
+        public void Build(Dictionary<ParameterType, Parameter> parameters)
         {
             throw new NotImplementedException();
         }
