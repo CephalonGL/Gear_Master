@@ -13,7 +13,7 @@ namespace Model
             private set => _builder = value;
         }
 
-        Project(CadName cadName = CadName.AutoCad)
+        public Project(CadName cadName = CadName.AutoCad)
         {
             var cadBuilderFactory = new CadBuilderFactory();
             Builder = cadBuilderFactory.MakeBuilder(cadName);
