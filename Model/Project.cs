@@ -7,6 +7,17 @@ namespace Model
     {
         private ICadBuilder _builder;
 
+        public ICadBuilder Builder
+        {
+            get => _builder; 
+            private set => _builder = value;
+        }
+
+        Project(CadName cadName = CadName.AutoCad)
+        {
+            Builder = CadBuilderFactory.MakeBuilder(cadName);
+        }
+
         public void Build(List<Parameter> parameters)
         {
             throw new NotImplementedException();
@@ -16,7 +27,7 @@ namespace Model
         {
             throw new NotImplementedException();
         }
-        
+
         public void DisconnectDromCad()
         {
             throw new NotImplementedException();
