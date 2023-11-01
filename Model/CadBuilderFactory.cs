@@ -6,7 +6,17 @@ namespace Model
     {
         public ICadBuilder MakeBuilder(CadName cadName)
         {
-            throw new NotImplementedException();
+            switch (cadName)
+            {
+                case CadName.AutoCad:
+                {
+                    return new AutoCadBuilder();
+                }
+                default:
+                {
+                    throw new ArgumentException("Ошибка! Неизвестный тип САПР.");
+                }
+            }
         }
     }
 }
