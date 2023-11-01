@@ -15,7 +15,8 @@ namespace Model
 
         Project(CadName cadName = CadName.AutoCad)
         {
-            Builder = CadBuilderFactory.MakeBuilder(cadName);
+            var cadBuilderFactory = new CadBuilderFactory();
+            Builder = cadBuilderFactory.MakeBuilder(cadName);
         }
 
         public void Build(List<Parameter> parameters)
