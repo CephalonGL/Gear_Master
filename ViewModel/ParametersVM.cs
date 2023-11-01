@@ -4,6 +4,9 @@ using Model;
 
 namespace ViewModel
 {
+    /// <summary>
+    /// Хранит информацию о значении всех параметров моделируемого объекта.
+    /// </summary>
     [ObservableObject]
     public class ParametersVM
     {
