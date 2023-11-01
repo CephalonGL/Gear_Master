@@ -17,6 +17,7 @@ namespace Model
         {
             var cadBuilderFactory = new CadBuilderFactory();
             Builder = cadBuilderFactory.MakeBuilder(cadName);
+            ConnectToCad();
         }
 
         /// <summary>
