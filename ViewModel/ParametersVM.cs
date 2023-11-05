@@ -10,6 +10,9 @@ namespace ViewModel
     [ObservableObject]
     public class ParametersVM
     {
+        /// <summary>
+        /// Параметры шестерни.
+        /// </summary>
         [field: ObservableProperty]
         public  Dictionary<ParameterType, ParameterVM> Parameters { get; set; }
     }
