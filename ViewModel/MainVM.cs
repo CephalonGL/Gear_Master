@@ -22,7 +22,7 @@ namespace ViewModel
         {
             Project = new Project();
             ParametersVM = new ParametersVM();
-            BuildCommand = new RelayCommand(() => Project.Build());
+            BuildCommand = new RelayCommand(() => Project.Build(ParametersVM.Parameters));
         }
         
         /// <summary>
