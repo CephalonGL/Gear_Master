@@ -1,23 +1,42 @@
-﻿namespace Model
+﻿using System;
+using CommunityToolkit.Diagnostics;
+
+namespace Model
 {
-    public class Parameter
+    /// <summary>
+    /// Базовый класс для определения параметров.
+    /// </summary>
+    public abstract class Parameter
     {
-        Parameter(ParameterType parameterType, double maxValue, double minValue, string name)
+        /// <summary>
+        /// Хранит значение параметра.
+        /// </summary>
+        protected string _value;
+        
+        /// <summary>
+        /// Конструткор базового класса.
+        /// </summary>
+        /// <param name="minValue"></param>
+        /// <param name="maxValue"></param>
+        protected Parameter(string minValue,
+                            string maxValue)
         {
-            ParameterType = parameterType;
-            MaxValue      = maxValue;
-            MinValue      = minValue;
-            Name          = name;
+            MaxValue = maxValue;
+            MinValue = minValue;
         }
-        
-        public double MaxValue { get; private set; }
-        
-        public double MinValue { get; private set; }
-        
-        public string Name { get; private set; }
-        
-        public double Value { get; set; }
-        
-        public ParameterType ParameterType { get; private set; }
+
+        /// <summary>
+        /// Максимальное значение параметра.
+        /// </summary>
+        public string MaxValue { get; private set; }
+
+        /// <summary>
+        /// Минимальное значение параметра.
+        /// </summary>
+        public string MinValue { get; private set; }
+        /// <summary>
+        /// Значение параметра.
+        /// </summary>
+        public virtual string Value { get; set; }
     }
 }
