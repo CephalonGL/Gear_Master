@@ -10,6 +10,8 @@ namespace ViewModel
     /// </summary>
     public class MainVM
     {
+        public GearParameters Parameters { get; set;}
+        
         /// <summary>
         /// Хранит проект.
         /// </summary>
@@ -22,7 +24,7 @@ namespace ViewModel
         {
             Project = new Project();
             ParametersVM = new ParametersVM();
-            BuildCommand = new RelayCommand(() => Project.Build(ParametersVM.Parameters));
+            BuildCommand = new RelayCommand(() => Project.Build(Parameters));
         }
         
         /// <summary>
