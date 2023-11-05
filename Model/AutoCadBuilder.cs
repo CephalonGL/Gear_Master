@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Model
 {
+    /// <summary>
+    /// Выполняет построение шестерни в САПР Autodesk AutoCAD.
+    /// </summary>
     public class AutoCadBuilder : ICadBuilder
     {
         private void BuildGearTooth()
@@ -10,7 +13,7 @@ namespace Model
             throw new NotImplementedException();
         }
         
-        public void Build(List<Parameter> parameters)
+        public void BuildGear(GearParameters parameters)
         {
             throw new System.NotImplementedException();
         }
@@ -26,3 +29,4 @@ namespace Model
         }
     }
 }
+

@@ -11,25 +11,16 @@ namespace Model
         /// <summary>
         /// Построитель.
         /// </summary>
-        private ICadBuilder _builder;
-
-        /// <summary>
-        /// Построитель.
-        /// </summary>
-        public ICadBuilder Builder
-        {
-            get => _builder;
-            private set => _builder = value;
-        }
+        public ICadBuilder Builder { get; private set; }
 
         /// <summary>
         /// Конструктор с параметром целевой САПР, в которой будет выполняться построение.
         /// </summary>
-        /// <param name="cadName">Название целевой САПР.</param>
-        public Project(CadName cadName = CadName.AutoCad)
+        /// <param name="cadType">Название целевой САПР.</param>
+        public Project(CadType cadType = CadType.AutoCad)
         {
             var cadBuilderFactory = new CadBuilderFactory();
-            Builder = cadBuilderFactory.MakeBuilder(cadName);
+            Builder = cadBuilderFactory.MakeBuilder(cadType);
             ConnectToCad();
         }
 
@@ -44,8 +35,7 @@ namespace Model
         /// <summary>
         /// Команда построения объекта.
         /// </summary>
-        /// <param name="parameters">Параметры для построения.</param>
-        public void Build(Dictionary<ParameterType, Parameter> parameters)
+        public void Build(GearParameters parameters)
         {
             throw new NotImplementedException();
         }
@@ -69,10 +59,11 @@ namespace Model
         /// <summary>
         /// Осуществляет выбор целевой САПР.
         /// </summary>
-        /// <param name="cadName"></param>
-        public void SelectCad(string cadName)
+        /// <param name="cadType"></param>
+        public void SelectCad(CadType cadType)
         {
-            throw new NotImplementedException();
+            var cadBuilderFactory = new CadBuilderFactory();
+            Builder = cadBuilderFactory.MakeBuilder(cadType);
         }
     }
 }

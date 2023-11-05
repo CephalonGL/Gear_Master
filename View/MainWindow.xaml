@@ -1,4 +1,5 @@
 ﻿<Window
+    DataContext="MainVM"
     Height="350"
     Title="Gear Master"
     Width="550"
@@ -28,8 +29,9 @@
             VerticalAlignment="Top">
             <TextBlock HorizontalAlignment="Left" Text="Внешний диаметр шестерни (1 - 1000 мм)" />
             <TextBox
-                Background="LightPink"
+                Background="white"
                 HorizontalAlignment="Right"
+                Text="{Binding}"
                 Width="100" />
         </UniformGrid>
 
@@ -39,7 +41,7 @@
             VerticalAlignment="Top">
             <TextBlock HorizontalAlignment="Left" Text="Диаметр посадочного отверстия (1 - 999 мм)" />
             <TextBox
-                Background="LightPink"
+                Background="White"
                 HorizontalAlignment="Right"
                 Width="100" />
         </UniformGrid>
@@ -83,7 +85,7 @@
             Grid.Row="7"
             Margin="8,8,8,0"
             VerticalAlignment="Top">
-            <TextBlock Background="LightPink" HorizontalAlignment="Left">
+            <TextBlock Background="White" HorizontalAlignment="Left">
                 Ошибка: параметр Внешний диаметр шестерни не должен быть меньше<LineBreak />
                 параметра Диаметр посадочного отверстия.</TextBlock>
         </UniformGrid>

@@ -1,4 +1,4 @@
-﻿namespace Model
+﻿namespace ViewModel
 {
     /// <summary>
     /// Отображает различные типы параметров моделируемого объекта.
@@ -10,18 +10,22 @@
         /// Внешний диаметр шестерни в миллиметрах.
         /// </summary>
         OuterDiameter,
+        
         /// <summary>
         /// Диаметр отверстия в шестерне в миллиметрах.
         /// </summary>
         HoleDiameter,
+        
         /// <summary>
         /// Толщина шестерни в миллиметрах.
         /// </summary>
         Thickness,
+        
         /// <summary>
         /// Количество зубъев шестерни в штуках.
         /// </summary>
         ToothCount,
+        
         /// <summary>
         /// Высота зуба в миллиметрах.
         /// </summary>

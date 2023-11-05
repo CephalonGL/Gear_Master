@@ -2,13 +2,23 @@
 
 namespace Model
 {
+    /// <summary>
+    /// Фабрика, создающая объекты, реализхующие интерфейс ICadBuilder.
+    /// </summary>
     public class CadBuilderFactory
     {
-        public ICadBuilder MakeBuilder(CadName cadName)
+        /// <summary>
+        /// Создаёт экземпляр построителя для выбранной САПР.
+        /// </summary>
+        /// <param name="cadType">Название выбранной САПР.</param>
+        /// <returns>Построитель для выбранной САПР.</returns>
+        /// <exception cref="ArgumentException">Если осуществляется создать объект построителя, 
+        /// создание которого ещё не реализовано.</exception>
+        public ICadBuilder MakeBuilder(CadType cadType)
         {
-            switch (cadName)
+            switch (cadType)
             {
-                case CadName.AutoCad:
+                case CadType.AutoCad:
                 {
                     return new AutoCadBuilder();
                 }
