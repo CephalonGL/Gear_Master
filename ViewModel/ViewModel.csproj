@@ -72,7 +72,6 @@
         <Compile Include="CrossValidator.cs" />
         <Compile Include="MainVM.cs" />
         <Compile Include="ParametersVM.cs" />
-        <Compile Include="ParameterVM.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
