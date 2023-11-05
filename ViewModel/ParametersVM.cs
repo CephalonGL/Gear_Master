@@ -14,6 +14,6 @@ namespace ViewModel
         /// Параметры шестерни.
         /// </summary>
         [field: ObservableProperty]
-        public  Dictionary<ParameterType, ParameterVM> Parameters { get; set; }
+        public  GearParameters Parameters { get; set; }
     }
 }
