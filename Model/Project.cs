@@ -1,32 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Model
+﻿namespace Model
 {
+    using System;
+
     /// <summary>
     /// Главный класс модели.
     /// </summary>
     public class Project
     {
         /// <summary>
-        /// Параметры шестерни.
-        /// </summary>
-        public GearParameters Parameters { get; set;}
-        
-        /// <summary>
-        /// Построитель.
-        /// </summary>
-        public ICadBuilder Builder { get; private set; }
-
-        /// <summary>
         /// Конструктор с параметром целевой САПР, в которой будет выполняться построение.
         /// </summary>
         /// <param name="cadType">Название целевой САПР.</param>
         public Project(CadType cadType = CadType.AutoCad)
         {
-            var cadBuilderFactory = new CadBuilderFactory();
-            Builder = cadBuilderFactory.MakeBuilder(cadType);
-            ConnectToCad();
+            SelectCad(cadType);
         }
 
         /// <summary>
@@ -34,41 +21,37 @@ namespace Model
         /// </summary>
         ~Project()
         {
-            DisconnectFromCad();
+            Builder.DisconnectFromCad();
         }
+
+        /// <summary>
+        /// Параметры шестерни.
+        /// </summary>
+        public GearParameters Parameters { get; set; }
+
+        /// <summary>
+        /// Построитель.
+        /// </summary>
+        private ICadBuilder Builder { get; set; }
 
         /// <summary>
         /// Команда построения объекта.
         /// </summary>
+        /// <param name="parameters">Параметры для построения шестерни.</param>
         public void Build(GearParameters parameters)
         {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Выполняет подключение к целевой САПР.
-        /// </summary>
-        public void ConnectToCad()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Выполняет отключение от целевой САПР.
-        /// </summary>
-        public void DisconnectFromCad()
-        {
-            throw new NotImplementedException();
+            Builder.BuildGear(parameters);
         }
 
         /// <summary>
         /// Осуществляет выбор целевой САПР.
         /// </summary>
-        /// <param name="cadType"></param>
-        public void SelectCad(CadType cadType)
+        /// <param name="cadType">Тип подключаемой САПР.</param>
+        private void SelectCad(CadType cadType)
         {
             var cadBuilderFactory = new CadBuilderFactory();
             Builder = cadBuilderFactory.MakeBuilder(cadType);
+            Builder.ConnectToCad();
         }
     }
 }
