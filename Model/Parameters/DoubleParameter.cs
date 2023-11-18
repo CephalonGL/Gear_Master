@@ -17,28 +17,21 @@
         {
         }
 
+        /// <inheritdoc/>
         public override string MaxValue
         {
             get => _maxValue;
-            set
-            {
-                
-                _maxValue = value;
-            }
+            set => _maxValue = value;
         }
 
-        /// <summary>
-        /// Минимальное значение параметра.
-        /// </summary>
+        /// <inheritdoc/>
         public override string MinValue
         {
             get => _minValue;
             set => _minValue = value;
         }
 
-        /// <summary>
-        /// Значение параметра.
-        /// </summary>
+        /// <inheritdoc/>
         public override string Value
         {
             get => _value;
@@ -57,13 +50,15 @@
                 if (doubleValue <= double.Parse(MinValue))
                 {
                     throw new
-                        ArgumentOutOfRangeException(null, $"Value must be more or equal to {MinValue}.");
+                        ArgumentOutOfRangeException(null,
+                                                    $"Value must be more or equal to {MinValue}.");
                 }
 
                 if (doubleValue >= double.Parse(MaxValue))
                 {
                     throw new
-                        ArgumentOutOfRangeException(null, $"Value must be less or equal to {MaxValue}.");
+                        ArgumentOutOfRangeException(null,
+                                                    $"Value must be less or equal to {MaxValue}.");
                 }
 
                 _value = value;
