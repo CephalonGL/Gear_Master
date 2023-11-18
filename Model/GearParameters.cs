@@ -2,6 +2,7 @@
 {
     /// <summary>
     /// Парметры геометрической модели шестерни.
+    /// Указаны в системе СИ.
     /// </summary>
     public struct GearParameters
     {
@@ -28,27 +29,27 @@
         }
 
         /// <summary>
-        /// Внешний радиус шестерни по вершинам.
+        /// Внешний радиус шестерни по вершинам, мм.
         /// </summary>
         public Parameter OuterDiameter { get; set; }
 
         /// <summary>
-        /// Диаметр посадочного отверстия.
+        /// Диаметр посадочного отверстия, мм.
         /// </summary>
         public Parameter HoleDiameter { get; set; }
 
         /// <summary>
-        /// Толщина шестерни.
+        /// Толщина шестерни, мм.
         /// </summary>
         public Parameter Thickness { get; set; }
 
         /// <summary>
-        /// Количество зубьев.
+        /// Количество зубьев, шт.
         /// </summary>
         public Parameter ToothCount { get; set; }
 
         /// <summary>
-        /// Высота зуба.
+        /// Высота зуба, мм.
         /// </summary>
         public Parameter ToothHeight { get; set; }
     }
