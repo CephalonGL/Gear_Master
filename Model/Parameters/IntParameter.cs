@@ -16,14 +16,31 @@
         }
 
         /// <summary>
-        /// Значение параметра.
+        /// Минимальное значение параметра.
         /// </summary>
+        public string MaxValue
+        {
+            get => _maxValue;
+            set => _maxValue = value;
+        }
+
+        /// <summary>
+        /// Максимальное значение параметра.
+        /// </summary>
+        public string MinValue
+        {
+            get => _minValue;
+            set => _minValue = value;
+        }
+
+        /// <inheritdoc/>
         public override string Value
         {
             get => _value;
             set
             {
                 int correctValue;
+
                 if (int.TryParse(value, out correctValue))
                 {
                     _value = value;
