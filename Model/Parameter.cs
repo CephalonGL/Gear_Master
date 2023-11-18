@@ -1,7 +1,4 @@
-﻿using System;
-using CommunityToolkit.Diagnostics;
-
-namespace Model
+﻿namespace Model
 {
     /// <summary>
     /// Базовый класс для определения параметров.
@@ -12,14 +9,23 @@ namespace Model
         /// Хранит значение параметра.
         /// </summary>
         protected string _value;
-        
+
+        /// <summary>
+        /// Минимальное значение параметра.
+        /// </summary>
+        protected string _maxValue;
+
+        /// <summary>
+        /// Максимальное значение параметра.
+        /// </summary>
+        protected string _minValue;
+
         /// <summary>
         /// Конструткор базового класса.
         /// </summary>
-        /// <param name="minValue"></param>
-        /// <param name="maxValue"></param>
-        protected Parameter(string minValue,
-                            string maxValue)
+        /// <param name="minValue">Минимальное значение параметра.</param>
+        /// <param name="maxValue">Максимальное значение параметра.</param>
+        protected Parameter(string minValue, string maxValue)
         {
             MaxValue = maxValue;
             MinValue = minValue;
@@ -28,15 +34,28 @@ namespace Model
         /// <summary>
         /// Максимальное значение параметра.
         /// </summary>
-        public string MaxValue { get; private set; }
+        public virtual string MaxValue
+        {
+            get => _maxValue;
+            set => _maxValue = value;
+        }
 
         /// <summary>
         /// Минимальное значение параметра.
         /// </summary>
-        public string MinValue { get; private set; }
+        public virtual string MinValue
+        {
+            get => _minValue;
+            set => _minValue = value;
+        }
+
         /// <summary>
         /// Значение параметра.
         /// </summary>
-        public virtual string Value { get; set; }
+        public virtual string Value
+        {
+            get => _value;
+            set => _value = value;
+        }
     }
 }

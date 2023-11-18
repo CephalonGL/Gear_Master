@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Model
+﻿namespace Model
 {
     /// <summary>
     /// Реализует построение модели шестерни в CAD.
@@ -14,10 +12,10 @@ namespace Model
         void BuildGear(GearParameters parameters);
 
         /// <summary>
-        /// Подключитья к выбранной САПР. 
+        /// Подключитья к выбранной САПР.
         /// </summary>
         void ConnectToCad();
-        
+
         /// <summary>
         /// Отключиться от САПР.
         /// </summary>

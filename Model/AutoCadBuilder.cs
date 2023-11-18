@@ -1,32 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Model
+﻿namespace Model
 {
     /// <summary>
     /// Выполняет построение шестерни в САПР Autodesk AutoCAD.
     /// </summary>
     public class AutoCadBuilder : ICadBuilder
     {
-        private void BuildGearTooth()
+        /// <summary>
+        /// Деструктор.
+        /// </summary>
+        ~AutoCadBuilder()
         {
-            throw new NotImplementedException();
-        }
-        
-        public void BuildGear(GearParameters parameters)
-        {
-            throw new System.NotImplementedException();
+            DisconnectFromCad();
         }
 
+        /// <summary>
+        /// Выполняет подкючение к САПР.
+        /// </summary>
         public void ConnectToCad()
         {
-            throw new System.NotImplementedException();
+            return;
         }
 
+        /// <summary>
+        /// Выполняет отключение от САПР.
+        /// </summary>
         public void DisconnectFromCad()
         {
-            throw new System.NotImplementedException();
+            return;
+        }
+
+        /// <summary>
+        /// Выполняет построение шестерни.
+        /// </summary>
+        /// <param name="parameters">Параметры объекта шестерни.</param>
+        public void BuildGear(GearParameters parameters)
+        {
+            return;
+        }
+
+        /// <summary>
+        /// Выполняет построение одного зуба.
+        /// </summary>
+        private void BuildGearTooth()
+        {
+            return;
         }
     }
 }
-

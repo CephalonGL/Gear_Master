@@ -8,12 +8,10 @@
         /// <summary>
         /// Конструктор целочисленного параметра.
         /// </summary>
-        /// <param name="minValue">Минимально допустимое значение параметра</param>
+        /// <param name="minValue">Минимально допустимое значение параметра.</param>
         /// <param name="maxValue">Максимально допустимое значение параметра.</param>
-        IntParameter(string minValue,
-                     string maxValue)
-            : base(minValue,
-                   maxValue)
+        public IntParameter(string minValue, string maxValue)
+            : base(minValue, maxValue)
         {
         }
 

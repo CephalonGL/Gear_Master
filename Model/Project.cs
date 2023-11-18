@@ -9,6 +9,11 @@ namespace Model
     public class Project
     {
         /// <summary>
+        /// Параметры шестерни.
+        /// </summary>
+        public GearParameters Parameters { get; set;}
+        
+        /// <summary>
         /// Построитель.
         /// </summary>
         public ICadBuilder Builder { get; private set; }

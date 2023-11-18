@@ -10,7 +10,7 @@
     xmlns:local="clr-namespace:GearMaster"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Grid>
+    <Grid d:DataContext="{d:DesignInstance}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -26,13 +26,15 @@
         <UniformGrid
             Grid.Row="0"
             Margin="8,8,8,0"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            d:DataContext="{d:DesignInstance}">
             <TextBlock HorizontalAlignment="Left" Text="Внешний диаметр шестерни (1 - 1000 мм)" />
             <TextBox
                 Background="white"
                 HorizontalAlignment="Right"
-                Text="{Binding}"
-                Width="100" />
+                Text="{Binding Path=outerDiameter}"
+                Width="100"
+                x:Name="outerGearDiameter" />
         </UniformGrid>
 
         <UniformGrid
@@ -43,7 +45,8 @@
             <TextBox
                 Background="White"
                 HorizontalAlignment="Right"
-                Width="100" />
+                Width="100"
+                x:Name="holeDiameter" />
         </UniformGrid>
 
         <UniformGrid
@@ -51,7 +54,10 @@
             Margin="8,8,8,0"
             VerticalAlignment="Top">
             <TextBlock HorizontalAlignment="Left" Text="Толщина шестерни (1 - 1000 мм)" />
-            <TextBox HorizontalAlignment="Right" Width="100" />
+            <TextBox
+                HorizontalAlignment="Right"
+                Width="100"
+                x:Name="thickness" />
         </UniformGrid>
 
         <UniformGrid
@@ -59,7 +65,10 @@
             Margin="8,8,8,0"
             VerticalAlignment="Top">
             <TextBlock HorizontalAlignment="Left" Text="Количество зубов (3 - 1000 шт.)" />
-            <TextBox HorizontalAlignment="Right" Width="100" />
+            <TextBox
+                HorizontalAlignment="Right"
+                Width="100"
+                x:Name="toothCount" />
         </UniformGrid>
 
         <UniformGrid
@@ -67,7 +76,10 @@
             Margin="8,8,8,0"
             VerticalAlignment="Top">
             <TextBlock HorizontalAlignment="Left" Text="Высота зуба (0,1 - 999 мм)" />
-            <TextBox HorizontalAlignment="Right" Width="100" />
+            <TextBox
+                HorizontalAlignment="Right"
+                Width="100"
+                x:Name="toothHeight" />
         </UniformGrid>
 
 

@@ -10,8 +10,6 @@ namespace ViewModel
     /// </summary>
     public class MainVM
     {
-        public GearParameters Parameters { get; set;}
-        
         /// <summary>
         /// Хранит проект.
         /// </summary>
@@ -23,18 +21,12 @@ namespace ViewModel
         private MainVM()
         {
             Project = new Project();
-            ParametersVM = new ParametersVM();
-            BuildCommand = new RelayCommand(() => Project.Build(Parameters));
+            BuildCommand = new RelayCommand(() => Project.Build(CrossValidator.AssertCorrect(Project.Parameters)));
         }
         
         /// <summary>
         /// Команда построения модели в САПР.
         /// </summary>
         public RelayCommand BuildCommand;
-        
-        /// <summary>
-        /// Хранит все параметры моделируемого изделия.
-        /// </summary>
-        public ParametersVM ParametersVM {get; set; }
     }
 }

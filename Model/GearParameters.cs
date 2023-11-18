@@ -5,42 +5,51 @@
     /// </summary>
     public struct GearParameters
     {
-        public GearParameters(double outerRadius,
-                       double holeRadius,
-                       double thickness,
-                       int    toothCount,
-                       double toothHeight)
+        /// <summary>
+        /// Конструктор.
+        /// </summary>
+        /// <param name="outerDiameter">Внешний диаметр шестерни.</param>
+        /// <param name="holeDiameter">Внутренний диаметр отверстия.</param>
+        /// <param name="thickness">Толщина шестерни.</param>
+        /// <param name="toothCount">Количество зубьев.</param>
+        /// <param name="toothHeight">Высота зуба.</param>
+        public GearParameters(
+            Parameter outerDiameter,
+            Parameter holeDiameter,
+            Parameter thickness,
+            Parameter toothCount,
+            Parameter toothHeight)
         {
-            OuterRadius = outerRadius;
-            Thickness   = thickness;
-            ToothCount  = toothCount;
-            ToothHeight = toothHeight;
-            HoleRadius  = holeRadius;
+            OuterDiameter = outerDiameter;
+            Thickness     = thickness;
+            ToothCount    = toothCount;
+            ToothHeight   = toothHeight;
+            HoleDiameter  = holeDiameter;
         }
 
         /// <summary>
         /// Внешний радиус шестерни по вершинам.
         /// </summary>
-        public double OuterRadius { get;  set; }
+        public Parameter OuterDiameter { get; set; }
 
         /// <summary>
         /// Диаметр посадочного отверстия.
         /// </summary>
-        public double HoleRadius { get;  set; }
+        public Parameter HoleDiameter { get; set; }
 
         /// <summary>
         /// Толщина шестерни.
         /// </summary>
-        public double Thickness { get;  set; }
+        public Parameter Thickness { get; set; }
 
         /// <summary>
         /// Количество зубьев.
         /// </summary>
-        public int ToothCount { get;  set; }
+        public Parameter ToothCount { get; set; }
 
         /// <summary>
         /// Высота зуба.
         /// </summary>
-        public double ToothHeight { get;  set; }
+        public Parameter ToothHeight { get; set; }
     }
 }

@@ -80,12 +80,19 @@
     </ItemGroup>
     <ItemGroup>
         <None Include="App.config"/>
+        <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ViewModel\ViewModel.csproj">
         <Project>{663e44a7-fe94-4ae5-8090-f0db97308ad9}</Project>
         <Name>ViewModel</Name>
       </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+      <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+      <Analyzer Include="..\packages\StyleCop.Analyzers.Unstable.1.2.0.507\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+      <Analyzer Include="..\packages\StyleCop.Analyzers.Unstable.1.2.0.507\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 </Project>
