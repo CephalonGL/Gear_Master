@@ -9,34 +9,34 @@
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="outerDiameter">Внешний диаметр шестерни.</param>
-        /// <param name="holeDiameter">Внутренний диаметр отверстия.</param>
-        /// <param name="thickness">Толщина шестерни.</param>
+        /// <param name="outerRadius">Внешний радиус шестерни по вершинам, мм.</param>
+        /// <param name="holeRadius">Внутренний радиус отверстия, мм.</param>
+        /// <param name="thickness">Толщина шестерни, мм.</param>
         /// <param name="toothCount">Количество зубьев.</param>
-        /// <param name="toothHeight">Высота зуба.</param>
+        /// <param name="toothHeight">Высота зуба, мм.</param>
         public GearParameters(
-            Parameter outerDiameter,
-            Parameter holeDiameter,
+            Parameter outerRadius,
+            Parameter holeRadius,
             Parameter thickness,
             Parameter toothCount,
             Parameter toothHeight)
         {
-            OuterDiameter = outerDiameter;
+            OuterRadius = outerRadius;
             Thickness     = thickness;
             ToothCount    = toothCount;
             ToothHeight   = toothHeight;
-            HoleDiameter  = holeDiameter;
+            HoleRadius  = holeRadius;
         }
 
         /// <summary>
         /// Внешний радиус шестерни по вершинам, мм.
         /// </summary>
-        public Parameter OuterDiameter { get; set; }
+        public Parameter OuterRadius { get; set; }
 
         /// <summary>
-        /// Диаметр посадочного отверстия, мм.
+        /// Радиус посадочного отверстия, мм.
         /// </summary>
-        public Parameter HoleDiameter { get; set; }
+        public Parameter HoleRadius { get; set; }
 
         /// <summary>
         /// Толщина шестерни, мм.
