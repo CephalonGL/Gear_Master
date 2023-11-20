@@ -1,6 +1,6 @@
 ﻿<Window
     DataContext="MainVM"
-    Height="350"
+    Height="auto"
     Title="Gear Master"
     Width="550"
     mc:Ignorable="d"
@@ -11,95 +11,98 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid d:DataContext="{d:DesignInstance}">
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-
-        <UniformGrid
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            Grid.Column="0"
             Grid.Row="0"
-            Margin="8,8,8,0"
-            VerticalAlignment="Top"
-            d:DataContext="{d:DesignInstance}">
-            <TextBlock HorizontalAlignment="Left" Text="Внешний диаметр шестерни (1 - 1000 мм)" />
-            <TextBox
-                Background="white"
-                HorizontalAlignment="Right"
-                Text="{Binding Path=outerDiameter}"
-                Width="100"
-                x:Name="OuterGearDiameter" />
-        </UniformGrid>
-
-        <UniformGrid
+            HorizontalAlignment="Left"
+            Text="Внешний диаметр шестерни (1 - 1000 мм)" />
+        <TextBlock
+            Grid.Column="0"
             Grid.Row="1"
-            Margin="8,8,8,0"
-            VerticalAlignment="Top">
-            <TextBlock HorizontalAlignment="Left" Text="Диаметр посадочного отверстия (1 - 999 мм)" />
-            <TextBox
-                Background="White"
-                HorizontalAlignment="Right"
-                Width="100"
-                x:Name="HoleDiameter" />
-        </UniformGrid>
-
-        <UniformGrid
+            HorizontalAlignment="Left"
+            Text="Диаметр посадочного отверстия (1 - 999 мм)" />
+        <TextBlock
+            Grid.Column="0"
             Grid.Row="2"
-            Margin="8,8,8,0"
-            VerticalAlignment="Top">
-            <TextBlock HorizontalAlignment="Left" Text="Толщина шестерни (1 - 1000 мм)" />
-            <TextBox
-                HorizontalAlignment="Right"
-                Width="100"
-                x:Name="Thickness" />
-        </UniformGrid>
-
-        <UniformGrid
+            HorizontalAlignment="Left"
+            Text="Толщина шестерни (1 - 1000 мм)" />
+        <TextBlock
+            Grid.Column="0"
             Grid.Row="3"
-            Margin="8,8,8,0"
-            VerticalAlignment="Top">
-            <TextBlock HorizontalAlignment="Left" Text="Количество зубов (3 - 1000 шт.)" />
-            <TextBox
-                HorizontalAlignment="Right"
-                Width="100"
-                x:Name="ToothCount" />
-        </UniformGrid>
-
-        <UniformGrid
+            HorizontalAlignment="Left"
+            Text="Количество зубов (3 - 1000 шт.)" />
+        <TextBlock
+            Grid.Column="0"
             Grid.Row="4"
-            Margin="8,8,8,0"
-            VerticalAlignment="Top">
-            <TextBlock HorizontalAlignment="Left" Text="Высота зуба (0,1 - 999 мм)" />
-            <TextBox
-                HorizontalAlignment="Right"
-                Width="100"
-                x:Name="ToothHeight" />
-        </UniformGrid>
+            HorizontalAlignment="Left"
+            Text="Высота зуба (0,1 - 999 мм)" />
+
+        <TextBox
+            Background="white"
+            Grid.Column="1"
+            Grid.Row="0"
+            HorizontalAlignment="Right"
+            Text="{Binding Path=outerDiameter}"
+            Width="100"
+            x:Name="OuterGearDiameter" />
+        <TextBox
+            Background="White"
+            Grid.Column="1"
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Width="100"
+            x:Name="HoleDiameter" />
+        <TextBox
+            Grid.Column="1"
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Width="100"
+            x:Name="Thickness" />
+
+        <TextBox
+            Grid.Column="1"
+            Grid.Row="3"
+            HorizontalAlignment="Right"
+            Width="100"
+            x:Name="ToothCount" />
+        <TextBox
+            Grid.Column="1"
+            Grid.Row="4"
+            HorizontalAlignment="Right"
+            Width="100"
+            x:Name="ToothHeight" />
 
 
-        <UniformGrid
+        <Button
+            Grid.Column="0"
+            Grid.Row="5"
+            HorizontalAlignment="Left"
+            Name="BuildButton"
+            Width="100">
+            <TextBlock Text="Построить" />
+        </Button>
+
+        <TextBlock
+            Background="White"
+            Grid.Column="0"
             Grid.Row="6"
             HorizontalAlignment="Left"
-            Margin="8,8,8,0"
-            VerticalAlignment="Top">
-            <Button Name="BuildButton" Width="100">
-                <TextBlock Text="Построить" />
-            </Button>
-        </UniformGrid>
-
-        <UniformGrid
-            Grid.Row="7"
-            Margin="8,8,8,0"
-            VerticalAlignment="Top">
-            <TextBlock Background="White" HorizontalAlignment="Left">
-                Ошибка: параметр Внешний диаметр шестерни не должен быть меньше<LineBreak />
-                параметра Диаметр посадочного отверстия.</TextBlock>
-        </UniformGrid>
+            Text="">
+            Ошибка: параметр Внешний диаметр шестерни не должен быть меньше<LineBreak />
+            параметра Диаметр посадочного отверстия.</TextBlock>
     </Grid>
 </Window>
