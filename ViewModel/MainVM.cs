@@ -18,14 +18,13 @@
             BuildCommand =
                 new RelayCommand(() =>
                                      Project.Build(CrossValidator
-                                                      .AssertCorrect(Project.Parameters)));
+                                                      .AssertOnCorrect(Project.Parameters)));
         }
 
         /// <summary>
         /// Хранит проект.
         /// </summary>
         public Project Project { get; private set; }
-
 
         /// <summary>
         /// Команда построения модели в САПР.
