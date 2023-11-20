@@ -34,7 +34,7 @@
                 HorizontalAlignment="Right"
                 Text="{Binding Path=outerDiameter}"
                 Width="100"
-                x:Name="outerGearDiameter" />
+                x:Name="OuterGearDiameter" />
         </UniformGrid>
 
         <UniformGrid
@@ -46,7 +46,7 @@
                 Background="White"
                 HorizontalAlignment="Right"
                 Width="100"
-                x:Name="holeDiameter" />
+                x:Name="HoleDiameter" />
         </UniformGrid>
 
         <UniformGrid
@@ -57,7 +57,7 @@
             <TextBox
                 HorizontalAlignment="Right"
                 Width="100"
-                x:Name="thickness" />
+                x:Name="Thickness" />
         </UniformGrid>
 
         <UniformGrid
@@ -68,7 +68,7 @@
             <TextBox
                 HorizontalAlignment="Right"
                 Width="100"
-                x:Name="toothCount" />
+                x:Name="ToothCount" />
         </UniformGrid>
 
         <UniformGrid
@@ -79,7 +79,7 @@
             <TextBox
                 HorizontalAlignment="Right"
                 Width="100"
-                x:Name="toothHeight" />
+                x:Name="ToothHeight" />
         </UniformGrid>
 
 
