@@ -50,14 +50,16 @@
                 if (doubleValue <= double.Parse(MinValue))
                 {
                     throw new
-                        ArgumentOutOfRangeException(null,
+                        ArgumentOutOfRangeException(
+                                                    null,
                                                     $"Value must be more or equal to {MinValue}.");
                 }
 
                 if (doubleValue >= double.Parse(MaxValue))
                 {
                     throw new
-                        ArgumentOutOfRangeException(null,
+                        ArgumentOutOfRangeException(
+                                                    null,
                                                     $"Value must be less or equal to {MaxValue}.");
                 }
 
