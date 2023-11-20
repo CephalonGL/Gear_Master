@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\View
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{0D74464F-C001-4621-B210-4C6B50CEEEFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoCADConnector", "AutoCADConnector\AutoCADConnector.csproj", "{D92ADECD-9BFC-463C-802C-84904D3625F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{0D74464F-C001-4621-B210-4C6B50CEEEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D74464F-C001-4621-B210-4C6B50CEEEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D74464F-C001-4621-B210-4C6B50CEEEFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D92ADECD-9BFC-463C-802C-84904D3625F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D92ADECD-9BFC-463C-802C-84904D3625F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D92ADECD-9BFC-463C-802C-84904D3625F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D92ADECD-9BFC-463C-802C-84904D3625F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
