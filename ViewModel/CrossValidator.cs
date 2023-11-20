@@ -16,7 +16,6 @@
         /// </summary>
         private static GearParameters Parameters;
 
-
         /// <summary>
         /// Выполняет проверку зависимых параметров шестерни.
         /// </summary>
