@@ -9,8 +9,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:GearMaster"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Grid d:DataContext="{d:DesignInstance}">
+    <Grid d:DataContext="{d:DesignInstance viewModel:MainVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
@@ -55,39 +56,50 @@
             Background="white"
             Grid.Column="1"
             Grid.Row="0"
+            Height="20"
             HorizontalAlignment="Right"
-            Text="{Binding Path=outerDiameter}"
+            Text="{Binding GearParametersVM.Parameters.OuterRadius}"
             Width="100"
             x:Name="OuterGearDiameter" />
         <TextBox
             Background="White"
             Grid.Column="1"
             Grid.Row="1"
+            Height="20"
             HorizontalAlignment="Right"
+            Text="{Binding GearParametersVM.Parameters.HoleRadius}"
             Width="100"
             x:Name="HoleDiameter" />
         <TextBox
             Grid.Column="1"
             Grid.Row="2"
+            Height="20"
             HorizontalAlignment="Right"
+            Text="{Binding GearParametersVM.Parameters.Thickness}"
             Width="100"
             x:Name="Thickness" />
 
         <TextBox
             Grid.Column="1"
             Grid.Row="3"
+            Height="20"
             HorizontalAlignment="Right"
+            Text="{Binding GearParametersVM.Parameters.ToothCount}"
             Width="100"
             x:Name="ToothCount" />
         <TextBox
             Grid.Column="1"
             Grid.Row="4"
+            Height="20"
             HorizontalAlignment="Right"
+            Text="{Binding GearParametersVM.Parameters.ToothHeight}"
+            Background="{Binding GearParametersVM}"
             Width="100"
             x:Name="ToothHeight" />
 
 
         <Button
+            Command="{Binding BuildCommand}"
             Grid.Column="0"
             Grid.Row="5"
             HorizontalAlignment="Left"
@@ -101,8 +113,6 @@
             Grid.Column="0"
             Grid.Row="6"
             HorizontalAlignment="Left"
-            Text="">
-            Ошибка: параметр Внешний диаметр шестерни не должен быть меньше<LineBreak />
-            параметра Диаметр посадочного отверстия.</TextBlock>
+            Text="{Binding}" />
     </Grid>
 </Window>

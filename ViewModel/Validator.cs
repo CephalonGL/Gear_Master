@@ -9,21 +9,21 @@
     /// <summary>
     /// Осуществляет перекрёстную валидацию между параметрами.
     /// </summary>
-    public static class CrossValidator
+    public static class Validator
     {
         /// <summary>
         /// Хранит переданные параметры в метод AssertOnCorrect.
         /// </summary>
-        private static GearParameters Parameters;
+        private static GearParameters GearParameters;
 
         /// <summary>
         /// Выполняет проверку зависимых параметров шестерни.
         /// </summary>
-        /// <param name="parameters">Параметры шестерни.</param>
+        /// <param name="gearParameters">Параметры шестерни.</param>
         /// <returns>Корректные параметры шестерни.</returns>
-        public static GearParameters AssertOnCorrect(GearParameters parameters)
+        public static GearParameters AssertOnCorrect(GearParameters gearParameters)
         {
-            Parameters = parameters;
+            GearParameters = gearParameters;
             var errorMessages = new List<string>();
 
             if (IsHoleRadiusPlusToothHeightMoreOrEqualToOuterRadius())
@@ -50,7 +50,7 @@
                 throw new Exception(totalErrorMessages);
             }
 
-            return parameters;
+            return gearParameters;
         }
 
         /// <summary>
@@ -59,8 +59,8 @@
         /// <returns>True, если больше или равно, иначе - False.</returns>
         private static bool IsToothHeightMoreOrEqualToOuterRadius()
         {
-            var toothHeight   = double.Parse(Parameters.ToothHeight.Value);
-            var outerDiameter = double.Parse(Parameters.OuterRadius.Value);
+            var toothHeight   = double.Parse(GearParameters.ToothHeight.Value);
+            var outerDiameter = double.Parse(GearParameters.OuterRadius.Value);
 
             return toothHeight >= outerDiameter;
         }
@@ -71,9 +71,9 @@
         /// <returns>True, если является, иначе - False.</returns>
         private static bool IsHoleRadiusPlusToothHeightMoreOrEqualToOuterRadius()
         {
-            var holeRadius  = double.Parse(Parameters.HoleRadius.Value);
-            var toothHeight = double.Parse(Parameters.ToothHeight.Value);
-            var outerRadius = double.Parse(Parameters.OuterRadius.Value);
+            var holeRadius  = double.Parse(GearParameters.HoleRadius.Value);
+            var toothHeight = double.Parse(GearParameters.ToothHeight.Value);
+            var outerRadius = double.Parse(GearParameters.OuterRadius.Value);
 
             return holeRadius + toothHeight >= outerRadius;
         }

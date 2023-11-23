@@ -67,10 +67,13 @@
           <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
         </Reference>
         <Reference Include="System.Xml"/>
+        <Reference Include="WindowsBase" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="CrossValidator.cs" />
+        <Compile Include="Validator.cs" />
+        <Compile Include="GearParametersVM.cs" />
         <Compile Include="MainVM.cs" />
+        <Compile Include="ParameterVM.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>

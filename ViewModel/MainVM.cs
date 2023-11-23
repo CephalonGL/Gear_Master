@@ -11,20 +11,25 @@
         /// <summary>
         /// Конструктро без параметров.
         /// </summary>
-        private MainVM()
+        public MainVM()
         {
             Project = new Project();
 
             BuildCommand =
                 new RelayCommand(() =>
-                                     Project.Build(CrossValidator
+                                     Project.Build(Validator
                                                       .AssertOnCorrect(Project.Parameters)));
         }
 
         /// <summary>
-        /// Хранит проект.
+        /// Проект модели.
         /// </summary>
         public Project Project { get; private set; }
+
+        /// <summary>
+        /// Параметры шестерни
+        /// </summary>
+        public GearParametersVM GearParametersVM { get; set; }
 
         /// <summary>
         /// Команда построения модели в САПР.
