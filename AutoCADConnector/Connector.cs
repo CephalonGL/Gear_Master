@@ -6,7 +6,6 @@
     using Autodesk.AutoCAD.DatabaseServices;
     using Autodesk.AutoCAD.Geometry;
     using Autodesk.AutoCAD.Runtime;
-    using CommunityToolkit.Mvvm.Input;
     using GearMaster;
     using Model;
     using Application = Autodesk.AutoCAD.ApplicationServices.Core.Application;

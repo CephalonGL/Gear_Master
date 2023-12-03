@@ -101,7 +101,6 @@
             x:Name="ToothHeight" />
 
         <Button
-            Command="{Binding BuildGearCommand}"
             Content="Построить"
             Grid.Column="0"
             Grid.Row="5"

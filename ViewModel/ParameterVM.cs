@@ -8,7 +8,7 @@
     /// <summary>
     /// Представление параметра.
     /// </summary>
-    public class ParameterVM : DependencyObject
+    public class ParameterVM
     {
         /// <summary>
         /// Параметры.

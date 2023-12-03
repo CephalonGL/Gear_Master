@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AutoCADConnector")]
+[assembly: AssemblyTitle("AutoCadConnector")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AutoCADConnector")]
+[assembly: AssemblyProduct("AutoCadConnector")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("D92ADECD-9BFC-463C-802C-84904D3625F0")]
+[assembly: Guid("33F36A3F-9A0C-47A1-B5B3-C313EA86489B")]
 
 // Version information for an assembly consists of the following four values:
 //
