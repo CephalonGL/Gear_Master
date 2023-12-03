@@ -8,20 +8,12 @@
     public class Project
     {
         /// <summary>
-        /// Конструктор с параметром целевой САПР, в которой будет выполняться построение.
+        /// Конструктор главного класса модели
         /// </summary>
-        /// <param name="cadType">Название целевой САПР.</param>
-        public Project(CadType cadType = CadType.AutoCad)
+        /// <param name="builder">Экземпляр построителя</param>
+        public Project(ICadBuilder builder)
         {
-            SelectCad(cadType);
-        }
-
-        /// <summary>
-        /// Деструктор проекта.
-        /// </summary>
-        ~Project()
-        {
-            Builder.DisconnectFromCad();
+            Builder = builder;
         }
 
         /// <summary>
@@ -37,21 +29,9 @@
         /// <summary>
         /// Команда построения объекта.
         /// </summary>
-        /// <param name="parameters">Параметры для построения шестерни.</param>
-        public void Build(GearParameters parameters)
+        public void Build()
         {
-            Builder.BuildGear(parameters);
-        }
-
-        /// <summary>
-        /// Осуществляет выбор целевой САПР.
-        /// </summary>
-        /// <param name="cadType">Тип подключаемой САПР.</param>
-        private void SelectCad(CadType cadType)
-        {
-            var cadBuilderFactory = new CadBuilderFactory();
-            Builder = cadBuilderFactory.MakeBuilder(cadType);
-            Builder.ConnectToCad();
+            Builder.BuildGear(Parameters);
         }
     }
 }

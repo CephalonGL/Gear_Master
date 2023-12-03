@@ -1,5 +1,8 @@
 ﻿namespace ViewModel
 {
+    using System;
+    using System.Windows.Input;
+    using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Model;
 
@@ -13,33 +16,41 @@
         /// </summary>
         public MainVM()
         {
-            Project  = new Project();
+            Project = new Project(ICadBuilder builder);
         }
 
         /// <summary>
         /// Флаг, отображающий возможность выполнения построения модели.
         /// </summary>
+        [field: ObservableProperty]
         public bool IsAbleToBuild { get; private set; }
 
         /// <summary>
         /// Проект модели.
         /// </summary>
-        public Project Project { get; private set; }
+        private Project Project { get;  set; }
 
         /// <summary>
         /// Параметры шестерни
         /// </summary>
         public GearParametersVM GearParametersVM { get; set; }
-        
+
         /// <summary>
-        /// 
+        /// Выполняет проверку параметров.
         /// </summary>
         /// <returns></returns>
-        public RelayCommand ValidateParameters { get; private set; }
-        
+        public GearParameters AssertParametersCorrect()
+        {
+            return new GearParameters();
+        }
+
         /// <summary>
         /// Команда построения модели в САПР.
         /// </summary>
-        public RelayCommand BuildCommand { get; private set; }
+        [RelayCommand]
+        public void BuildCommand()
+        {
+            Project.Builder.BuildGear();
+        }
     }
 }

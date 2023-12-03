@@ -67,11 +67,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoCadBuilder.cs" />
-    <Compile Include="CadBuilderFactory.cs" />
     <Compile Include="CadType.cs" />
     <Compile Include="GearParameters.cs" />
     <Compile Include="ICadBuilder.cs" />
+    <Compile Include="ICadConnector.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="Parameters\DoubleParameter.cs" />
     <Compile Include="Parameters\IntParameter.cs" />

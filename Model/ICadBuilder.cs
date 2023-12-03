@@ -10,15 +10,5 @@
         /// </summary>
         /// <param name = "parameters">Параметры шестерни.</param>
         void BuildGear(GearParameters parameters);
-
-        /// <summary>
-        /// Подключитья к выбранной САПР.
-        /// </summary>
-        void ConnectToCad();
-
-        /// <summary>
-        /// Отключиться от САПР.
-        /// </summary>
-        void DisconnectFromCad();
     }
 }

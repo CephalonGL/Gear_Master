@@ -58,8 +58,6 @@
             Grid.Row="0"
             Height="20"
             HorizontalAlignment="Right"
-            Text="{Binding GearParametersVM.Parameters.OuterRadius}"
-            TextChanged="{Binding ValidateParameters}"
             Width="100"
             x:Name="OuterGearDiameter" />
         <TextBox
@@ -68,8 +66,6 @@
             Grid.Row="1"
             Height="20"
             HorizontalAlignment="Right"
-            Text="{Binding GearParametersVM.Parameters.HoleRadius}"
-            TextChanged="{Binding ValidateParameters}"
             Width="100"
             x:Name="HoleDiameter" />
         <TextBox
@@ -77,8 +73,6 @@
             Grid.Row="2"
             Height="20"
             HorizontalAlignment="Right"
-            Text="{Binding GearParametersVM.Parameters.Thickness}"
-            TextChanged="{Binding ValidateParameters}"
             Width="100"
             x:Name="Thickness" />
 
@@ -87,28 +81,21 @@
             Grid.Row="3"
             Height="20"
             HorizontalAlignment="Right"
-            Text="{Binding GearParametersVM.Parameters.ToothCount}"
-            TextChanged="{Binding ValidateParameters}"
             Width="100"
             x:Name="ToothCount" />
         <TextBox
-            Background="{Binding GearParametersVM}"
             Grid.Column="1"
             Grid.Row="4"
             Height="20"
             HorizontalAlignment="Right"
-            Text="{Binding GearParametersVM.Parameters.ToothHeight}"
-            TextChanged="{Binding ValidateParameters}"
             Width="100"
             x:Name="ToothHeight" />
 
 
         <Button
-            Command="{Binding BuildCommand}"
             Grid.Column="0"
             Grid.Row="5"
             HorizontalAlignment="Left"
-            IsEnabled="{Binding IsAbleToBuild}"
             Name="BuildButton"
             Width="100">
             <TextBlock Text="Построить" />
@@ -118,7 +105,6 @@
             Background="White"
             Grid.Column="0"
             Grid.Row="6"
-            HorizontalAlignment="Left"
-            Text="{Binding}" />
+            HorizontalAlignment="Left" />
     </Grid>
 </Window>
