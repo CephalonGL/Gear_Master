@@ -23,7 +23,7 @@
         /// Проект модели.
         /// </summary>
         private Project Project { get; set; }
-        
+
         /// <summary>
         /// Флаг, отображающий возможность выполнения построения модели.
         /// </summary>
@@ -47,8 +47,12 @@
         /// <summary>
         /// Команда построения модели в САПР.
         /// </summary>
-        [RelayCommand]
-        public void BuildGearCommand()
+        public RelayCommand BuildCommand => new RelayCommand(BuildGearCommand);
+
+        /// <summary>
+        /// Команда построения модели в САПР.
+        /// </summary>
+        private void BuildGearCommand()
         {
             Project.BuildGear();
         }

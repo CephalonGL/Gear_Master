@@ -8,7 +8,7 @@
         /// <summary>
         /// Выполняет построение шестерни.
         /// </summary>
-        /// <param name = "parameters">Параметры шестерни.</param>
-        void BuildGear(GearParameters parameters);
+        /// <param name = "gearParameters">Параметры шестерни.</param>
+        void BuildGear(GearParameters gearParameters);
     }
 }

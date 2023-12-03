@@ -2,7 +2,7 @@
     DataContext="MainVM"
     Height="auto"
     Title="Gear Master"
-    Width="550"
+    Width="auto"
     mc:Ignorable="d"
     x:Class="GearMaster.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -101,10 +101,12 @@
             x:Name="ToothHeight" />
 
         <Button
+            Command="{Binding BuildCommand}"
             Content="Построить"
             Grid.Column="0"
             Grid.Row="5"
             HorizontalAlignment="Left"
+            IsEnabled="{Binding IsAbleToBuild}"
             Name="BuildButton"
             Width="100" />
 
