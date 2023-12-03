@@ -15,6 +15,11 @@
         /// </summary>
         [ObservableProperty]
         private Parameter _parameter;
+        
+        /// <summary>
+        /// Отображает состояние корректности данных.
+        /// </summary>
+        public bool IsCorrect { get; private set; }
 
         /// <summary>
         /// Конструктор.

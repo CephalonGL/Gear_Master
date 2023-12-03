@@ -1,5 +1,6 @@
 ﻿namespace ViewModel
 {
+    using CommunityToolkit.Mvvm.Input;
     using Model;
 
     /// <summary>
@@ -20,5 +21,14 @@
         /// Хранит парамеры шестерни.
         /// </summary>
         public GearParameters Parameters { get; private set; }
+
+        /// <summary>
+        /// Выполняет валидацию параметров.
+        /// </summary>
+        /// <returns></returns>
+        public (bool, string) ValidateParameters()
+        {
+            return 
+        }
     }
 }

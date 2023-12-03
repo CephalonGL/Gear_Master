@@ -1,6 +1,7 @@
 ﻿namespace Model.Parameters
 {
     using System;
+    using CommunityToolkit.Diagnostics;
 
     /// <summary>
     /// Параметр числа с плавающей запятой двойной точности.
@@ -44,7 +45,7 @@
 
                 if (!double.TryParse(value, out var doubleValue))
                 {
-                    throw new ArgumentException("Value must be double.");
+                    throw new ArgumentException($"{Name} must be double.");
                 }
 
                 if (doubleValue <= double.Parse(MinValue))
@@ -52,7 +53,7 @@
                     throw new
                         ArgumentOutOfRangeException(
                                                     null,
-                                                    $"Value must be more or equal to {MinValue}.");
+                                                    $"{Name} must be more or equal to {MinValue}.");
                 }
 
                 if (doubleValue >= double.Parse(MaxValue))
@@ -60,7 +61,7 @@
                     throw new
                         ArgumentOutOfRangeException(
                                                     null,
-                                                    $"Value must be less or equal to {MaxValue}.");
+                                                    $"{Name} must be less or equal to {MaxValue}.");
                 }
 
                 _value = value;

@@ -9,17 +9,18 @@
     public class MainVM
     {
         /// <summary>
-        /// Конструктро без параметров.
+        /// Конструктор без параметров.
         /// </summary>
         public MainVM()
         {
-            Project = new Project();
-
-            BuildCommand =
-                new RelayCommand(() =>
-                                     Project.Build(Validator
-                                                      .AssertOnCorrect(Project.Parameters)));
+            Project  = new Project();
+            ValidateParameters = this.GearParametersVM.
         }
+
+        /// <summary>
+        /// Флаг, отображающий возможность выполнения построения модели.
+        /// </summary>
+        public bool IsAbleToBuild { get; private set; }
 
         /// <summary>
         /// Проект модели.
@@ -30,7 +31,13 @@
         /// Параметры шестерни
         /// </summary>
         public GearParametersVM GearParametersVM { get; set; }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public RelayCommand ValidateParameters { get; private set; }
+        
         /// <summary>
         /// Команда построения модели в САПР.
         /// </summary>

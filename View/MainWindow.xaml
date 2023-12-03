@@ -59,6 +59,7 @@
             Height="20"
             HorizontalAlignment="Right"
             Text="{Binding GearParametersVM.Parameters.OuterRadius}"
+            TextChanged="{Binding ValidateParameters}"
             Width="100"
             x:Name="OuterGearDiameter" />
         <TextBox
@@ -68,6 +69,7 @@
             Height="20"
             HorizontalAlignment="Right"
             Text="{Binding GearParametersVM.Parameters.HoleRadius}"
+            TextChanged="{Binding ValidateParameters}"
             Width="100"
             x:Name="HoleDiameter" />
         <TextBox
@@ -76,6 +78,7 @@
             Height="20"
             HorizontalAlignment="Right"
             Text="{Binding GearParametersVM.Parameters.Thickness}"
+            TextChanged="{Binding ValidateParameters}"
             Width="100"
             x:Name="Thickness" />
 
@@ -85,15 +88,17 @@
             Height="20"
             HorizontalAlignment="Right"
             Text="{Binding GearParametersVM.Parameters.ToothCount}"
+            TextChanged="{Binding ValidateParameters}"
             Width="100"
             x:Name="ToothCount" />
         <TextBox
+            Background="{Binding GearParametersVM}"
             Grid.Column="1"
             Grid.Row="4"
             Height="20"
             HorizontalAlignment="Right"
             Text="{Binding GearParametersVM.Parameters.ToothHeight}"
-            Background="{Binding GearParametersVM}"
+            TextChanged="{Binding ValidateParameters}"
             Width="100"
             x:Name="ToothHeight" />
 
@@ -103,6 +108,7 @@
             Grid.Column="0"
             Grid.Row="5"
             HorizontalAlignment="Left"
+            IsEnabled="{Binding IsAbleToBuild}"
             Name="BuildButton"
             Width="100">
             <TextBlock Text="Построить" />

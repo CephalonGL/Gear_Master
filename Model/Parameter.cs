@@ -30,6 +30,11 @@
             MaxValue = maxValue;
             MinValue = minValue;
         }
+        
+        /// <summary>
+        /// Название параметра.
+        /// </summary>
+        public string Name { get; set; }
 
         /// <summary>
         /// Максимальное значение параметра.

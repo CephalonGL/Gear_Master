@@ -1,9 +1,7 @@
 ﻿namespace ViewModel
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
     using Model;
 
     /// <summary>
@@ -16,23 +14,32 @@
         /// </summary>
         private static GearParameters GearParameters;
 
+        public static (
+            bool isAbleToBuild,
+            string errorMessage,
+            GearParametersVM gearParametersVM) CheckCorrect(GearParametersVM gearParametersVM)
+        {
+
+            AssertOnGearParametersCorrect();
+        }
+
         /// <summary>
         /// Выполняет проверку зависимых параметров шестерни.
         /// </summary>
         /// <param name="gearParameters">Параметры шестерни.</param>
         /// <returns>Корректные параметры шестерни.</returns>
-        public static GearParameters AssertOnCorrect(GearParameters gearParameters)
+        private static GearParameters AssertOnGearParametersCorrect(GearParameters gearParameters)
         {
             GearParameters = gearParameters;
             var errorMessages = new List<string>();
 
-            if (IsHoleRadiusPlusToothHeightMoreOrEqualToOuterRadius())
+            if (IsHoleRadiusPlusToothHeightMoreOrEqualThanOuterRadius())
             {
                 errorMessages
                    .Add("Сумма радиуса отверстия и высоты зуба должна быть больше внешнего радиуса.");
             }
 
-            if (IsToothHeightMoreOrEqualToOuterRadius())
+            if (IsToothHeightMoreOrEqualThanOuterRadius())
             {
                 errorMessages.Add("Высота зуба должна быть меньше радиуса отверстия.");
             }
@@ -57,7 +64,7 @@
         /// Определяет, является ли значение высоты зуба больше или равно внешнему радиусу шестерни.
         /// </summary>
         /// <returns>True, если больше или равно, иначе - False.</returns>
-        private static bool IsToothHeightMoreOrEqualToOuterRadius()
+        private static bool IsToothHeightMoreOrEqualThanOuterRadius()
         {
             var toothHeight   = double.Parse(GearParameters.ToothHeight.Value);
             var outerDiameter = double.Parse(GearParameters.OuterRadius.Value);
@@ -69,13 +76,18 @@
         /// Определяет, является ли сумма радиуса отверстия и высоты зуба больше внешнего диаметра.
         /// </summary>
         /// <returns>True, если является, иначе - False.</returns>
-        private static bool IsHoleRadiusPlusToothHeightMoreOrEqualToOuterRadius()
+        private static bool IsHoleRadiusPlusToothHeightMoreOrEqualThanOuterRadius()
         {
             var holeRadius  = double.Parse(GearParameters.HoleRadius.Value);
             var toothHeight = double.Parse(GearParameters.ToothHeight.Value);
             var outerRadius = double.Parse(GearParameters.OuterRadius.Value);
 
             return holeRadius + toothHeight >= outerRadius;
+        }
+
+        private static (bool isInRange, string) IsParametersInCorrectRanges()
+        {
+            
         }
     }
 }
