@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Net.NetworkInformation;
     using Model;
 
     /// <summary>
@@ -19,8 +20,8 @@
             string errorMessage,
             GearParametersVM gearParametersVM) CheckCorrect(GearParametersVM gearParametersVM)
         {
-
-            AssertOnGearParametersCorrect();
+            throw new NotImplementedException();
+            //AssertOnGearParametersCorrect();
         }
 
         /// <summary>
@@ -87,7 +88,7 @@
 
         private static (bool isInRange, string) IsParametersInCorrectRanges()
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

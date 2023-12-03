@@ -1,5 +1,6 @@
 ﻿namespace ViewModel
 {
+    using System;
     using CommunityToolkit.Mvvm.Input;
     using Model;
 
@@ -28,7 +29,7 @@
         /// <returns></returns>
         public (bool, string) ValidateParameters()
         {
-            return 
+            throw new NotImplementedException();
         }
     }
 }

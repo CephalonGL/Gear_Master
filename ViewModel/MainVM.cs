@@ -14,7 +14,6 @@
         public MainVM()
         {
             Project  = new Project();
-            ValidateParameters = this.GearParametersVM.
         }
 
         /// <summary>
