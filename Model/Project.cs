@@ -29,7 +29,7 @@
         /// <summary>
         /// Команда построения объекта.
         /// </summary>
-        public void Build()
+        public void BuildGear()
         {
             Builder.BuildGear(Parameters);
         }

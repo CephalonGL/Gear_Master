@@ -14,21 +14,21 @@
         /// <summary>
         /// Конструктор без параметров.
         /// </summary>
-        public MainVM()
+        public MainVM(ICadBuilder builder)
         {
-            Project = new Project(ICadBuilder builder);
+            Project = new Project(builder);
         }
-
-        /// <summary>
-        /// Флаг, отображающий возможность выполнения построения модели.
-        /// </summary>
-        [field: ObservableProperty]
-        public bool IsAbleToBuild { get; private set; }
 
         /// <summary>
         /// Проект модели.
         /// </summary>
-        private Project Project { get;  set; }
+        private Project Project { get; set; }
+        
+        /// <summary>
+        /// Флаг, отображающий возможность выполнения построения модели.
+        /// </summary>
+        public bool IsAbleToBuild { get; private set; }
+
 
         /// <summary>
         /// Параметры шестерни
@@ -48,9 +48,9 @@
         /// Команда построения модели в САПР.
         /// </summary>
         [RelayCommand]
-        public void BuildCommand()
+        public void BuildGearCommand()
         {
-            Project.Builder.BuildGear();
+            Project.BuildGear();
         }
     }
 }

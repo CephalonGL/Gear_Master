@@ -21,31 +21,37 @@
             <RowDefinition Height="25" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
+
         <TextBlock
             Grid.Column="0"
             Grid.Row="0"
             HorizontalAlignment="Left"
             Text="Внешний диаметр шестерни (1 - 1000 мм)" />
+
         <TextBlock
             Grid.Column="0"
             Grid.Row="1"
             HorizontalAlignment="Left"
             Text="Диаметр посадочного отверстия (1 - 999 мм)" />
+
         <TextBlock
             Grid.Column="0"
             Grid.Row="2"
             HorizontalAlignment="Left"
             Text="Толщина шестерни (1 - 1000 мм)" />
+
         <TextBlock
             Grid.Column="0"
             Grid.Row="3"
             HorizontalAlignment="Left"
             Text="Количество зубов (3 - 1000 шт.)" />
+
         <TextBlock
             Grid.Column="0"
             Grid.Row="4"
@@ -60,6 +66,7 @@
             HorizontalAlignment="Right"
             Width="100"
             x:Name="OuterGearDiameter" />
+
         <TextBox
             Background="White"
             Grid.Column="1"
@@ -68,6 +75,7 @@
             HorizontalAlignment="Right"
             Width="100"
             x:Name="HoleDiameter" />
+
         <TextBox
             Grid.Column="1"
             Grid.Row="2"
@@ -83,6 +91,7 @@
             HorizontalAlignment="Right"
             Width="100"
             x:Name="ToothCount" />
+
         <TextBox
             Grid.Column="1"
             Grid.Row="4"
@@ -91,15 +100,14 @@
             Width="100"
             x:Name="ToothHeight" />
 
-
         <Button
+            Command="{Binding BuildGearCommand}"
+            Content="Построить"
             Grid.Column="0"
             Grid.Row="5"
             HorizontalAlignment="Left"
             Name="BuildButton"
-            Width="100">
-            <TextBlock Text="Построить" />
-        </Button>
+            Width="100" />
 
         <TextBlock
             Background="White"

@@ -17,12 +17,10 @@
         public MainWindow(ICadBuilder cadBuilder)
         {
             InitializeComponent();
-            //BuildButton.Command = buildCommand;
-            MainVM                 = new MainVM();
-            MainVM.Project.Builder = cadBuilder;
-            cadBuilder.BuildGear(MainVM.GearParametersVM.Parameters);
+            MainVM           = new MainVM(cadBuilder);
+            this.DataContext = MainVM;
         }
-        
+
         /// <summary>
         /// Содержит главный класс ViewModel.
         /// </summary>
