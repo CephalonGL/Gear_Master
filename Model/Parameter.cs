@@ -1,5 +1,7 @@
 ﻿namespace Model
 {
+    using System;
+
     /// <summary>
     /// Базовый класс для определения параметров.
     /// </summary>
@@ -30,16 +32,36 @@
             MaxValue = maxValue;
             MinValue = minValue;
         }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool IsInRange()
+        {
+            switch (Type)
+            {
+                case Type.:
+                {
+                    
+                }
+            }
+        }
+
         /// <summary>
         /// Название параметра.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
+        /// Тип параметра.
+        /// </summary>
+        public Type Type { get; set; }
+
+        /// <summary>
         /// Максимальное значение параметра.
         /// </summary>
-        public virtual string MaxValue
+        public string MaxValue
         {
             get => _maxValue;
             set => _maxValue = value;
@@ -48,7 +70,7 @@
         /// <summary>
         /// Минимальное значение параметра.
         /// </summary>
-        public virtual string MinValue
+        public string MinValue
         {
             get => _minValue;
             set => _minValue = value;
@@ -57,7 +79,7 @@
         /// <summary>
         /// Значение параметра.
         /// </summary>
-        public virtual string Value
+        public string Value
         {
             get => _value;
             set => _value = value;

@@ -39,20 +39,34 @@
         /// Выполняет проверку параметров.
         /// </summary>
         /// <returns></returns>
-        public GearParameters AssertParametersCorrect()
+        public void ValidateParameters()
         {
-            return new GearParameters();
+            var isAbleToBuild     = false;
+            var errorMessage      = string.Empty;
+            var correctParameters = new GearParameters();
+
+            var answer = Validator.CheckCorrect(GearParametersVM);
+
+            try
+            {
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
-        /// <summary>
-        /// Команда построения модели в САПР.
-        /// </summary>
-        public RelayCommand BuildCommand => new RelayCommand(BuildGearCommand);
+        public RelayCommand ValidateParametersCommand => new RelayCommand(ValidateParameters);
 
         /// <summary>
         /// Команда построения модели в САПР.
         /// </summary>
-        private void BuildGearCommand()
+        public RelayCommand BuildGearCommand => new RelayCommand(BuildGear);
+
+        /// <summary>
+        /// Команда построения модели в САПР.
+        /// </summary>
+        private void BuildGear()
         {
             Project.BuildGear();
         }

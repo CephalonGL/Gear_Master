@@ -12,24 +12,58 @@
 
     public class Connector : ICadBuilder, ICadConnector
     {
-        public void StartGearMaster()
-        {
-        }
-        
-        public void BuildGear()
-        {
-        }
-
         /// <summary>
         /// Выполняет построение шестерни.
         /// </summary>
-        /// <param name = "parameters">Параметры шестерни.</param>
-        public void BuildGear(GearParameters parameters)
+        /// <param name = "gearParameters">Параметры шестерни.</param>
+        public void BuildGear(GearParameters gearParameters)
         {
-            var document = Application.DocumentManager.MdiActiveDocument;
-            var database = document.Database;
+            var document    = Application.DocumentManager.MdiActiveDocument;
+            var database    = document.Database;
+            var transaction = database.TransactionManager.StartTransaction();
 
-            using (var transaction = database.TransactionManager.StartTransaction())
+            //var outerRadius = double.Parse(gearParameters.OuterRadius.Value);
+            //var holeRadius  = double.Parse(gearParameters.HoleRadius.Value);
+            //var thickness   = double.Parse(gearParameters.Thickness.Value);
+            //var toothHeight = double.Parse(gearParameters.ToothHeight.Value);
+            //var toothCount  = int.Parse(gearParameters.ToothCount.Value);
+
+            var outerRadius = 100;
+            var holeRadius  = 50;
+            var thickness   = 10;
+            var toothHeight = 5;
+            var toothCount  = 10;
+
+            using (transaction)
+            {
+                var blockTable = transaction.GetObject(database.BlockTableId, OpenMode.ForRead)
+                    as BlockTable;
+
+                var blockTableRecords =
+                    transaction.TransactionManager
+                               .GetObject(blockTable[BlockTableRecord.ModelSpace],
+                                          OpenMode.ForWrite) as BlockTableRecord;
+
+                //Скетч для внешнего радиуса.
+                var circle = new Circle();
+                circle.Radius = outerRadius;
+
+                var centerPoint = new Point3d(0, 0, 0);
+                circle.Center = centerPoint;
+
+                blockTableRecords?.AppendEntity(circle);
+                transaction.AddNewlyCreatedDBObject(circle, true);
+                transaction.Commit();
+            }
+        }
+
+        public void BuildDefaultCircle()
+        {
+            var document    = Application.DocumentManager.MdiActiveDocument;
+            var database    = document.Database;
+            var transaction = database.TransactionManager.StartTransaction();
+
+            using (transaction)
             {
                 var blockTable = transaction.GetObject(database.BlockTableId, OpenMode.ForRead)
                     as BlockTable;

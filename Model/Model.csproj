@@ -44,6 +44,7 @@
         <Compile Include="ICadBuilder.cs" />
         <Compile Include="ICadConnector.cs" />
         <Compile Include="Parameter.cs" />
+        <Compile Include="ParameterType.cs" />
         <Compile Include="Project.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>

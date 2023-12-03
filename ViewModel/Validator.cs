@@ -20,19 +20,36 @@
             string errorMessage,
             GearParametersVM gearParametersVM) CheckCorrect(GearParametersVM gearParametersVM)
         {
-            throw new NotImplementedException();
-            //AssertOnGearParametersCorrect();
+            try
+            {
+                AssertOnGearParametersCorrect(GearParameters);
+            }
+            catch (Exception e)
+            {
+                
+            }
+
+            var isAbleToBuild = false;
+            var errorMessage  = string.Empty;
+
+            return (true gearParametersVM);
         }
 
         /// <summary>
         /// Выполняет проверку зависимых параметров шестерни.
         /// </summary>
         /// <param name="gearParameters">Параметры шестерни.</param>
+        /// <exception cref = "Exception">Выбрасывается в случае, если проверка провалена</exception>
         /// <returns>Корректные параметры шестерни.</returns>
         private static GearParameters AssertOnGearParametersCorrect(GearParameters gearParameters)
         {
             GearParameters = gearParameters;
             var errorMessages = new List<string>();
+
+            if (expr)
+            {
+                
+            }
 
             if (IsHoleRadiusPlusToothHeightMoreOrEqualThanOuterRadius())
             {
@@ -86,9 +103,13 @@
             return holeRadius + toothHeight >= outerRadius;
         }
 
-        private static (bool isInRange, string) IsParametersInCorrectRanges()
+        private static bool IsParameterInRange(Parameter parameter)
         {
-            throw new NotImplementedException();
+            var min   = parameter.MinValue;
+            var max   = parameter.MaxValue;
+            var value = parameter.Value;
+
+            return (min <= value) && (value <= max);
         }
     }
 }
