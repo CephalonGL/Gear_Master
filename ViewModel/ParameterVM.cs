@@ -19,13 +19,14 @@
         /// <summary>
         /// Отображает состояние корректности данных.
         /// </summary>
-        public bool IsCorrect { get; private set; }
+        public bool IsCorrect { get; set; }
 
         /// <summary>
         /// Конструктор.
         /// </summary>
-        public ParameterVM()
+        public ParameterVM(string value, string min, string max)
         {
+            Parameter = new Parameter();
         }
 
         /// <summary>

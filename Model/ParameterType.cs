@@ -8,12 +8,28 @@
     public enum ParameterType
     {
         /// <summary>
-        /// Параметр int.
+        /// Внешний радиус шестерни по вершинам, мм.
         /// </summary>
-        Int,
+        OuterRadius,
+        
         /// <summary>
-        /// Парметр double,
+        /// Радиус отверстия, мм.
         /// </summary>
-        Double
+        HoleRadius,
+        
+        /// <summary>
+        /// Толщина шестерни, мм.
+        /// </summary>
+        Thickness,
+        
+        /// <summary>
+        /// Количество зубьев.
+        /// </summary>
+        ToothCount,
+        
+        /// <summary>
+        /// Высота зуба.
+        /// </summary>
+        ToothHeight
     }
 }

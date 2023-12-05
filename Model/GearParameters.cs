@@ -15,42 +15,43 @@
         /// <param name="toothCount">Количество зубьев.</param>
         /// <param name="toothHeight">Высота зуба, мм.</param>
         public GearParameters(
-            Parameter outerRadius,
-            Parameter holeRadius,
-            Parameter thickness,
-            Parameter toothCount,
-            Parameter toothHeight)
+            double outerRadius,
+            double holeRadius,
+            double thickness,
+            double toothHeight,
+            int    toothCount)
         {
             OuterRadius = outerRadius;
-            Thickness     = thickness;
-            ToothCount    = toothCount;
-            ToothHeight   = toothHeight;
             HoleRadius  = holeRadius;
+            Thickness   = thickness;
+            ToothHeight = toothHeight;
+            ToothCount  = toothCount;
         }
 
         /// <summary>
         /// Внешний радиус шестерни по вершинам, мм.
         /// </summary>
-        public Parameter OuterRadius { get; set; }
+        public double OuterRadius { get; private set; }
 
         /// <summary>
         /// Радиус посадочного отверстия, мм.
         /// </summary>
-        public Parameter HoleRadius { get; set; }
+        public double HoleRadius { get; private set; }
 
         /// <summary>
         /// Толщина шестерни, мм.
         /// </summary>
-        public Parameter Thickness { get; set; }
+        public double Thickness { get; private set; }
 
-        /// <summary>
-        /// Количество зубьев, шт.
-        /// </summary>
-        public Parameter ToothCount { get; set; }
 
         /// <summary>
         /// Высота зуба, мм.
         /// </summary>
-        public Parameter ToothHeight { get; set; }
+        public double ToothHeight { get; private set; }
+
+        /// <summary>
+        /// Количество зубьев, шт.
+        /// </summary>
+        public int ToothCount { get; private set; }
     }
 }

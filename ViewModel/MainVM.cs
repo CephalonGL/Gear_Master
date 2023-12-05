@@ -28,6 +28,11 @@
         /// Флаг, отображающий возможность выполнения построения модели.
         /// </summary>
         public bool IsAbleToBuild { get; private set; }
+        
+        /// <summary>
+        /// Хранит сообщение об ошибке валидации.
+        /// </summary>
+        public string ValidationErrorMessage { get; private set; }
 
 
         /// <summary>
@@ -36,26 +41,18 @@
         public GearParametersVM GearParametersVM { get; set; }
 
         /// <summary>
-        /// Выполняет проверку параметров.
+        /// Выполняет проверку пользовательского ввода.
         /// </summary>
-        /// <returns></returns>
         public void ValidateParameters()
         {
-            var isAbleToBuild     = false;
-            var errorMessage      = string.Empty;
-            var correctParameters = new GearParameters();
+            var validationResult = Validator.CheckCorrect(GearParametersVM);
 
-            var answer = Validator.CheckCorrect(GearParametersVM);
-
-            try
-            {
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
+            IsAbleToBuild = validationResult.isAbleToBuild;
+            ValidationErrorMessage  = validationResult.errorMessage;
         }
-
+        /// <summary>
+        /// Выполняет проверку пользовательского ввода.
+        /// </summary>
         public RelayCommand ValidateParametersCommand => new RelayCommand(ValidateParameters);
 
         /// <summary>

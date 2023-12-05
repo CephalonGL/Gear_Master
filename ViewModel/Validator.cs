@@ -20,6 +20,7 @@
             string errorMessage,
             GearParametersVM gearParametersVM) CheckCorrect(GearParametersVM gearParametersVM)
         {
+            gearParametersVM.ParameterVMs[ParameterType.OuterRadius].IsCorrect
             try
             {
                 AssertOnGearParametersCorrect(GearParameters);
@@ -32,7 +33,7 @@
             var isAbleToBuild = false;
             var errorMessage  = string.Empty;
 
-            return (true gearParametersVM);
+            return (true, gearParametersVM);
         }
 
         /// <summary>
@@ -45,7 +46,7 @@
         {
             GearParameters = gearParameters;
             var errorMessages = new List<string>();
-
+            //TODO: проверка параметров на диапазон.
             if (expr)
             {
                 

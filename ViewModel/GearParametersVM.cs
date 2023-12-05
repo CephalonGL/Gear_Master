@@ -1,6 +1,7 @@
 ﻿namespace ViewModel
 {
     using System;
+    using System.Collections.Generic;
     using CommunityToolkit.Mvvm.Input;
     using Model;
 
@@ -15,21 +16,29 @@
         /// <param name="parameters">Параметры шестерни.</param>
         public GearParametersVM(GearParameters parameters)
         {
-            Parameters = parameters;
+            ParameterVMs = new Dictionary<ParameterType, ParameterVM>
+                         {
+                             {
+                                 ParameterType.OuterRadius,
+                                 new ParameterVM(double.Parse(parameters.OuterRadius))
+                             },
+                             { ParameterType.HoleRadius, new ParameterVM() },
+                             { ParameterType.Thickness, new ParameterVM() },
+                             { ParameterType.ToothCount, new ParameterVM() },
+                             { ParameterType.ToothHeight, new ParameterVM() }
+                         };
         }
 
         /// <summary>
         /// Хранит парамеры шестерни.
         /// </summary>
-        public GearParameters Parameters { get; private set; }
+        public Dictionary<ParameterType, ParameterVM> ParameterVMs { get; private set; }
 
-        /// <summary>
-        /// Выполняет валидацию параметров.
-        /// </summary>
-        /// <returns></returns>
-        public (bool, string) ValidateParameters()
+        public GearParameters ExportParameters()
         {
-            throw new NotImplementedException();
+            
+            
+            return new GearParameters()
         }
     }
 }
