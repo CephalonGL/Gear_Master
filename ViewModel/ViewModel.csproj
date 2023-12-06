@@ -66,7 +66,7 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="GearParametersVM.cs" />
+        <Compile Include="ParametersVM.cs" />
         <Compile Include="MainVM.cs" />
         <Compile Include="ParameterVM.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>

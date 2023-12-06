@@ -10,30 +10,44 @@
     /// </summary>
     public static class Validator
     {
-        /// <summary>
-        /// Хранит переданные параметры в метод AssertOnCorrect.
-        /// </summary>
-        private static GearParameters GearParameters;
-
         public static (
             bool isAbleToBuild,
             string errorMessage,
-            GearParametersVM gearParametersVM) CheckCorrect(GearParametersVM gearParametersVM)
+            ParametersVM gearParametersVM) CheckCorrect(ParametersVM parametersVm)
         {
-            gearParametersVM.ParameterVMs[ParameterType.OuterRadius].IsCorrect
+            var outerRadiusParameter =
+                parametersVm.ParameterVMs[ParameterType.OuterRadius].Parameter;
+
+            var holeRadiusParameter =
+                parametersVm.ParameterVMs[ParameterType.HoleRadius].Parameter;
+
+            var thicknessParameter =
+                parametersVm.ParameterVMs[ParameterType.Thickness].Parameter;
+
+            var toothHeightParameter =
+                parametersVm.ParameterVMs[ParameterType.ToothHeight].Parameter;
+
+            var toothCountParameter =
+                parametersVm.ParameterVMs[ParameterType.ToothCount].Parameter;
+
+            var isAbleToBuild = true;
+            var errorMessage  = string.Empty;
+
+            if (!IsParameterInRange(gearParameters.OuterRadius, 1, 1000))
+            {
+            }
+
             try
             {
-                AssertOnGearParametersCorrect(GearParameters);
+                AssertCrossValidationCorrect(gearParameters);
             }
             catch (Exception e)
             {
-                
+                isAbleToBuild = false;
+                errorMessage  = e.Message;
             }
 
-            var isAbleToBuild = false;
-            var errorMessage  = string.Empty;
-
-            return (true, gearParametersVM);
+            return (isAbleToBuild, errorMessage, parametersVm);
         }
 
         /// <summary>
@@ -42,23 +56,17 @@
         /// <param name="gearParameters">Параметры шестерни.</param>
         /// <exception cref = "Exception">Выбрасывается в случае, если проверка провалена</exception>
         /// <returns>Корректные параметры шестерни.</returns>
-        private static GearParameters AssertOnGearParametersCorrect(GearParameters gearParameters)
+        private static GearParameters AssertCrossValidationCorrect(GearParameters gearParameters)
         {
-            GearParameters = gearParameters;
             var errorMessages = new List<string>();
-            //TODO: проверка параметров на диапазон.
-            if (expr)
-            {
-                
-            }
 
-            if (IsHoleRadiusPlusToothHeightMoreOrEqualThanOuterRadius())
+            if (IsHoleRadiusPlusToothHeightMoreOrEqualThanOuterRadius(gearParameters))
             {
                 errorMessages
                    .Add("Сумма радиуса отверстия и высоты зуба должна быть больше внешнего радиуса.");
             }
 
-            if (IsToothHeightMoreOrEqualThanOuterRadius())
+            if (IsToothHeightMoreOrEqualThanOuterRadius(gearParameters))
             {
                 errorMessages.Add("Высота зуба должна быть меньше радиуса отверстия.");
             }
@@ -83,10 +91,10 @@
         /// Определяет, является ли значение высоты зуба больше или равно внешнему радиусу шестерни.
         /// </summary>
         /// <returns>True, если больше или равно, иначе - False.</returns>
-        private static bool IsToothHeightMoreOrEqualThanOuterRadius()
+        private static bool IsToothHeightMoreOrEqualThanOuterRadius(GearParameters gearParameters)
         {
-            var toothHeight   = double.Parse(GearParameters.ToothHeight.Value);
-            var outerDiameter = double.Parse(GearParameters.OuterRadius.Value);
+            var toothHeight   = gearParameters.ToothHeight;
+            var outerDiameter = gearParameters.OuterRadius;
 
             return toothHeight >= outerDiameter;
         }
@@ -95,22 +103,24 @@
         /// Определяет, является ли сумма радиуса отверстия и высоты зуба больше внешнего диаметра.
         /// </summary>
         /// <returns>True, если является, иначе - False.</returns>
-        private static bool IsHoleRadiusPlusToothHeightMoreOrEqualThanOuterRadius()
+        private static bool IsHoleRadiusPlusToothHeightMoreOrEqualThanOuterRadius(
+            GearParameters gearParameters)
         {
-            var holeRadius  = double.Parse(GearParameters.HoleRadius.Value);
-            var toothHeight = double.Parse(GearParameters.ToothHeight.Value);
-            var outerRadius = double.Parse(GearParameters.OuterRadius.Value);
+            var holeRadius  = gearParameters.HoleRadius;
+            var toothHeight = gearParameters.ToothHeight;
+            var outerRadius = gearParameters.OuterRadius;
 
             return holeRadius + toothHeight >= outerRadius;
         }
 
-        private static bool IsParameterInRange(Parameter parameter)
+        private static bool IsParameterInRange(int value, int min, int max)
         {
-            var min   = parameter.MinValue;
-            var max   = parameter.MaxValue;
-            var value = parameter.Value;
+            return min <= value && value <= max;
+        }
 
-            return (min <= value) && (value <= max);
+        private static bool IsParameterInRange(double value, double min, double max)
+        {
+            return min <= value && value <= max;
         }
     }
 }

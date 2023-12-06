@@ -1,6 +1,7 @@
 ﻿namespace AutoCADConnector
 {
     using System;
+    using System.Collections.Generic;
     using System.Windows.Input;
     using Autodesk.AutoCAD.ApplicationServices;
     using Autodesk.AutoCAD.DatabaseServices;
@@ -16,7 +17,9 @@
         /// Выполняет построение шестерни.
         /// </summary>
         /// <param name = "gearParameters">Параметры шестерни.</param>
-        public void BuildGear(GearParameters gearParameters)
+        public void BuildGear(
+            (double outerRadius, double holeRadius, double thickness, double toothHeight, int
+                toothCount) gearParameters)
         {
             var document    = Application.DocumentManager.MdiActiveDocument;
             var database    = document.Database;

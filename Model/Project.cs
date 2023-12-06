@@ -1,6 +1,7 @@
 ﻿namespace Model
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Главный класс модели.
@@ -19,7 +20,7 @@
         /// <summary>
         /// Параметры шестерни.
         /// </summary>
-        public GearParameters Parameters { get; set; }
+        public Dictionary<ParameterType, Parameter> Parameters { get; set; }
 
         /// <summary>
         /// Построитель.
@@ -31,7 +32,26 @@
         /// </summary>
         public void BuildGear()
         {
-            Builder.BuildGear(Parameters);
+            Builder.BuildGear(ExportParameters());
+        }
+
+        /// <summary>
+        /// Экспортирует параметры шестерни в целевых типах данных.
+        /// </summary>
+        /// <returns>Параметры шестерни в целевых типах данных.</returns>
+        public (
+            double outerRadius,
+            double holeRadius,
+            double thickness,
+            double toothHeight,
+            int toothCount) ExportParameters()
+        {
+            return (
+                double.Parse(Parameters[ParameterType.OuterRadius].Value),
+                double.Parse(Parameters[ParameterType.HoleRadius].Value),
+                double.Parse(Parameters[ParameterType.Thickness].Value),
+                double.Parse(Parameters[ParameterType.ToothHeight].Value),
+                int   .Parse(Parameters[ParameterType.ToothCount].Value));
         }
     }
 }

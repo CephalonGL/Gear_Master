@@ -1,5 +1,7 @@
 ﻿namespace Model
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Реализует построение модели шестерни в CAD.
     /// </summary>
@@ -9,6 +11,11 @@
         /// Выполняет построение шестерни.
         /// </summary>
         /// <param name = "gearParameters">Параметры шестерни.</param>
-        void BuildGear(GearParameters gearParameters);
+        void BuildGear((
+            double outerRadius,
+            double holeRadius,
+            double thickness,
+            double toothHeight,
+            int toothCount) gearParameters);
     }
 }

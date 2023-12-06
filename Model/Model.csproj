@@ -39,13 +39,9 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="CadType.cs" />
-        <Compile Include="GearParameters.cs" />
         <Compile Include="Interfaces\ICadBuilder.cs" />
         <Compile Include="Interfaces\ICadConnector.cs" />
-        <Compile Include="Parameters\DoubleParameter.cs" />
-        <Compile Include="Parameters\IntParameter.cs" />
-        <Compile Include="Parameters\Parameter.cs" />
+        <Compile Include="Parameter.cs" />
         <Compile Include="ParameterType.cs" />
         <Compile Include="Project.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>

@@ -32,24 +32,25 @@
         /// <summary>
         /// Хранит сообщение об ошибке валидации.
         /// </summary>
-        public string ValidationErrorMessage { get; private set; }
+        public string ErrorMessage { get; private set; }
 
 
         /// <summary>
         /// Параметры шестерни
         /// </summary>
-        public GearParametersVM GearParametersVM { get; set; }
+        public ParametersVM ParametersVm { get; set; }
 
         /// <summary>
         /// Выполняет проверку пользовательского ввода.
         /// </summary>
         public void ValidateParameters()
         {
-            var validationResult = Validator.CheckCorrect(GearParametersVM);
+            var validationResult = Validator.CheckCorrect(ParametersVm);
 
             IsAbleToBuild = validationResult.isAbleToBuild;
-            ValidationErrorMessage  = validationResult.errorMessage;
+            ErrorMessage  = validationResult.errorMessage;
         }
+        
         /// <summary>
         /// Выполняет проверку пользовательского ввода.
         /// </summary>

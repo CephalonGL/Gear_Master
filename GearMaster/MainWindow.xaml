@@ -63,7 +63,7 @@
             Grid.Row="0"
             Height="20"
             HorizontalAlignment="Right"
-            Text="{Binding GearParametersVM[ParameterType.OuterRadius].Value}"
+            Text="{Binding ParametersVm[ParameterType.OuterRadius].Value}"
             Width="100"
             x:Name="OuterRadius" />
 
@@ -115,7 +115,7 @@
             Grid.Column="0"
             Grid.Row="6"
             HorizontalAlignment="Left"
-            Text="{Binding ValidationErrorMessage}"
+            Text="{Binding ErrorMessage}"
             x:Name="ErrorMessageTextBlock" />
     </Grid>
 </Window>

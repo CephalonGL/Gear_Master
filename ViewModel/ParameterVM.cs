@@ -32,10 +32,10 @@
         /// <summary>
         /// Параметры.
         /// </summary>
-        private Parameter Parameter
+        public Parameter Parameter
         {
             get => _parameter;
-            set => _parameter = value;
+            private set => _parameter = value;
         }
     }
 }

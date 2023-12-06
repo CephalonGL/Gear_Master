@@ -23,13 +23,13 @@
         Thickness,
         
         /// <summary>
-        /// Количество зубьев.
-        /// </summary>
-        ToothCount,
-        
-        /// <summary>
         /// Высота зуба.
         /// </summary>
-        ToothHeight
+        ToothHeight,
+        
+        /// <summary>
+        /// Количество зубьев.
+        /// </summary>
+        ToothCount
     }
 }
