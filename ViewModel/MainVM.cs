@@ -1,6 +1,7 @@
 ﻿namespace ViewModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Windows.Input;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
@@ -45,7 +46,7 @@
         /// </summary>
         public void ValidateParameters()
         {
-            var validationResult = Validator.CheckCorrect(ParametersVm);
+            var validationResult = Validator.IsParametersCorrect(ParametersVm);
 
             IsAbleToBuild = validationResult.isAbleToBuild;
             ErrorMessage  = validationResult.errorMessage;
