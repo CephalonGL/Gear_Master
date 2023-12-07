@@ -10,9 +10,7 @@
     /// </summary>
     public static class Validator
     {
-        public static (
-            Dictionary<ParameterType, bool> isParametersCorrect, 
-            List<string> errorMessage) IsParametersCorrect(ParametersVM parametersVm)
+        public static (Dictionary<ParameterType, bool> isParametersCorrect, List<string> errorMessages) IsParametersCorrect(ParametersVM parametersVm)
         {
             var minOuterRadius = 1d;
             var maxOuterRadius = 1000d;
@@ -114,7 +112,7 @@
                                   + $"высоты зуба ({parametersVm.ToothHeight}) должна быть меньше "
                                   + $"внешнего радиуса({parametersVm.OuterRadius}).");
             }
-
+            
             return (isParametersCorrect, errorMessages);
         }
 
