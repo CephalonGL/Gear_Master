@@ -1,4 +1,4 @@
-﻿namespace AutoCADConnector
+﻿namespace AutoCadConnector
 {
     using System;
     using System.Collections.Generic;
@@ -21,54 +21,55 @@
             (double outerRadius, double holeRadius, double thickness, double toothHeight, int
                 toothCount) gearParameters)
         {
-            var document    = Application.DocumentManager.MdiActiveDocument;
-            var database    = document.Database;
-            var transaction = database.TransactionManager.StartTransaction();
-
-            //var outerRadius = double.Parse(gearParameters.OuterRadius.Value);
-            //var holeRadius  = double.Parse(gearParameters.HoleRadius.Value);
-            //var thickness   = double.Parse(gearParameters.Thickness.Value);
-            //var toothHeight = double.Parse(gearParameters.ToothHeight.Value);
-            //var toothCount  = int.Parse(gearParameters.ToothCount.Value);
-
             var outerRadius = 100;
             var holeRadius  = 50;
             var thickness   = 10;
             var toothHeight = 5;
             var toothCount  = 10;
 
-            using (transaction)
+            var document = Application.DocumentManager.MdiActiveDocument;
+            var database = document.Database;
+
+            using (var documentLock = document.LockDocument())
             {
-                var blockTable = transaction.GetObject(database.BlockTableId, OpenMode.ForRead)
-                    as BlockTable;
+                using (var transaction = database.TransactionManager.StartTransaction())
+                {
+                    var blockTable = transaction.GetObject(database.BlockTableId, OpenMode.ForRead)
+                        as BlockTable;
 
-                var blockTableRecords =
-                    transaction.TransactionManager
-                               .GetObject(blockTable[BlockTableRecord.ModelSpace],
-                                          OpenMode.ForWrite) as BlockTableRecord;
+                    var blockTableRecords =
+                        transaction.TransactionManager
+                                   .GetObject(blockTable[BlockTableRecord.ModelSpace],
+                                              OpenMode.ForWrite) as BlockTableRecord;
 
-                //Скетч для внешнего радиуса.
-                var circle = new Circle();
-                circle.Radius = outerRadius;
+                    var gearBody = CreateCircle(new Point3d(0, 0, 0), outerRadius);
 
-                var centerPoint = new Point3d(0, 0, 0);
-                circle.Center = centerPoint;
+                    //Создание тела шестерни по внешнему радиусу.
+                    var gear = new Solid3d();
+                    gear.Extrude(gearBody, thickness, 0);
 
-                blockTableRecords?.AppendEntity(circle);
-                transaction.AddNewlyCreatedDBObject(circle, true);
-                transaction.Commit();
+                    //Создание отверстия.
+                    var holeCircle = CreateCircle(new Point3d(0, 0, 0), holeRadius);
+                    var hole       = new Solid3d();
+                    hole.Extrude(holeCircle, thickness, 0);
+                    gear.BooleanOperation(BooleanOperationType.BoolSubtract, hole);
+
+                    //Создание зубьев.
+                    
+                    
+                    blockTableRecords?.AppendEntity(gear);
+                    transaction.AddNewlyCreatedDBObject(gear, true);
+                    transaction.Commit();
+                }
             }
         }
-        
+
         private static Point2d PolarPoints(Point2d point, double dAngle, double dDistance)
         {
             return new Point2d(point.X + (dDistance * Math.Cos(dAngle)),
                                point.Y + (dDistance * Math.Sin(dAngle)));
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
         [CommandMethod("TestPolarArray")]
         public static void PolarArrayObject()
         {
@@ -133,12 +134,14 @@
                                                           extents3d.MaxPoint.Y);
                         }
 
-                        double dDistance   = point2dArrayBase.GetDistanceTo(PointObjectBase);
-                        double dAngleFromX = point2dArrayBase.GetVectorTo(PointObjectBase).Angle;
+                        double dDistance = point2dArrayBase.GetDistanceTo(PointObjectBase);
+
+                        double dAngleFromX =
+                            point2dArrayBase.GetVectorTo(PointObjectBase).Angle;
 
                         Point2d point2dTo = PolarPoints(point2dArrayBase,
-                                                       (nCount * dAngle) + dAngleFromX,
-                                                       dDistance);
+                                                        (nCount * dAngle) + dAngleFromX,
+                                                        dDistance);
 
                         Vector2d vector2d = PointObjectBase.GetVectorTo(point2dTo);
                         Vector3d vector3d = new Vector3d(vector2d.X, vector2d.Y, 0);
@@ -172,6 +175,18 @@
             }
         }
 
+        private Region CreateCircle(Point3d center, double radius)
+        {
+            var circle = new Circle(center, Vector3d.ZAxis, radius);
+
+            var curves = new DBObjectCollection();
+            curves.Add(circle);
+            var regions = Region.CreateFromCurves(curves);
+            var region  = (Region)regions[0];
+
+            return region;
+        }
+
         public void BuildDefaultCircle()
         {
             var document    = Application.DocumentManager.MdiActiveDocument;
@@ -196,6 +211,52 @@
                 transaction.AddNewlyCreatedDBObject(circle, true);
                 transaction.Commit();
             }
+        }
+
+        /// <summary>
+        /// Создает эскиз в виде прямоугольника.
+        /// </summary>
+        /// <param name="width">Ширина прямоугольника.</param>
+        /// <param name="length">Длина прямоугольника.</param>
+        /// <param name="center">Центр прямоугольника.</param>
+        /// <returns>Прямоугольник.</returns>
+        public Region CreateRectangle(double  width,
+                                      double  length,
+                                      Point3d center)
+        {
+            var polylinePoints = new Point3d[4];
+
+            polylinePoints[0] = new Point3d(center.X - (length / 2),
+                                            center.Y - (width  / 2),
+                                            center.Z);
+
+            polylinePoints[1] = new Point3d(center.X - (length / 2),
+                                            center.Y + (width  / 2),
+                                            center.Z);
+
+            polylinePoints[2] = new Point3d(center.X + (length / 2),
+                                            center.Y + (width  / 2),
+                                            center.Z);
+
+            polylinePoints[3] = new Point3d(center.X + (length / 2),
+                                            center.Y - (width  / 2),
+                                            center.Z);
+
+            var point3DCollection = new Point3dCollection(polylinePoints);
+
+            var outline = new Polyline3d(Poly3dType.SimplePoly,
+                                         point3DCollection,
+                                         true);
+
+            var curves = new DBObjectCollection();
+            curves.Add(outline);
+
+            var regions = new DBObjectCollection();
+            regions = Region.CreateFromCurves(curves);
+
+            var region = (Region)regions[0];
+
+            return region;
         }
     }
 }

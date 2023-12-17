@@ -1,4 +1,4 @@
-﻿namespace AutoCADConnector
+﻿namespace AutoCadConnector
 {
     using System;
     using System.Windows.Input;
