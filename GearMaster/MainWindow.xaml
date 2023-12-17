@@ -1,7 +1,7 @@
 ﻿<Window
-    Height="300"
+    Height="auto"
     Title="Gear Master"
-    Width="500"
+    Width="auto"
     mc:Ignorable="d"
     x:Class="GearMaster.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -88,7 +88,7 @@
 
         <TextBox
             Grid.Column="1"
-            Grid.Row="4"
+            Grid.Row="3"
             Height="20"
             HorizontalAlignment="Right"
             TextChanged="ToothHeight_OnTextChanged"
@@ -97,7 +97,7 @@
 
         <TextBox
             Grid.Column="1"
-            Grid.Row="3"
+            Grid.Row="4"
             Height="20"
             HorizontalAlignment="Right"
             TextChanged="ToothCount_OnTextChanged"
