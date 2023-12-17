@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="AutoCadBuilder.cs" />
     <Compile Include="AutoCadConnector.cs" />
-    <Compile Include="CircleArray.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

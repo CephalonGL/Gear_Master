@@ -21,11 +21,11 @@
             MainVM           = new MainVM(cadBuilder);
             this.DataContext = MainVM;
 
-            OuterRadius.Text = MainVM.ParametersVm.OuterRadius;
-            HoleRadius.Text  = MainVM.ParametersVm.HoleRadius;
-            Thickness.Text   = MainVM.ParametersVm.Thickness;
-            ToothHeight.Text = MainVM.ParametersVm.ToothHeight;
-            ToothCount.Text  = MainVM.ParametersVm.ToothCount;
+            OuterRadius.Text = MainVM.ParametersVm.Parameters[ParameterType.OuterRadius].Value;
+            HoleRadius.Text  = MainVM.ParametersVm.Parameters[ParameterType.HoleRadius].Value;
+            Thickness.Text   = MainVM.ParametersVm.Parameters[ParameterType.Thickness].Value;
+            ToothHeight.Text = MainVM.ParametersVm.Parameters[ParameterType.ToothHeight].Value;
+            ToothCount.Text  = MainVM.ParametersVm.Parameters[ParameterType.ToothCount].Value;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@
         /// <param name="e">Аргументы события.</param>
         private void OuterRadius_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            MainVM.ParametersVm.OuterRadius = OuterRadius.Text;
+            MainVM.ParametersVm.Parameters[ParameterType.OuterRadius].Value = OuterRadius.Text;
         }
 
         /// <summary>
@@ -50,7 +50,7 @@
         /// <param name="e">Аргументы события.</param>
         private void HoleRadius_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            MainVM.ParametersVm.OuterRadius = HoleRadius.Text;
+            MainVM.ParametersVm.Parameters[ParameterType.HoleRadius].Value = HoleRadius.Text;
         }
 
         /// <summary>
@@ -60,7 +60,7 @@
         /// <param name="e">Аргументы события.</param>
         private void Thickness_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            MainVM.ParametersVm.OuterRadius = Thickness.Text;
+            MainVM.ParametersVm.Parameters[ParameterType.Thickness].Value = Thickness.Text;
         }
 
         /// <summary>
@@ -70,7 +70,7 @@
         /// <param name="e">Аргументы события.</param>
         private void ToothHeight_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            MainVM.ParametersVm.OuterRadius = ToothHeight.Text;
+            MainVM.ParametersVm.Parameters[ParameterType.ToothHeight].Value = ToothHeight.Text;
         }
 
         /// <summary>
@@ -80,7 +80,7 @@
         /// <param name="e">Аргументы события.</param>
         private void ToothCount_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            MainVM.ParametersVm.OuterRadius = ToothCount.Text;
+            MainVM.ParametersVm.Parameters[ParameterType.ToothCount].Value = ToothCount.Text;
         }
     }
 }

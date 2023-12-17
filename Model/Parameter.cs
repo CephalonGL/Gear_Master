@@ -15,11 +15,17 @@
         /// <param name="maxValue">Максимальное значение параметра.</param>
         public Parameter(string value, string minValue, string maxValue)
         {
-            Value = value;
-            MaxValue = maxValue;
-            MinValue = minValue;
+            Value     = value;
+            MaxValue  = maxValue;
+            MinValue  = minValue;
+            IsCorrect = true;
         }
 
+        /// <summary>
+        /// Флаг корректности хранимого значения.
+        /// </summary>
+        public bool IsCorrect { get; set; }
+        
         /// <summary>
         /// Значение параметра.
         /// </summary>

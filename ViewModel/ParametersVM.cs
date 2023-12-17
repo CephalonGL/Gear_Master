@@ -16,47 +16,31 @@
         /// </summary>
         public ParametersVM()
         {
-            var cultureInfo = CultureInfo.InvariantCulture;
+            var outerRadius = new Parameter("100", "1",   "1000");
+            var holeRadius  = new Parameter("10",  "1",   "999");
+            var thickness   = new Parameter("10",  "1",   "1000");
+            var toothHeight = new Parameter("100", "0.1", "999");
+            var toothCount  = new Parameter("14",  "3",   "1000");
 
-            ParameterVMs = new Dictionary<ParameterType, ParameterVM>
-                           {
-                               {
-                                   ParameterType.OuterRadius,
-                                   new ParameterVM(1d.ToString(cultureInfo),
-                                                   1d.ToString(cultureInfo),
-                                                   1000d.ToString(cultureInfo))
-                               },
-                               {
-                                   ParameterType.HoleRadius,
-                                   new ParameterVM(1d.ToString(cultureInfo),
-                                                   1d.ToString(cultureInfo),
-                                                   999d.ToString(cultureInfo))
-                               },
-                               {
-                                   ParameterType.Thickness,
-                                   new ParameterVM(1d.ToString(cultureInfo),
-                                                   1d.ToString(cultureInfo),
-                                                   1000d.ToString(cultureInfo))
-                               },
-                               {
-                                   ParameterType.ToothHeight,
-                                   new ParameterVM(0.1d.ToString(cultureInfo),
-                                                   0.1d.ToString(cultureInfo),
-                                                   999d.ToString(cultureInfo))
-                               },
-                               {
-                                   ParameterType.ToothCount, new ParameterVM(3.ToString(),
-                                       3.ToString(),
-                                       1000.ToString())
-                               }
-                           };
+            Parameters = new Dictionary<ParameterType, Parameter>()
+                         {
+                             { ParameterType.OuterRadius, outerRadius },
+                             { ParameterType.HoleRadius, holeRadius },
+                             { ParameterType.Thickness, thickness },
+                             { ParameterType.ToothHeight, toothHeight },
+                             { ParameterType.ToothCount, toothCount },
+                         };
         }
+        
+        /// <summary>
+        /// Параметры шестерни.
+        /// </summary>
+        public Dictionary<ParameterType, Parameter> Parameters { get; private set; }
 
         /// <summary>
-        /// Хранит парамеры шестерни.
+        /// Экспортирует параметры в целевых типах данных.
         /// </summary>
-        public Dictionary<ParameterType, ParameterVM> ParameterVMs { get; private set; }
-
+        /// <returns>Параметры в целевых типах данных.</returns>
         public (
             double outerRadius,
             double holeRadius,
@@ -65,56 +49,12 @@
             int toothCount)
             ExportParameters()
         {
-            return (double.Parse(OuterRadius), 
-                    double.Parse(HoleRadius), 
-                    double.Parse(Thickness), 
-                    double.Parse(ToothHeight), 
-                    int.Parse(ToothCount));
+            return (double.Parse(Parameters[ParameterType.OuterRadius].Value),
+                    double.Parse(Parameters[ParameterType.HoleRadius].Value),
+                    double.Parse(Parameters[ParameterType.Thickness].Value),
+                    double.Parse(Parameters[ParameterType.ToothHeight].Value),
+                    int.Parse(Parameters[ParameterType.ToothCount].Value));
         }
 
-        /// <summary>
-        /// Предоставляет внешний радиус в целевом типе данных.
-        /// </summary>
-        public string OuterRadius
-        {
-            get => ParameterVMs[ParameterType.OuterRadius].Parameter.Value;
-            set => ParameterVMs[ParameterType.OuterRadius].Parameter.Value = value;
-        }
-
-        /// <summary>
-        /// Предоставляет радиус отверстия в целевом типе данных.
-        /// </summary>
-        public string HoleRadius
-        {
-            get => ParameterVMs[ParameterType.HoleRadius].Parameter.Value;
-            set => ParameterVMs[ParameterType.HoleRadius].Parameter.Value = value;
-        }
-
-        /// <summary>
-        /// Предоставляет толщину в целевом типе данных.
-        /// </summary>
-        public string Thickness
-        {
-            get => ParameterVMs[ParameterType.Thickness].Parameter.Value;
-            set => ParameterVMs[ParameterType.Thickness].Parameter.Value = value;
-        }
-        
-        /// <summary>
-        /// Предоставляет Высоту зуба в целевом типе данных.
-        /// </summary>
-        public string ToothHeight
-        {
-            get => ParameterVMs[ParameterType.ToothHeight].Parameter.Value;
-            set => ParameterVMs[ParameterType.ToothHeight].Parameter.Value = value;
-        }
-        
-        /// <summary>
-        /// Предоставляет количество зубьев в целевом типе данных.
-        /// </summary>
-        public string ToothCount
-        {
-            get => ParameterVMs[ParameterType.ToothCount].Parameter.Value;
-            set => ParameterVMs[ParameterType.ToothCount].Parameter.Value = value;
-        }
     }
 }
