@@ -42,7 +42,9 @@
                                    .GetObject(blockTable[BlockTableRecord.ModelSpace],
                                               OpenMode.ForWrite) as BlockTableRecord;
 
-                    var gearBody = CreateCircle(new Point3d(0, 0, 0), outerRadius);
+                    var gearCenter = new Point3d(0, 0, 0);
+
+                    var gearBody = CreateCircle(gearCenter, outerRadius);
 
                     //Создание тела шестерни по внешнему радиусу.
                     var gear = new Solid3d();
@@ -55,8 +57,28 @@
                     gear.BooleanOperation(BooleanOperationType.BoolSubtract, hole);
 
                     //Создание зубьев.
-                    
-                    
+                    var toothSketch = CreateRectangle(10, 10, new Point3d(0, outerRadius, 0));
+
+                    for (var i = 0; i < toothCount; i++)
+                    {
+                        var toothClone = toothSketch.Clone() as Entity;
+
+                        var rotationAngle = i * Math.PI / toothCount;
+
+                        toothClone.TransformBy(Matrix3d.Rotation(rotationAngle, Vector3d.ZAxis,
+                                                                 gearCenter));
+
+                        var curves = new DBObjectCollection();
+                        curves.Add(toothClone as Region);
+                        var regions = Region.CreateFromCurves(curves);
+                        var region  = (Region)regions[0];
+
+                        var tooth = new Solid3d();
+                        tooth.Extrude(region, thickness, 0);
+
+                        gear.BooleanOperation(BooleanOperationType.BoolUnite, tooth);
+                    }
+
                     blockTableRecords?.AppendEntity(gear);
                     transaction.AddNewlyCreatedDBObject(gear, true);
                     transaction.Commit();
@@ -69,7 +91,7 @@
             return new Point2d(point.X + (dDistance * Math.Cos(dAngle)),
                                point.Y + (dDistance * Math.Sin(dAngle)));
         }
-        
+
         [CommandMethod("TestPolarArray")]
         public static void PolarArrayObject()
         {
@@ -134,34 +156,35 @@
                                                           extents3d.MaxPoint.Y);
                         }
 
-                        double dDistance = point2dArrayBase.GetDistanceTo(PointObjectBase);
+                        var dDistance = point2dArrayBase.GetDistanceTo(PointObjectBase);
 
-                        double dAngleFromX =
+                        var dAngleFromX =
                             point2dArrayBase.GetVectorTo(PointObjectBase).Angle;
 
-                        Point2d point2dTo = PolarPoints(point2dArrayBase,
-                                                        (nCount * dAngle) + dAngleFromX,
-                                                        dDistance);
+                        var point2dTo = PolarPoints(point2dArrayBase,
+                                                    (nCount * dAngle) + dAngleFromX,
+                                                    dDistance);
 
-                        Vector2d vector2d = PointObjectBase.GetVectorTo(point2dTo);
-                        Vector3d vector3d = new Vector3d(vector2d.X, vector2d.Y, 0);
+                        var vector2d = PointObjectBase.GetVectorTo(point2dTo);
+                        var vector3d = new Vector3d(vector2d.X, vector2d.Y, 0);
                         EntityClone.TransformBy(Matrix3d.Displacement(vector3d));
 
-                        /*
                         // The following code demonstrates how to rotate each object like
                         // the ARRAY command does.
-                        acExts = acEntClone.Bounds.GetValueOrDefault();
-                        acPtObjBase = new Point2d(acExts.MinPoint.X,
-                                                    acExts.MaxPoint.Y);
+                        extents3d = EntityClone.Bounds.GetValueOrDefault();
+
+                        PointObjectBase = new Point2d(extents3d.MinPoint.X,
+                                                      extents3d.MaxPoint.Y);
 
                         // Rotate the cloned entity around its upper-left extents point
-                        Matrix3d curUCSMatrix = acDoc.Editor.CurrentUserCoordinateSystem;
-                        CoordinateSystem3d curUCS = curUCSMatrix.CoordinateSystem3d;
-                        acEntClone.TransformBy(Matrix3d.Rotation(nCount * dAng,
-                                                                    curUCS.Zaxis,
-                                                                    new Point3d(acPtObjBase.X,
-                                                                                acPtObjBase.Y, 0)));
-                        */
+                        var curUCSMatrix = document.Editor.CurrentUserCoordinateSystem;
+                        var curUCS       = curUCSMatrix.CoordinateSystem3d;
+
+                        EntityClone.TransformBy(Matrix3d.Rotation(nCount * dAngle,
+                                                                      curUCS.Zaxis,
+                                                                      new Point3d(PointObjectBase.X,
+                                                                          PointObjectBase.Y,
+                                                                          0)));
 
                         blockTableRecord.AppendEntity(EntityClone);
                         transaction.AddNewlyCreatedDBObject(EntityClone, true);
