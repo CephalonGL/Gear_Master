@@ -51,10 +51,10 @@
                     //Создание тела шестерни по внешнему радиусу.
                     var gear = new Solid3d();
                     gear.Extrude(gearBody, thickness, 0);
-                    
+
                     //Создание массива зубьев.
-                    var toothSketch = CreateRectangle(toothWidth,
-                                                      2 * toothHeight,
+                    var toothSketch = CreateRectangle(2 * toothHeight,
+                                                      toothWidth,
                                                       new Point3d(0, innerRadius, 0));
 
                     for (var i = 0; i < toothCount; i++)
@@ -83,7 +83,7 @@
                     var hole       = new Solid3d();
                     hole.Extrude(holeCircle, thickness, 0);
                     gear.BooleanOperation(BooleanOperationType.BoolSubtract, hole);
-                    
+
                     //Фиксация изменений.
                     blockTableRecords?.AppendEntity(gear);
                     transaction.AddNewlyCreatedDBObject(gear, true);

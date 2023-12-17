@@ -73,6 +73,7 @@
             ParametersCorrectness[ParameterType.ToothCount] =
                 validationResult.ParametersCorrectness[ParameterType.ToothCount];
 
+            ErrorMessage = string.Empty;
             if (validationResult.errorMessages.Count > 0)
             {
                 for (int i = 0; i < validationResult.errorMessages.Count; i++)

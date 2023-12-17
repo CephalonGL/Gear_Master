@@ -15,40 +15,7 @@
             List<string> errorMessages)
             IsParametersCorrect(ParametersVM parametersVm)
         {
-            var outerRadiusParameter =
-                parametersVm.Parameters[ParameterType.OuterRadius];
-
-            var valueOuterRadius = double.Parse(outerRadiusParameter.Value);
-            var minOuterRadius   = double.Parse(outerRadiusParameter.MinValue);
-            var maxOuterRadius   = double.Parse(outerRadiusParameter.MaxValue);
-
-            var holeRadiusParameter =
-                parametersVm.Parameters[ParameterType.HoleRadius];
-
-            var valueHoleRadius = double.Parse(holeRadiusParameter.Value);
-            var minHoleRadius   = double.Parse(holeRadiusParameter.MinValue);
-            var maxHoleRadius   = double.Parse(holeRadiusParameter.MaxValue);
-
-            var thicknessParameter =
-                parametersVm.Parameters[ParameterType.Thickness];
-
-            var valueThickness = double.Parse(thicknessParameter.Value);
-            var minThickness   = double.Parse(thicknessParameter.MinValue);
-            var maxThickness   = double.Parse(thicknessParameter.MaxValue);
-
-            var toothHeightParameter =
-                parametersVm.Parameters[ParameterType.ToothHeight];
-
-            var valueToothHeight = double.Parse(toothHeightParameter.Value);
-            var minToothHeight   = double.Parse(toothHeightParameter.MinValue);
-            var maxToothHeight   = double.Parse(toothHeightParameter.MaxValue);
-
-            var toothCountParameter =
-                parametersVm.Parameters[ParameterType.ToothCount];
-
-            var valueToothCount = int.Parse(toothCountParameter.Value);
-            var minToothCount   = int.Parse(toothCountParameter.MinValue);
-            var maxToothCount   = int.Parse(toothCountParameter.MaxValue);
+            var errorMessages = new List<string>();
 
             var isParametersCorrect = new Dictionary<ParameterType, bool>()
                                       {
@@ -59,7 +26,83 @@
                                           { ParameterType.ToothCount, true },
                                       };
 
-            var errorMessages = new List<string>();
+            var isUnparseble = false;
+
+            var outerRadiusParameter =
+                parametersVm.Parameters[ParameterType.OuterRadius];
+
+            if (!double.TryParse(outerRadiusParameter.Value, out var valueOuterRadius))
+            {
+                errorMessages.Add($"Значение {outerRadiusParameter.Value} не соответствует "
+                                  + $"целевому типу данных.");
+
+                isParametersCorrect[ParameterType.OuterRadius] = false;
+                isUnparseble                                   = true;
+            }
+
+            var minOuterRadius = double.Parse(outerRadiusParameter.MinValue);
+            var maxOuterRadius = double.Parse(outerRadiusParameter.MaxValue);
+
+            var holeRadiusParameter =
+                parametersVm.Parameters[ParameterType.HoleRadius];
+
+            if (!double.TryParse(holeRadiusParameter.Value, out var valueHoleRadius))
+            {
+                errorMessages.Add($"Значение {holeRadiusParameter.Value} не соответствует "
+                                  + $"целевому типу данных.");
+                isParametersCorrect[ParameterType.HoleRadius] = false;
+                isUnparseble                                  = true;
+            }
+
+            var minHoleRadius = double.Parse(holeRadiusParameter.MinValue);
+            var maxHoleRadius = double.Parse(holeRadiusParameter.MaxValue);
+
+            var thicknessParameter =
+                parametersVm.Parameters[ParameterType.Thickness];
+
+            if (!double.TryParse(thicknessParameter.Value, out var valueThickness))
+            {
+                errorMessages.Add($"Значение {thicknessParameter.Value} не соответствует "
+                                  + $"целевому типу данных.");
+                isParametersCorrect[ParameterType.Thickness] = false;
+                isUnparseble                                 = true;
+            }
+
+            var minThickness = double.Parse(thicknessParameter.MinValue);
+            var maxThickness = double.Parse(thicknessParameter.MaxValue);
+
+            var toothHeightParameter =
+                parametersVm.Parameters[ParameterType.ToothHeight];
+
+            if (!double.TryParse(toothHeightParameter.Value, out var valueToothHeight))
+            {
+                errorMessages.Add($"Значение {toothHeightParameter.Value} не соответствует "
+                                  + $"целевому типу данных.");
+                isParametersCorrect[ParameterType.ToothHeight] = false;
+                isUnparseble                                   = true;
+            }
+
+            var minToothHeight = double.Parse(toothHeightParameter.MinValue);
+            var maxToothHeight = double.Parse(toothHeightParameter.MaxValue);
+
+            var toothCountParameter =
+                parametersVm.Parameters[ParameterType.ToothCount];
+
+            if (!double.TryParse(toothCountParameter.Value, out var valueToothCount))
+            {
+                errorMessages.Add($"Значение {toothCountParameter.Value} не соответствует "
+                                  + $"целевому типу данных.");
+                isParametersCorrect[ParameterType.ToothCount] = false;
+                isUnparseble                                  = true;
+            }
+            
+            var minToothCount = int.Parse(toothCountParameter.MinValue);
+            var maxToothCount = int.Parse(toothCountParameter.MaxValue);
+
+            if (isUnparseble)
+            {
+                return (isParametersCorrect, errorMessages);
+            }
 
             if (!IsParameterInRange(valueOuterRadius, minOuterRadius, maxOuterRadius))
             {
