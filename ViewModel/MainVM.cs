@@ -19,6 +19,15 @@
         {
             Project      = new Project(builder);
             ParametersVm = new ParametersVM();
+
+            ParametersCorrectness = new Dictionary<ParameterType, bool>()
+                                    {
+                                        { ParameterType.OuterRadius, true },
+                                        { ParameterType.HoleRadius, true },
+                                        { ParameterType.Thickness, true },
+                                        { ParameterType.ToothHeight, true },
+                                        { ParameterType.ToothCount, true }
+                                    };
         }
 
         /// <summary>
@@ -29,18 +38,12 @@
         /// <summary>
         /// Отображает корректность введённых параметров
         /// </summary>
-        public Dictionary<ParameterType, bool> IsParametersCorrect { get; private set; }
-
-        /// <summary>
-        /// Флаг, отображающий возможность выполнения построения модели.
-        /// </summary>
-        public bool IsAbleToBuild { get; private set; }
+        public Dictionary<ParameterType, bool> ParametersCorrectness { get; private set; }
 
         /// <summary>
         /// Хранит сообщение об ошибке валидации.
         /// </summary>
         public string ErrorMessage { get; private set; }
-
 
         /// <summary>
         /// Параметры шестерни
@@ -50,47 +53,38 @@
         /// <summary>
         /// Выполняет проверку пользовательского ввода.
         /// </summary>
-        public void ValidateParameters()
+        /// <returns>True, если валидация прошла успешно, иначе - false.</returns>
+        private bool ValidateParameters()
         {
             var validationResult = Validator.IsParametersCorrect(ParametersVm);
 
-            IsParametersCorrect[ParameterType.OuterRadius] =
-                validationResult.isParametersCorrect[ParameterType.OuterRadius];
+            ParametersCorrectness[ParameterType.OuterRadius] =
+                validationResult.ParametersCorrectness[ParameterType.OuterRadius];
 
-            IsParametersCorrect[ParameterType.HoleRadius] =
-                validationResult.isParametersCorrect[ParameterType.HoleRadius];
+            ParametersCorrectness[ParameterType.HoleRadius] =
+                validationResult.ParametersCorrectness[ParameterType.HoleRadius];
 
-            IsParametersCorrect[ParameterType.Thickness] =
-                validationResult.isParametersCorrect[ParameterType.Thickness];
+            ParametersCorrectness[ParameterType.Thickness] =
+                validationResult.ParametersCorrectness[ParameterType.Thickness];
 
-            IsParametersCorrect[ParameterType.ToothHeight] =
-                validationResult.isParametersCorrect[ParameterType.ToothHeight];
+            ParametersCorrectness[ParameterType.ToothHeight] =
+                validationResult.ParametersCorrectness[ParameterType.ToothHeight];
 
-            IsParametersCorrect[ParameterType.ToothCount] =
-                validationResult.isParametersCorrect[ParameterType.ToothCount];
-
-            if (validationResult.isParametersCorrect[ParameterType.OuterRadius]    == false
-                || validationResult.isParametersCorrect[ParameterType.HoleRadius]  == false
-                || validationResult.isParametersCorrect[ParameterType.Thickness]   == false
-                || validationResult.isParametersCorrect[ParameterType.ToothHeight] == false
-                || validationResult.isParametersCorrect[ParameterType.ToothCount]  == false)
-            {
-                IsAbleToBuild = false;
-            }
+            ParametersCorrectness[ParameterType.ToothCount] =
+                validationResult.ParametersCorrectness[ParameterType.ToothCount];
 
             if (validationResult.errorMessages.Count > 0)
             {
-                foreach (var errorMessage in validationResult.errorMessages)
+                for (int i = 0; i < validationResult.errorMessages.Count; i++)
                 {
-                    ErrorMessage += $"{validationResult.errorMessages}\n";
+                    ErrorMessage += $"{validationResult.errorMessages[i]}\n";
                 }
-            }
-        }
 
-        /// <summary>
-        /// Выполняет проверку пользовательского ввода.
-        /// </summary>
-        public RelayCommand ValidateParametersCommand => new RelayCommand(ValidateParameters);
+                return false;
+            }
+
+            return true;
+        }
 
         /// <summary>
         /// Команда построения модели в САПР.
@@ -101,8 +95,11 @@
         /// Команда построения модели в САПР.
         /// </summary>
         private void BuildGear()
-        {
-            Project.BuildGear();
+        { 
+            if (ValidateParameters())
+            {
+                Project.BuildGear(ParametersVm.ExportParameters());
+            }
         }
     }
 }

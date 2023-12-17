@@ -30,28 +30,15 @@
         /// <summary>
         /// Команда построения объекта.
         /// </summary>
-        public void BuildGear()
+        /// <param name = "exportedParameters"> </param>
+        public void BuildGear(
+            (double outerRadius,
+             double holeRadius, 
+             double thickness, 
+             double toothHeight, 
+             int toothCount) exportedParameters)
         {
-            Builder.BuildGear(ExportParameters());
-        }
-
-        /// <summary>
-        /// Экспортирует параметры шестерни в целевых типах данных.
-        /// </summary>
-        /// <returns>Параметры шестерни в целевых типах данных.</returns>
-        public (
-            double outerRadius,
-            double holeRadius,
-            double thickness,
-            double toothHeight,
-            int toothCount) ExportParameters()
-        {
-            return (
-                double.Parse(Parameters[ParameterType.OuterRadius].Value),
-                double.Parse(Parameters[ParameterType.HoleRadius].Value),
-                double.Parse(Parameters[ParameterType.Thickness].Value),
-                double.Parse(Parameters[ParameterType.ToothHeight].Value),
-                int   .Parse(Parameters[ParameterType.ToothCount].Value));
+            Builder.BuildGear(exportedParameters);
         }
     }
 }

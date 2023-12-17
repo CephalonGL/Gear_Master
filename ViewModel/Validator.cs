@@ -10,7 +10,10 @@
     /// </summary>
     public static class Validator
     {
-        public static (Dictionary<ParameterType, bool> isParametersCorrect, List<string> errorMessages) IsParametersCorrect(ParametersVM parametersVm)
+        public static (
+            Dictionary<ParameterType, bool> ParametersCorrectness,
+            List<string> errorMessages)
+            IsParametersCorrect(ParametersVM parametersVm)
         {
             var minOuterRadius = 1d;
             var maxOuterRadius = 1000d;
@@ -43,17 +46,17 @@
                 parametersVm.ParameterVMs[ParameterType.ToothCount].Parameter;
 
             var isParametersCorrect = new Dictionary<ParameterType, bool>()
-                                     {
-                                         { ParameterType.OuterRadius, true },
-                                         { ParameterType.HoleRadius, true },
-                                         { ParameterType.Thickness, true },
-                                         { ParameterType.ToothHeight, true },
-                                         { ParameterType.ToothCount, true },
-                                     };
+                                      {
+                                          { ParameterType.OuterRadius, true },
+                                          { ParameterType.HoleRadius, true },
+                                          { ParameterType.Thickness, true },
+                                          { ParameterType.ToothHeight, true },
+                                          { ParameterType.ToothCount, true },
+                                      };
 
             var errorMessages = new List<string>();
 
-            if (!IsParameterInRange(parametersVm.OuterRadius, minOuterRadius, maxOuterRadius))
+            if (!IsParameterInRange(double.Parse(parametersVm.OuterRadius), minOuterRadius, maxOuterRadius))
             {
                 isParametersCorrect[ParameterType.OuterRadius] = false;
 
@@ -61,7 +64,7 @@
                                   + $"{minOuterRadius} - {maxOuterRadius} мм.");
             }
 
-            if (!IsParameterInRange(parametersVm.HoleRadius, minHoleRadius, maxHoleRadius))
+            if (!IsParameterInRange(double.Parse(parametersVm.HoleRadius), minHoleRadius, maxHoleRadius))
             {
                 isParametersCorrect[ParameterType.HoleRadius] = false;
 
@@ -69,7 +72,7 @@
                                   + $"{minHoleRadius} - {maxHoleRadius} мм.");
             }
 
-            if (!IsParameterInRange(parametersVm.Thickness, minThickness, maxThickness))
+            if (!IsParameterInRange(double.Parse(parametersVm.Thickness), minThickness, maxThickness))
             {
                 isParametersCorrect[ParameterType.Thickness] = false;
 
@@ -77,7 +80,7 @@
                                   + $"{minThickness} - {maxThickness} мм.");
             }
 
-            if (!IsParameterInRange(parametersVm.ToothHeight, minToothHeight, maxToothHeight))
+            if (!IsParameterInRange(double.Parse(parametersVm.ToothHeight), minToothHeight, maxToothHeight))
             {
                 isParametersCorrect[ParameterType.ToothHeight] = false;
 
@@ -85,7 +88,7 @@
                                   + $"{minToothHeight} - {maxToothHeight} мм.");
             }
 
-            if (!IsParameterInRange(parametersVm.ToothCount, minToothCount, maxToothCount))
+            if (!IsParameterInRange(int.Parse(parametersVm.ToothCount), minToothCount, maxToothCount))
             {
                 isParametersCorrect[ParameterType.ToothCount] = false;
 
@@ -112,7 +115,7 @@
                                   + $"высоты зуба ({parametersVm.ToothHeight}) должна быть меньше "
                                   + $"внешнего радиуса({parametersVm.OuterRadius}).");
             }
-            
+
             return (isParametersCorrect, errorMessages);
         }
 
@@ -122,8 +125,8 @@
         /// <returns>True, если больше или равно, иначе - False.</returns>
         private static bool IsToothHeightMoreOrEqualThanOuterRadius(ParametersVM parameters)
         {
-            var toothHeight   = parameters.ToothHeight;
-            var outerDiameter = parameters.OuterRadius;
+            var toothHeight   = double.Parse(parameters.ToothHeight);
+            var outerDiameter = double.Parse(parameters.OuterRadius);
 
             return toothHeight >= outerDiameter;
         }
@@ -135,18 +138,32 @@
         private static bool IsHoleRadiusPlusToothHeightMoreOrEqualThanOuterRadius(
             ParametersVM parameters)
         {
-            var holeRadius  = parameters.HoleRadius;
-            var toothHeight = parameters.ToothHeight;
-            var outerRadius = parameters.OuterRadius;
+            var holeRadius  = double.Parse(parameters.HoleRadius);
+            var toothHeight = double.Parse(parameters.ToothHeight);
+            var outerRadius = double.Parse(parameters.OuterRadius);;
 
             return holeRadius + toothHeight >= outerRadius;
         }
 
+        /// <summary>
+        /// Определяет, находится ли параметр в заданном диапазоне значений. Нестрогое сравнение.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <param name="min">Нижняя границы диапазона.</param>
+        /// <param name="max">Верхняя граница диапазона.</param>
+        /// <returns>True, если находится, иначе - false.</returns>
         private static bool IsParameterInRange(int value, int min, int max)
         {
             return min <= value && value <= max;
         }
 
+        /// <summary>
+        /// Определяет, находится ли параметр в заданном диапазоне значений. Нестрогое сравнение.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <param name="min">Нижняя границы диапазона.</param>
+        /// <param name="max">Верхняя граница диапазона.</param>
+        /// <returns>True, если находится, иначе - false.</returns>
         private static bool IsParameterInRange(double value, double min, double max)
         {
             return min <= value && value <= max;

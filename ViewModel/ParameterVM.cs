@@ -26,7 +26,7 @@
         /// </summary>
         public ParameterVM(string value, string min, string max)
         {
-            Parameter = new Parameter();
+            Parameter = new Parameter(value, min, max);
         }
 
         /// <summary>

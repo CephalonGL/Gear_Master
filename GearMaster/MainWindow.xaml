@@ -1,7 +1,7 @@
 ﻿<Window
-    Height="auto"
+    Height="300"
     Title="Gear Master"
-    Width="auto"
+    Width="500"
     mc:Ignorable="d"
     x:Class="GearMaster.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -44,13 +44,13 @@
             Grid.Row="2"
             HorizontalAlignment="Left"
             Text="Толщина шестерни (1 - 1000 мм)" />
-        
+
         <TextBlock
             Grid.Column="0"
             Grid.Row="4"
             HorizontalAlignment="Left"
             Text="Высота зуба (0,1 - 999 мм)" />
-        
+
         <TextBlock
             Grid.Column="0"
             Grid.Row="3"
@@ -63,7 +63,7 @@
             Grid.Row="0"
             Height="20"
             HorizontalAlignment="Right"
-            Text="{Binding }"
+            TextChanged="OuterRadius_OnTextChanged"
             Width="100"
             x:Name="OuterRadius" />
 
@@ -73,6 +73,7 @@
             Grid.Row="1"
             Height="20"
             HorizontalAlignment="Right"
+            TextChanged="HoleRadius_OnTextChanged"
             Width="100"
             x:Name="HoleRadius" />
 
@@ -81,6 +82,7 @@
             Grid.Row="2"
             Height="20"
             HorizontalAlignment="Right"
+            TextChanged="Thickness_OnTextChanged"
             Width="100"
             x:Name="Thickness" />
 
@@ -89,14 +91,16 @@
             Grid.Row="4"
             Height="20"
             HorizontalAlignment="Right"
+            TextChanged="ToothHeight_OnTextChanged"
             Width="100"
             x:Name="ToothHeight" />
-        
+
         <TextBox
             Grid.Column="1"
             Grid.Row="3"
             Height="20"
             HorizontalAlignment="Right"
+            TextChanged="ToothCount_OnTextChanged"
             Width="100"
             x:Name="ToothCount" />
 
@@ -106,7 +110,6 @@
             Grid.Column="0"
             Grid.Row="5"
             HorizontalAlignment="Left"
-            IsEnabled="{Binding IsAbleToBuild, Mode=TwoWay}"
             Width="100"
             x:Name="BuildButton" />
 
