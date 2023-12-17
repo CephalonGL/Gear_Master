@@ -17,7 +17,8 @@
         /// </summary>
         public MainVM(ICadBuilder builder)
         {
-            Project = new Project(builder);
+            Project      = new Project(builder);
+            ParametersVm = new ParametersVM();
         }
 
         /// <summary>

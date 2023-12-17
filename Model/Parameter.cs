@@ -8,7 +8,7 @@
     public class Parameter
     {
         /// <summary>
-        /// Конструткор базового класса.
+        /// Конструктор базового класса.
         /// </summary>
         /// <param name = "value">Хранимое значение параметра.</param>
         /// <param name="minValue">Минимальное значение параметра.</param>

@@ -31,31 +31,31 @@
             Grid.Column="0"
             Grid.Row="0"
             HorizontalAlignment="Left"
-            Text="Внешний диаметр шестерни (1 - 1000 мм)" />
+            Text="Внешний радиус шестерни (1 - 1000 мм)" />
 
         <TextBlock
             Grid.Column="0"
             Grid.Row="1"
             HorizontalAlignment="Left"
-            Text="Диаметр посадочного отверстия (1 - 999 мм)" />
+            Text="Радиус посадочного отверстия (1 - 999 мм)" />
 
         <TextBlock
             Grid.Column="0"
             Grid.Row="2"
             HorizontalAlignment="Left"
             Text="Толщина шестерни (1 - 1000 мм)" />
-
-        <TextBlock
-            Grid.Column="0"
-            Grid.Row="3"
-            HorizontalAlignment="Left"
-            Text="Количество зубов (3 - 1000 шт.)" />
-
+        
         <TextBlock
             Grid.Column="0"
             Grid.Row="4"
             HorizontalAlignment="Left"
             Text="Высота зуба (0,1 - 999 мм)" />
+        
+        <TextBlock
+            Grid.Column="0"
+            Grid.Row="3"
+            HorizontalAlignment="Left"
+            Text="Количество зубов (3 - 1000 шт.)" />
 
         <TextBox
             Background="white"
@@ -63,7 +63,7 @@
             Grid.Row="0"
             Height="20"
             HorizontalAlignment="Right"
-            Text="{Binding ParametersVm[ParameterType.OuterRadius].Value}"
+            Text="{Binding }"
             Width="100"
             x:Name="OuterRadius" />
 
@@ -86,19 +86,19 @@
 
         <TextBox
             Grid.Column="1"
-            Grid.Row="3"
-            Height="20"
-            HorizontalAlignment="Right"
-            Width="100"
-            x:Name="ToothCount" />
-
-        <TextBox
-            Grid.Column="1"
             Grid.Row="4"
             Height="20"
             HorizontalAlignment="Right"
             Width="100"
             x:Name="ToothHeight" />
+        
+        <TextBox
+            Grid.Column="1"
+            Grid.Row="3"
+            Height="20"
+            HorizontalAlignment="Right"
+            Width="100"
+            x:Name="ToothCount" />
 
         <Button
             Command="{Binding BuildGearCommand}"
