@@ -105,7 +105,7 @@
             x:Name="ToothCount" />
 
         <Button
-            Command="{Binding BuildGearCommand}"
+            Click="BuildButton_OnClick"
             Content="Построить"
             Grid.Column="0"
             Grid.Row="5"
@@ -118,7 +118,6 @@
             Grid.Column="0"
             Grid.Row="6"
             HorizontalAlignment="Left"
-            Text="{Binding ErrorMessage}"
             x:Name="ErrorMessageTextBlock" />
     </Grid>
 </Window>

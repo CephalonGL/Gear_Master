@@ -82,5 +82,16 @@
         {
             MainVM.ParametersVm.Parameters[ParameterType.ToothCount].Value = ToothCount.Text;
         }
+
+        /// <summary>
+        /// Обработчик события нажатия кнопки построения.
+        /// </summary>
+        /// <param name="sender">Отправитель.</param>
+        /// <param name="e">Аргументы события.</param>
+        private void BuildButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainVM.BuildGearCommand.Execute(sender);
+            ErrorMessageTextBlock.Text = MainVM.ErrorMessage;
+        }
     }
 }

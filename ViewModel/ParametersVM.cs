@@ -17,9 +17,9 @@
         public ParametersVM()
         {
             var outerRadius = new Parameter("100", "1",   "1000");
-            var holeRadius  = new Parameter("10",  "1",   "999");
+            var holeRadius  = new Parameter("15",  "1",   "999");
             var thickness   = new Parameter("10",  "1",   "1000");
-            var toothHeight = new Parameter("100", "0.1", "999");
+            var toothHeight = new Parameter("30", "0.1", "999");
             var toothCount  = new Parameter("14",  "3",   "1000");
 
             Parameters = new Dictionary<ParameterType, Parameter>()
