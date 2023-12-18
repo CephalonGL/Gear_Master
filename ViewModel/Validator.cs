@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Net.NetworkInformation;
     using Model;
 
@@ -15,6 +16,8 @@
             List<string> errorMessages)
             IsParametersCorrect(ParametersVM parametersVm)
         {
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            
             var errorMessages = new List<string>();
 
             var isParametersCorrect = new Dictionary<ParameterType, bool>()
@@ -50,6 +53,7 @@
             {
                 errorMessages.Add($"Значение {holeRadiusParameter.Value} не соответствует "
                                   + $"целевому типу данных.");
+
                 isParametersCorrect[ParameterType.HoleRadius] = false;
                 isUnparseble                                  = true;
             }
@@ -64,6 +68,7 @@
             {
                 errorMessages.Add($"Значение {thicknessParameter.Value} не соответствует "
                                   + $"целевому типу данных.");
+
                 isParametersCorrect[ParameterType.Thickness] = false;
                 isUnparseble                                 = true;
             }
@@ -78,6 +83,7 @@
             {
                 errorMessages.Add($"Значение {toothHeightParameter.Value} не соответствует "
                                   + $"целевому типу данных.");
+
                 isParametersCorrect[ParameterType.ToothHeight] = false;
                 isUnparseble                                   = true;
             }
@@ -92,10 +98,11 @@
             {
                 errorMessages.Add($"Значение {toothCountParameter.Value} не соответствует "
                                   + $"целевому типу данных.");
+
                 isParametersCorrect[ParameterType.ToothCount] = false;
                 isUnparseble                                  = true;
             }
-            
+
             var minToothCount = int.Parse(toothCountParameter.MinValue);
             var maxToothCount = int.Parse(toothCountParameter.MaxValue);
 

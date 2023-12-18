@@ -47,13 +47,13 @@
 
         <TextBlock
             Grid.Column="0"
-            Grid.Row="4"
+            Grid.Row="3"
             HorizontalAlignment="Left"
             Text="Высота зуба (0,1 - 999 мм)" />
 
         <TextBlock
             Grid.Column="0"
-            Grid.Row="3"
+            Grid.Row="4"
             HorizontalAlignment="Left"
             Text="Количество зубов (3 - 1000 шт.)" />
 
