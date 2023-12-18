@@ -46,6 +46,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="ProjectTest.cs" />
         <Compile Include="ValidatorTest.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
@@ -53,6 +54,10 @@
       <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\AutoCadConnector\AutoCadConnector.csproj">
+        <Project>{33f36a3f-9a0c-47a1-b5b3-c313ea86489b}</Project>
+        <Name>AutoCadConnector</Name>
+      </ProjectReference>
       <ProjectReference Include="..\Model\Model.csproj">
         <Project>{0b0c478e-d2de-4860-b6ac-418364db82d2}</Project>
         <Name>Model</Name>
