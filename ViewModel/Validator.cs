@@ -94,7 +94,7 @@
             var toothCountParameter =
                 parametersVm.Parameters[ParameterType.ToothCount];
 
-            if (!double.TryParse(toothCountParameter.Value, out var valueToothCount))
+            if (!int.TryParse(toothCountParameter.Value, out var valueToothCount))
             {
                 errorMessages.Add($"Значение {toothCountParameter.Value} не соответствует "
                                   + $"целевому типу данных.");
