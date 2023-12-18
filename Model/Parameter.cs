@@ -18,13 +18,7 @@
             Value     = value;
             MaxValue  = maxValue;
             MinValue  = minValue;
-            IsCorrect = true;
         }
-
-        /// <summary>
-        /// Флаг корректности хранимого значения.
-        /// </summary>
-        public bool IsCorrect { get; set; }
         
         /// <summary>
         /// Значение параметра.

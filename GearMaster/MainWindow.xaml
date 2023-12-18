@@ -1,7 +1,7 @@
 ﻿<Window
-    Height="auto"
+    Height="300"
     Title="Gear Master"
-    Width="auto"
+    Width="400"
     mc:Ignorable="d"
     x:Class="GearMaster.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
