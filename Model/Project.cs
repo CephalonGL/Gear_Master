@@ -30,7 +30,7 @@
         /// <summary>
         /// Команда построения объекта.
         /// </summary>
-        /// <param name = "exportedParameters"> </param>
+        /// <param name = "exportedParameters">Параметры для построения.</param>
         public void BuildGear(
             (double outerRadius,
              double holeRadius, 
