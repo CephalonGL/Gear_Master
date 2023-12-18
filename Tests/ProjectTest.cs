@@ -46,7 +46,7 @@
         {
             var expected = new Dictionary<ParameterType, Parameter>();
             Project.Parameters = expected;
-            Assert.Equals(expected, Project.Parameters);
+            Assert.That(expected, Is.EqualTo(Project.Parameters));
         }
     }
 }
