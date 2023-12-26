@@ -18,8 +18,9 @@
         /// </summary>
         public MainVM(ICadBuilder builder)
         {
-            ParametersVM               = new ParametersVM();
             CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            ParametersVM               = new ParametersVM();
+            Builder                    = builder;
 
             ParametersCorrectness = new Dictionary<ParameterType, bool>()
                                     {
@@ -34,7 +35,7 @@
         /// <summary>
         /// Построитель.
         /// </summary>
-        public ICadBuilder Builder { get; private set; }
+        private ICadBuilder Builder { get; set; }
 
         /// <summary>
         /// Отображает корректность введённых параметров

@@ -1,7 +1,8 @@
 ﻿<Window
-    Height="300"
+    Height="210"
+    ResizeMode="NoResize"
     Title="Gear Master"
-    Width="400"
+    Width="350"
     mc:Ignorable="d"
     x:Class="GearMaster.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -11,19 +12,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <StackPanel d:DataContext="{d:DesignInstance viewModel:MainVM}">
-        <local:ParameterControl DataContext="{Binding ParametersVM[ParameterType.OuterRadius]}" x:Name="OuterRadiusParameter" />
+    <StackPanel Margin="10" d:DataContext="{d:DesignInstance viewModel:MainVM}">
+        <local:ParameterControl x:Name="OuterRadiusParameter" />
 
-        <local:ParameterControl DataContext="{Binding ParametersVM[ParameterType.HoleRadius]}" x:Name="HoleRadiusParameter" />
+        <local:ParameterControl x:Name="HoleRadiusParameter" />
 
-        <local:ParameterControl DataContext="{Binding ParametersVM[ParameterType.Thickness]}" x:Name="ThicknessParameter" />
+        <local:ParameterControl x:Name="ThicknessParameter" />
 
-        <local:ParameterControl DataContext="{Binding ParametersVM[ParameterType.ToothHeight]}" x:Name="ToothHeightParameter" />
+        <local:ParameterControl x:Name="ToothHeightParameter" />
 
-        <local:ParameterControl DataContext="{Binding ParametersVM[ParameterType.ToothCount]}" x:Name="ToothCountParameter" />
+        <local:ParameterControl x:Name="ToothCountParameter" />
 
         <Button
             Click="BuildButton_OnClick"
+            Content="Build"
             HorizontalAlignment="Left"
             Width="100"
             x:Name="BuildButton" />

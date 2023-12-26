@@ -21,6 +21,21 @@
             InitializeComponent();
             MainVM      = new MainVM(cadBuilder);
             DataContext = MainVM;
+
+            OuterRadiusParameter.DataContext =
+                MainVM.ParametersVM.Parameters[ParameterType.OuterRadius];
+
+            HoleRadiusParameter.DataContext =
+                MainVM.ParametersVM.Parameters[ParameterType.HoleRadius];
+
+            ThicknessParameter.DataContext =
+                MainVM.ParametersVM.Parameters[ParameterType.Thickness];
+
+            ToothHeightParameter.DataContext =
+                MainVM.ParametersVM.Parameters[ParameterType.ToothHeight];
+
+            ToothCountParameter.DataContext =
+                MainVM.ParametersVM.Parameters[ParameterType.ToothCount];
         }
 
         /// <summary>
@@ -36,6 +51,7 @@
         private void BuildButton_OnClick(object sender, RoutedEventArgs e)
         {
             MainVM.BuildGearCommand.Execute(sender);
+
             //LightUpTextBoxesWithIncorrectValues();
             ErrorMessageTextBlock.Text = MainVM.ErrorMessage;
         }
