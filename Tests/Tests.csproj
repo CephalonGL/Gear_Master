@@ -47,7 +47,6 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="ParametersVMTest.cs" />
-        <Compile Include="ProjectTest.cs" />
         <Compile Include="ValidatorTest.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

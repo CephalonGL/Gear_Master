@@ -90,8 +90,12 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="ParameterControl.xaml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="ParameterControl.xaml.cs">
+          <DependentUpon>ParameterControl.xaml</DependentUpon>
+        </Compile>
         <Compile Include="Properties\AssemblyInfo.cs">
             <SubType>Code</SubType>
         </Compile>

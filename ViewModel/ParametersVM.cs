@@ -16,26 +16,56 @@
         /// </summary>
         public ParametersVM()
         {
-            var outerRadius = new Parameter("100", "1",   "1000");
-            var holeRadius  = new Parameter("15",  "1",   "999");
-            var thickness   = new Parameter("10",  "1",   "1000");
-            var toothHeight = new Parameter("30", "0.1", "999");
-            var toothCount  = new Parameter("14",  "3",   "1000");
+            var outerRadius = new DoubleParameter("100", "1",   "1000");
+            var holeRadius  = new DoubleParameter("15",  "1",   "999");
+            var thickness   = new DoubleParameter("10",  "1",   "1000");
+            var toothHeight = new DoubleParameter("30",  "0.1", "999");
+            var toothCount  = new IntParameter("14", "3", "1000");
 
-            Parameters = new Dictionary<ParameterType, Parameter>()
+            var outerRadiusDescription =
+                $"Внешний радиус шестерни ({outerRadius.MinValue} - {outerRadius.MaxValue})";
+
+            var holeRadiusDescription =
+                $"Радиус отверстия ({holeRadius.MinValue} - {holeRadius.MaxValue})";
+
+            var thicknessDescription =
+                $"Толщина шестерни ({thickness.MinValue} - {thickness.MaxValue})";
+
+            var toothHeightDescription =
+                $"Количество зубьев ({toothHeight.MinValue} - {toothHeight.MaxValue})";
+
+            var toothCountDescription =
+                $"Количество зубьев ({toothCount.MinValue} - {toothCount.MaxValue})";
+
+            Parameters = new Dictionary<ParameterType, ParameterVM>
                          {
-                             { ParameterType.OuterRadius, outerRadius },
-                             { ParameterType.HoleRadius, holeRadius },
-                             { ParameterType.Thickness, thickness },
-                             { ParameterType.ToothHeight, toothHeight },
-                             { ParameterType.ToothCount, toothCount },
+                             {
+                                 ParameterType.OuterRadius,
+                                 new ParameterVM(outerRadiusDescription, outerRadius)
+                             },
+                             {
+                                 ParameterType.HoleRadius,
+                                 new ParameterVM(holeRadiusDescription, holeRadius)
+                             },
+                             {
+                                 ParameterType.Thickness,
+                                 new ParameterVM(thicknessDescription, thickness)
+                             },
+                             {
+                                 ParameterType.ToothHeight,
+                                 new ParameterVM(toothHeightDescription, toothHeight)
+                             },
+                             {
+                                 ParameterType.ToothCount,
+                                 new ParameterVM(toothCountDescription, toothCount)
+                             },
                          };
         }
-        
+
         /// <summary>
         /// Параметры шестерни.
         /// </summary>
-        public Dictionary<ParameterType, Parameter> Parameters { get; private set; }
+        public Dictionary<ParameterType, ParameterVM> Parameters { get; private set; }
 
         /// <summary>
         /// Экспортирует параметры в целевых типах данных.
@@ -55,6 +85,5 @@
                     double.Parse(Parameters[ParameterType.ToothHeight].Value),
                     int.Parse(Parameters[ParameterType.ToothCount].Value));
         }
-
     }
 }

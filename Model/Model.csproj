@@ -39,11 +39,12 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="DoubleParameter.cs" />
         <Compile Include="Interfaces\ICadBuilder.cs" />
         <Compile Include="Interfaces\ICadConnector.cs" />
+        <Compile Include="IntParameter.cs" />
         <Compile Include="Parameter.cs" />
         <Compile Include="ParameterType.cs" />
-        <Compile Include="Project.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>

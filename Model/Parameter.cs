@@ -5,7 +5,7 @@
     /// <summary>
     /// Базовый класс для определения параметров.
     /// </summary>
-    public class Parameter
+    public abstract class Parameter
     {
         /// <summary>
         /// Конструктор базового класса.
@@ -13,13 +13,13 @@
         /// <param name = "value">Хранимое значение параметра.</param>
         /// <param name="minValue">Минимальное значение параметра.</param>
         /// <param name="maxValue">Максимальное значение параметра.</param>
-        public Parameter(string value, string minValue, string maxValue)
+        protected Parameter(string value, string minValue, string maxValue)
         {
-            Value     = value;
-            MaxValue  = maxValue;
-            MinValue  = minValue;
+            Value    = value;
+            MaxValue = maxValue;
+            MinValue = minValue;
         }
-        
+
         /// <summary>
         /// Значение параметра.
         /// </summary>
@@ -28,11 +28,17 @@
         /// <summary>
         /// Минимальное значение параметра.
         /// </summary>
-        public string MinValue { get; set; }
+        public string MinValue { get; private set; }
 
         /// <summary>
         /// Максимальное значение параметра.
         /// </summary>
-        public string MaxValue { get; set; }
+        public string MaxValue { get; private set; }
+
+        /// <summary>
+        /// Проверяет корректность введённых данных
+        /// </summary>
+        /// <returns></returns>
+        public abstract bool CheckCorrect();
     }
 }
