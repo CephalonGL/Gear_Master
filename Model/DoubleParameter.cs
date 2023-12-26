@@ -20,24 +20,27 @@
         /// Проверяет корректность введённых данных.
         /// </summary>
         /// <returns>True, если значение является корректным, иначе - false.</returns>
-        public override bool CheckCorrect()
+        public override void AssertCorrect()
         {
             if (!double.TryParse(Value, out var value))
             {
-                throw new ArgumentNullException();
+                throw new FormatException();
             }
 
             if (!double.TryParse(Value, out var minValue))
             {
-                throw new ArgumentNullException();
+                throw new FormatException();
             }
 
             if (!double.TryParse(Value, out var maxValue))
             {
-                throw new ArgumentNullException();
+                throw new FormatException();
             }
 
-            return minValue < value && value < maxValue;
+            if (value < minValue &&  maxValue < value)
+            {
+                throw new ArgumentException();
+            }
         }
     }
 }

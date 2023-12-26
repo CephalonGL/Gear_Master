@@ -39,6 +39,6 @@
         /// Проверяет корректность введённых данных
         /// </summary>
         /// <returns></returns>
-        public abstract bool CheckCorrect();
+        public abstract void AssertCorrect();
     }
 }

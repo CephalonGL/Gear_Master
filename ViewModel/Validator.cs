@@ -16,8 +16,6 @@
 //             List<string> errorMessages)
 //             IsParametersCorrect(ParametersVM parametersVm)
 //         {
-//             CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-//             
 //             var errorMessages = new List<string>();
 //
 //             var isParametersCorrect = new Dictionary<ParameterType, bool>()

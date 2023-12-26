@@ -40,9 +40,9 @@
         /// <summary>
         /// Указывает, является ли значение параметра корректным.
         /// </summary>
-        public bool CheckCorrect()
+        public void AssertCorrect()
         {
-            return this.Parameter.CheckCorrect();
+            Parameter.AssertCorrect();
         }
     }
 }

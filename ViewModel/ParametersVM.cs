@@ -32,7 +32,7 @@
                 $"Толщина шестерни ({thickness.MinValue} - {thickness.MaxValue})";
 
             var toothHeightDescription =
-                $"Количество зубьев ({toothHeight.MinValue} - {toothHeight.MaxValue})";
+                $"Высота зуба ({toothHeight.MinValue} - {toothHeight.MaxValue})";
 
             var toothCountDescription =
                 $"Количество зубьев ({toothCount.MinValue} - {toothCount.MaxValue})";
@@ -60,7 +60,70 @@
                                  new ParameterVM(toothCountDescription, toothCount)
                              },
                          };
+
+            ParametersCorrectness = new Dictionary<ParameterType, bool>
+                                    {
+                                        { ParameterType.OuterRadius, true },
+                                        { ParameterType.HoleRadius, true },
+                                        { ParameterType.Thickness, true },
+                                        { ParameterType.ToothHeight, true },
+                                        { ParameterType.ToothCount, true }
+                                    };
         }
+
+        /// <summary>
+        /// Выполняет проверку пользовательского ввода.
+        /// </summary>
+        /// <returns>
+        /// True, если валидация прошла успешно, иначе - false; сообщение об ошибке.
+        /// </returns>
+        public (bool isCorrect, string errorMessage) ValidateParameters()
+        {
+            var errorMessages = new List<string>();
+
+            foreach (var parameterKeyValuePair in Parameters)
+            {
+                try
+                {
+                    ParametersCorrectness[parameterKeyValuePair.Key] = true;
+                    parameterKeyValuePair.Value.AssertCorrect();
+                }
+                catch (FormatException exception)
+                {
+                    ParametersCorrectness[parameterKeyValuePair.Key] = false;
+
+                    errorMessages.Add($"Значение {parameterKeyValuePair.Value.Value} "
+                                      + $"не соответствует целевому типу данных.");
+                }
+                catch (ArgumentException exception)
+                {
+                    ParametersCorrectness[parameterKeyValuePair.Key] = false;
+
+                    errorMessages.Add($"{parameterKeyValuePair.Value.Description} "
+                                      + $"находится вне допустимого диапазона.");
+                }
+            }
+
+            var isValidationCorrect = true;
+            var errorMessage        = string.Empty;
+
+            if (errorMessages.Count > 0)
+            {
+                for (var i = 0; i < errorMessages.Count; i++)
+                {
+                    errorMessage += $"{errorMessages[i]}\n";
+                }
+
+                isValidationCorrect = false;
+            }
+
+            return (isValidationCorrect, errorMessage);
+        }
+
+        /// <summary>
+        /// Отображает корректность введённых параметров
+        /// </summary>
+        public Dictionary<ParameterType, bool> ParametersCorrectness { get; private set; }
 
         /// <summary>
         /// Параметры шестерни.
