@@ -1,25 +1,25 @@
 ﻿namespace AutoCadConnector
 {
     using System;
-    using System.Collections.Generic;
-    using System.Windows.Input;
-    using Autodesk.AutoCAD.ApplicationServices;
     using Autodesk.AutoCAD.DatabaseServices;
     using Autodesk.AutoCAD.Geometry;
-    using Autodesk.AutoCAD.Runtime;
-    using GearMaster;
     using Model;
     using Application = Autodesk.AutoCAD.ApplicationServices.Core.Application;
 
+    /// <summary>
+    /// Построитель для AutoCAD.
+    /// </summary>
     public class AutoCadBuilder : ICadBuilder
     {
         /// <summary>
         /// Выполняет построение шестерни.
         /// </summary>
         /// <param name = "gearParameters">Параметры шестерни.</param>
-        public void BuildGear(
-            (double outerRadius, double holeRadius, double thickness, double toothHeight, int
-                toothCount) gearParameters)
+        public void BuildGear((double outerRadius,
+                                  double holeRadius,
+                                  double thickness,
+                                  double toothHeight,
+                                  int toothCount) gearParameters)
         {
             var outerRadius = gearParameters.outerRadius;
             var holeRadius  = gearParameters.holeRadius;
@@ -92,6 +92,12 @@
             }
         }
 
+        /// <summary>
+        /// Создаёт эскиз окружности.
+        /// </summary>
+        /// <param name="center">Центр окружности.</param>
+        /// <param name="radius">Радиус окружности.</param>
+        /// <returns></returns>
         private Region CreateCircle(Point3d center, double radius)
         {
             var circle = new Circle(center, Vector3d.ZAxis, radius);
