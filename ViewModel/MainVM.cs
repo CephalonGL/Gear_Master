@@ -6,6 +6,8 @@
     using System.Windows.Input;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
+    using Logger;
+    using Microsoft.Build.Framework;
     using Model;
 
     /// <summary>
@@ -42,11 +44,6 @@
         /// Команда построения модели в САПР.
         /// </summary>
         public RelayCommand BuildGearCommand => new RelayCommand(BuildGear);
-        
-        /// <summary>
-        /// Запускает валидацию параметров.
-        /// </summary>
-        public RelayCommand ValidationCommand => new RelayCommand(ValidateParameters);
 
         /// <summary>
         /// Команда построения модели в САПР.
@@ -58,21 +55,19 @@
 
             if (validationResult.isCorrect)
             {
-                Builder.BuildGear(ParametersVM.ExportParameters());
-            }
-        }
-        
-        /// <summary>
-        /// Команда построения модели в САПР.
-        /// </summary>
-        private void ValidateParameters()
-        {
-            var validationResult = ParametersVM.ValidateParameters();
-            ErrorMessage = validationResult.errorMessage;
+                var exportedParameters = ParametersVM.ExportParameters();
 
-            if (validationResult.isCorrect)
+                FileLogger.Log($"Вызван метод построения шестерни "
+                               + $"{nameof(MainVM)}.{nameof(BuildGear)}.",
+                               new object[] { exportedParameters });
+
+                Builder.BuildGear(exportedParameters);
+            }
+            else
             {
-                Builder.BuildGear(ParametersVM.ExportParameters());
+                FileLogger.Log($"Валидация провалена при вызове метода "
+                               + $"{nameof(MainVM)}.{nameof(BuildGear)}.",
+                               new object[] { this.ParametersVM.Parameters });
             }
         }
     }

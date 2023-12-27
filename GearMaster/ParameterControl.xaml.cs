@@ -19,13 +19,5 @@
         {
             InitializeComponent();
         }
-
-        private void ParameterValueTextBox_OnKeyDown(object sender, KeyEventArgs e)
-        {
-            if (char.IsLetter((char)e.Key))
-            {
-                e.Handled = true;
-            }
-        }
     }
 }

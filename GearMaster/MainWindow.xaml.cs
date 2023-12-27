@@ -6,6 +6,7 @@
     using System.Windows.Input;
     using System.Windows.Media;
     using CommunityToolkit.Mvvm.Input;
+    using Logger;
     using Model;
     using ViewModel;
 
@@ -65,6 +66,7 @@
         /// <param name="e">Аргументы события.</param>
         private void BuildButton_OnClick(object sender, RoutedEventArgs e)
         {
+            FileLogger.Log($"Вызван обработчик {nameof(BuildButton_OnClick)}.");
             MainVM.BuildGearCommand.Execute(sender);
             LightUpTextBoxesWithIncorrectValues();
             ErrorMessageTextBlock.Text = MainVM.ErrorMessage;
