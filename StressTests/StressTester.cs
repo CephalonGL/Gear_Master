@@ -15,18 +15,16 @@
         /// <summary>
         /// Запускает нагрузочное тестирование.
         /// </summary>
-        [CommandMethod("RunStressTest")]
+        [CommandMethod("StressTest")]
         public void RunStressTest()
         {
             var builder          = new AutoCadBuilder();
-            var middleParameters = (700d, 300d, 500d, 200d, 500);
+            var middleParameters = (500d, 100d, 100d, 100d, 300);
 
             var stopWatch    = new Stopwatch();
             var streamWriter = new StreamWriter($"log.txt", false);
 
-            // var currentProcess = Process.GetCurrentProcess();
-
-            var testsCount = 100;
+            var testsCount = 1000;
 
             for (var i = 0; i < testsCount; i++)
             {
@@ -40,7 +38,7 @@
                                  * GIGABYTE_IN_BYTE;
 
                 streamWriter
-                   .WriteLine($"{i+1};{stopWatch.ElapsedMilliseconds};{usedMemory}");
+                   .WriteLine($"{i + 1};{stopWatch.ElapsedMilliseconds};{usedMemory}");
 
                 stopWatch.Reset();
                 streamWriter.Flush();
