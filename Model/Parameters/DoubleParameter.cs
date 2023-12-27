@@ -36,7 +36,7 @@
                 throw new FormatException();
             }
 
-            if (value < minValue || maxValue < value)
+            if (value < minValue || value > maxValue)
             {
                 throw new ArgumentException();
             }

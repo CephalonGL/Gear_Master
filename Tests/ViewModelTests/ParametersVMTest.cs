@@ -10,7 +10,7 @@
 //     using ViewModel;
 //
 //     [TestFixture]
-//     public class ValidatorTest
+//     public class ParametersVMTest
 //     {
 //         /// <summary>
 //         /// Генерирует представление вида для парамметров.
