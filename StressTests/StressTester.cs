@@ -7,12 +7,15 @@
     using Autodesk.AutoCAD.Runtime;
     using Microsoft.VisualBasic.Devices;
 
+    /// <summary>
+    /// Класс нагрузочного тестирования.
+    /// </summary>
     public class StressTester
     {
         /// <summary>
-        /// Запускает стресс-тест.
+        /// Запускает нагрузочное тестирование.
         /// </summary>
-        [CommandMethod("GearMaster")]
+        [CommandMethod("RunStressTest")]
         public void RunStressTest()
         {
             var builder          = new AutoCadBuilder();
