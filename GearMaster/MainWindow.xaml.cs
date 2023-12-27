@@ -66,7 +66,6 @@
         /// <param name="e">Аргументы события.</param>
         private void BuildButton_OnClick(object sender, RoutedEventArgs e)
         {
-            FileLogger.Log($"Вызван обработчик {nameof(BuildButton_OnClick)}.");
             MainVM.BuildGearCommand.Execute(sender);
             LightUpTextBoxesWithIncorrectValues();
             ErrorMessageTextBlock.Text = MainVM.ErrorMessage;
