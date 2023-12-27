@@ -10,6 +10,9 @@
     using Model;
     using Application = Autodesk.AutoCAD.ApplicationServices.Core.Application;
 
+    /// <summary>
+    /// Коннектор для AutoCAD.
+    /// </summary>
     public class AutoCadConnector : ICadConnector
     {
         /// <summary>
