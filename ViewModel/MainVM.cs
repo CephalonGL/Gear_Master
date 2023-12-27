@@ -59,15 +59,25 @@
 
                 FileLogger.Log($"Вызван метод построения шестерни "
                                + $"{nameof(MainVM)}.{nameof(BuildGear)}.",
-                               new object[] { exportedParameters });
+                               this.ParametersVM.Parameters);
 
-                Builder.BuildGear(exportedParameters);
+                try
+                {
+                    Builder.BuildGear(exportedParameters);
+                    FileLogger.Log("Построение выполнено успешно.");
+                }
+                catch (Exception exception)
+                {
+                    FileLogger.Log($"Построение не выполнено. Непредвиденная ошибка.", exception);
+
+                    throw;
+                }
             }
             else
             {
                 FileLogger.Log($"Валидация провалена при вызове метода "
                                + $"{nameof(MainVM)}.{nameof(BuildGear)}.",
-                               new object[] { this.ParametersVM.Parameters });
+                               this.ParametersVM.Parameters);
             }
         }
     }

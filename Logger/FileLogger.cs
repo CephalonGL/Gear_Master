@@ -2,7 +2,6 @@
 {
     using System;
     using System.IO;
-    using Microsoft.Build.Framework;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -16,11 +15,11 @@
         /// <param name="message">Сообщение для логгирования.</param>
         public static void Log(string message)
         {
-            message = $"{DateTime.Now} | {message}\n";
+            message = $"{DateTime.Now} | {message}";
 
             var fileWriter = File.AppendText(SavingPath);
 
-            fileWriter.Write(JsonConvert.SerializeObject(message));
+            fileWriter.WriteLine(JsonConvert.SerializeObject(message, Formatting.Indented));
             fileWriter.Close();
         }
 
@@ -28,32 +27,14 @@
         /// Логгирует строку.
         /// </summary>
         /// <param name="message">Сообщение для логгирования.</param>
-        /// <param name="loggingObjects">Объекты для логгирования</param>
-        public static void Log(string message, object[] loggingObjects)
+        /// <param name="loggingObjects">Объекты для логгирования.</param>
+        public static void Log(string message, object loggingObjects)
         {
             Log(message);
 
             var fileWriter = File.AppendText(SavingPath);
-
-            if (loggingObjects == null)
-            {
-                Log("Логгируемый объект(ы) был null.\n");
-            }
-            else
-            {
-                fileWriter.Write(JsonConvert.SerializeObject(loggingObjects));
-            }
-
+            fileWriter.WriteLine(JsonConvert.SerializeObject(loggingObjects, Formatting.Indented));
             fileWriter.Close();
-        }
-
-        /// <summary>
-        /// Сериализовать файл.
-        /// </summary>
-        /// <param name="message"></param>
-        public static void SaveFile(string message)
-        {
-            File.WriteAllText(SavingPath, JsonConvert.SerializeObject(message));
         }
 
         /// <summary>
@@ -61,7 +42,7 @@
         /// </summary>
         static FileLogger()
         {
-            SavingPath = Environment.ExpandEnvironmentVariables(@"%AppData%\ContactList.txt");
+            SavingPath = Environment.ExpandEnvironmentVariables(@"%AppData%\GearMasterLog.txt");
         }
 
         /// <summary>
