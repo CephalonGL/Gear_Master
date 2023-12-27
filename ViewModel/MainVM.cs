@@ -41,39 +41,17 @@
         /// <summary>
         /// Команда построения модели в САПР.
         /// </summary>
-        public RelayCommand BuildGearCommand => new RelayCommand(BuildGear);
-        
-        /// <summary>
-        /// Запускает валидацию параметров.
-        /// </summary>
-        public RelayCommand ValidationCommand => new RelayCommand(ValidateParameters);
-
-        /// <summary>
-        /// Команда построения модели в САПР.
-        /// </summary>
-        private void BuildGear()
+        public void BuildGear()
         {
-            var validationResult = ParametersVM.ValidateParameters();
-            ErrorMessage = validationResult.errorMessage;
-
-            if (validationResult.isCorrect)
-            {
-                Builder.BuildGear(ParametersVM.ExportParameters());
-            }
+            Builder.BuildGear(ParametersVM.ExportParameters());
         }
-        
-        /// <summary>
-        /// Команда построения модели в САПР.
-        /// </summary>
-        private void ValidateParameters()
+
+        public (bool isCorrect, string errorMessage) ValidateParameters()
         {
             var validationResult = ParametersVM.ValidateParameters();
             ErrorMessage = validationResult.errorMessage;
 
-            if (validationResult.isCorrect)
-            {
-                Builder.BuildGear(ParametersVM.ExportParameters());
-            }
+            return validationResult;
         }
     }
 }

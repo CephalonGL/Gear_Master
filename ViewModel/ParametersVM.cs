@@ -101,7 +101,7 @@
             return (isValidationCorrect, errorMessage);
         }
 
-        private void CrossValidation(List<string> errorMessages)
+        private void CrossValidation(ICollection<string> errorMessages)
         {
             var toothHeight = double.Parse(Parameters[ParameterType.ToothHeight].Value);
             var outerRadius = double.Parse(Parameters[ParameterType.OuterRadius].Value);
@@ -129,7 +129,7 @@
             }
         }
 
-        private void BorderValidation(List<string> errorMessages)
+        private void BorderValidation(ICollection<string> errorMessages)
         {
             foreach (var parameterKeyValuePair in Parameters)
             {

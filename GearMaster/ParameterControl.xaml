@@ -31,7 +31,6 @@
             Grid.Row="0"
             Height="20"
             HorizontalAlignment="Right"
-            KeyDown="ParameterValueTextBox_OnKeyDown"
             Text="{Binding Value}"
             Width="100"
             x:Name="ParameterValueTextBox" />

@@ -23,35 +23,29 @@
             MainVM      = new MainVM(cadBuilder);
             DataContext = MainVM;
 
-            OuterRadiusParameter.DataContext =
-                MainVM.ParametersVM.Parameters[ParameterType.OuterRadius];
+            ParameterControls = new Dictionary<ParameterType, ParameterControl>
+                                {
+                                    { ParameterType.OuterRadius, OuterRadiusParameter },
+                                    { ParameterType.HoleRadius, HoleRadiusParameter },
+                                    { ParameterType.Thickness, ThicknessParameter },
+                                    { ParameterType.ToothHeight, ToothHeightParameter },
+                                    { ParameterType.ToothCount, ToothCountParameter }
+                                };
 
-            HoleRadiusParameter.DataContext =
-                MainVM.ParametersVM.Parameters[ParameterType.HoleRadius];
+            foreach (var parameterControl in ParameterControls)
+            {
+                parameterControl.Value.DataContext =
+                    MainVM.ParametersVM.Parameters[parameterControl.Key];
 
-            ThicknessParameter.DataContext =
-                MainVM.ParametersVM.Parameters[ParameterType.Thickness];
-
-            ToothHeightParameter.DataContext =
-                MainVM.ParametersVM.Parameters[ParameterType.ToothHeight];
-
-            ToothCountParameter.DataContext =
-                MainVM.ParametersVM.Parameters[ParameterType.ToothCount];
-
-            ParameterTextBoxes = new Dictionary<ParameterType, ParameterControl>
-                                 {
-                                     { ParameterType.OuterRadius, OuterRadiusParameter },
-                                     { ParameterType.HoleRadius, HoleRadiusParameter },
-                                     { ParameterType.Thickness, ThicknessParameter },
-                                     { ParameterType.ToothHeight, ToothHeightParameter },
-                                     { ParameterType.ToothCount, ToothCountParameter }
-                                 };
+                parameterControl.Value.ParameterValueTextBox.TextChanged +=
+                    Parameter_OnValueChanged;
+            }
         }
 
         /// <summary>
         /// Хранит типы параметров для элементов управления.
         /// </summary>
-        private Dictionary<ParameterType, ParameterControl> ParameterTextBoxes;
+        private Dictionary<ParameterType, ParameterControl> ParameterControls;
 
         /// <summary>
         /// Содержит главный класс ViewModel.
@@ -65,7 +59,25 @@
         /// <param name="e">Аргументы события.</param>
         private void BuildButton_OnClick(object sender, RoutedEventArgs e)
         {
-            MainVM.BuildGearCommand.Execute(sender);
+            MainVM.BuildGear();
+        }
+
+        /// <summary>
+        /// Обработчик события изменения параметра.
+        /// </summary>
+        /// <param name="sender">Отправитель.</param>
+        /// <param name="e">Аргументы события.</param>
+        private void Parameter_OnValueChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidateParameters();
+        }
+
+        /// <summary>
+        /// Проводит валидацию параметров.
+        /// </summary>
+        private void ValidateParameters()
+        {
+            MainVM.ParametersVM.ValidateParameters();
             LightUpTextBoxesWithIncorrectValues();
             ErrorMessageTextBlock.Text = MainVM.ErrorMessage;
         }
@@ -80,7 +92,7 @@
 
             foreach (var parameterCorrectness in MainVM.ParametersVM.ParametersCorrectness)
             {
-                var parameterControl   = ParameterTextBoxes[parameterCorrectness.Key];
+                var parameterControl   = ParameterControls[parameterCorrectness.Key];
                 var isParameterCorrect = parameterCorrectness.Value;
 
                 parameterControl.ParameterValueTextBox.Background =

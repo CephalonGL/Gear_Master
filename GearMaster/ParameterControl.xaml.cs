@@ -9,23 +9,25 @@
 
     public partial class ParameterControl : UserControl
     {
-        public ParameterControl(ParameterVM parameter)
-        {
-            InitializeComponent();
-            DataContext = parameter;
-        }
+        //public RelayCommand ValidationCommand { get; set;}
 
         public ParameterControl()
         {
             InitializeComponent();
         }
-
-        private void ParameterValueTextBox_OnKeyDown(object sender, KeyEventArgs e)
-        {
-            if (char.IsLetter((char)e.Key))
-            {
-                e.Handled = true;
-            }
-        }
+        
+        // private void ParameterValueTextBox_OnKeyDown(object sender, KeyEventArgs e)
+        // {
+        //     if (char.IsLetter((char)e.Key))
+        //     {
+        //         e.Handled = true;
+        //     }
+        // }
+        // private void ParameterValueTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        // {
+        //     var parameter = (ParameterVM)this.DataContext;
+        //     parameter.Value = this.ParameterValueTextBox.Text;
+        //     ValidationCommand.Execute(sender);
+        // }
     }
 }
