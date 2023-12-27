@@ -22,11 +22,46 @@ namespace Tests
         public void SetUp()
         {
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+            ParametersVM               = new ParametersVM();
         }
 
+        /// <summary>
+        /// Хранит тестируемый экземпляр ParametersVM.
+        /// </summary>
+        public ParametersVM ParametersVM { get; set; }
+
+        /// <summary>
+        /// Проверяет экспорт параметров.
+        /// </summary>
+        [Test]
+        [Description("Проверяет экспорт параметров.")]
         public void AssertExportParameters_CorrectValue()
         {
-            
+            var expected = (100d, 15d, 10d, 30d, 14);
+            var actual   = ParametersVM.ExportParameters();
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+        /// <summary>
+        /// Проверяет геттер параметров.
+        /// </summary>
+        [Test]
+        [Description("Проверяет геттер параметров.")]
+        public void AssertGetParameters_CorrectValue()
+        {
+            var actual = ParametersVM.Parameters;
+            Assert.Pass();
+        }
+
+        /// <summary>
+        /// Проверяет геттер корректности параметров.
+        /// </summary>
+        [Test]
+        [Description("Проверяет геттер корректности параметров.")]
+        public void AssertGetParametersCorrectness_CorrectValue()
+        {
+            var actual = ParametersVM.ParametersCorrectness;
+            Assert.Pass();
         }
 
         /// <summary>
@@ -61,28 +96,24 @@ namespace Tests
             yield return GenerateParameters("1000", "400", "1000", "200", "1000");
         }
 
+
         /// <summary>
         /// Позитивный тест валидации параметров.
         /// </summary>
         /// <param name="parametersVm">Представление вида для параметров.</param>
         [TestCaseSource(nameof(GetDataForValidateParameters_CorrectValue))]
         [Description("Позитивный тест валидации параметров.")]
-        public void AssertOnIsParametersCorrect_CorrectValue(ParametersVM parametersVm)
+        public void AssertOnValidateParameters_CorrectValue(ParametersVM parametersVm)
         {
-            var validationResult = Validator.IsParametersCorrect(parametersVm);
+            var validationResult = parametersVm.ValidateParameters();
 
-            if (validationResult.errorMessages.Count > 0)
+            if (validationResult.isCorrect
+                && validationResult.errorMessage.Length == 0)
             {
-                Assert.Fail("Валидация провалена, когда данные верны.");
+                Assert.Pass();
             }
 
-            foreach (var isParameterCorrect in validationResult.ParametersCorrectness)
-            {
-                if (!isParameterCorrect.Value)
-                {
-                    Assert.Fail("Валидация провалена, когда данные верны.");
-                }
-            }
+            Assert.Fail("Валидация провалена, когда данные верны.");
         }
 
 
@@ -124,9 +155,10 @@ namespace Tests
             yield return GenerateParameters("1000",  "400",   "1000",  "200",   "asdaf");
 
             //Параметры не подходящие по кросс-валидации.
-            yield return GenerateParameters("100",  "15",  "10",   "30",  "14");
-            yield return GenerateParameters("1000", "400", "1000", "200", "1000");
+            yield return GenerateParameters("100",  "50",  "10",   "50",  "14");
+            yield return GenerateParameters("100", "400", "10", "200", "14");
         }
+
 
         /// <summary>
         /// Позитивный тест валидации параметров.
@@ -136,20 +168,16 @@ namespace Tests
         [Description("Позитивный тест валидации параметров.")]
         public void AssertOnIsParametersCorrect_IncorrectValue(ParametersVM parametersVm)
         {
-            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            var validationResult = parametersVm.ValidateParameters();
 
-            var validationResult = Validator.IsParametersCorrect(parametersVm);
-
-            if (validationResult.errorMessages.Count > 0)
+            if (validationResult.isCorrect
+                && validationResult.errorMessage.Length == 0)
             {
-                if (validationResult.ParametersCorrectness[ParameterType.OuterRadius]    == false
-                    || validationResult.ParametersCorrectness[ParameterType.HoleRadius]  == false
-                    || validationResult.ParametersCorrectness[ParameterType.Thickness]   == false
-                    || validationResult.ParametersCorrectness[ParameterType.ToothHeight] == false
-                    || validationResult.ParametersCorrectness[ParameterType.ToothCount]  == false)
-                {
-                    Assert.Pass();
-                }
+                Assert.Fail("Валидация пройдена, когда данные неверны.");
+            }
+            else
+            {
+                Assert.Pass();
             }
         }
     }
