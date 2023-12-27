@@ -119,43 +119,25 @@ namespace Tests
 
         private static IEnumerable<ParametersVM> GetDataForValidateParameters_IncorrectValue()
         {
-            //Нулевые параметры.
-            yield return GenerateParameters("0",   "1", "1", "0.1", "3");
-            yield return GenerateParameters("1.2", "0", "1", "0.1", "3");
-            yield return GenerateParameters("1.2", "1", "0", "0.1", "3");
-            yield return GenerateParameters("1.2", "1", "1", "0",   "3");
-            yield return GenerateParameters("1.2", "1", "1", "0.1", "0");
+            var incorrectValues = new string[]
+                                  {
+                                      "0", "", "1001", "-1000", "asd",
+                                      "!", "@", "#", "$", "%",
+                                      "^", "&", "*", "(", ")",
+                                      "-", "=", "+", "\\"
+                                  };
 
-            //Пустые параметры.
-            yield return GenerateParameters("",    "1", "1", "0.1", "3");
-            yield return GenerateParameters("1.2", "",  "1", "0.1", "3");
-            yield return GenerateParameters("1.2", "1", "",  "0.1", "3");
-            yield return GenerateParameters("1.2", "1", "1", "",    "3");
-            yield return GenerateParameters("1.2", "1", "1", "0.1", "");
+            foreach (var incorrectValue in incorrectValues)
+            {
+                yield return GenerateParameters(incorrectValue, "1", "1", "0.1", "3");
+                yield return GenerateParameters("1.2",          incorrectValue, "1", "0.1", "3");
+                yield return GenerateParameters("1.2",          "1", incorrectValue, "0.1", "3");
+                yield return GenerateParameters("1.2",          "1", "1", incorrectValue, "3");
+                yield return GenerateParameters("1.2",          "1", "1", "0.1", incorrectValue);
+            }
 
-            //Параметры больше максимума.
-            yield return GenerateParameters("1001", "400",  "1000", "200",  "1000");
-            yield return GenerateParameters("1000", "1001", "1000", "200",  "1000");
-            yield return GenerateParameters("1000", "400",  "1001", "200",  "1000");
-            yield return GenerateParameters("1000", "400",  "1000", "1001", "1000");
-            yield return GenerateParameters("1000", "400",  "1000", "200",  "1001");
-
-            //Параметры меньше минимума.
-            yield return GenerateParameters("-1000", "400",  "1000",  "200",  "1000");
-            yield return GenerateParameters("1000",  "-400", "1000",  "200",  "1000");
-            yield return GenerateParameters("1000",  "400",  "-1000", "200",  "1000");
-            yield return GenerateParameters("1000",  "400",  "1000",  "-200", "1000");
-            yield return GenerateParameters("1000",  "400",  "1000",  "200",  "-1000");
-
-            //Параметры нецелевого типа данных.
-            yield return GenerateParameters("asdaf", "400",   "1000",  "200",   "1000");
-            yield return GenerateParameters("1000",  "asdaf", "1000",  "200",   "1000");
-            yield return GenerateParameters("1000",  "400",   "asdaf", "200",   "1000");
-            yield return GenerateParameters("1000",  "400",   "1000",  "asdaf", "1000");
-            yield return GenerateParameters("1000",  "400",   "1000",  "200",   "asdaf");
-
-            //Параметры не подходящие по кросс-валидации.
-            yield return GenerateParameters("100",  "50",  "10",   "50",  "14");
+            //Параметры, не подходящие по кросс-валидации.
+            yield return GenerateParameters("100", "50",  "10", "50",  "14");
             yield return GenerateParameters("100", "400", "10", "200", "14");
         }
 
