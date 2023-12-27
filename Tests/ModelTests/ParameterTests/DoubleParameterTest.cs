@@ -21,6 +21,7 @@
         {
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
         }
+
         /// <summary>
         /// Генерирует тестовые данные для метода AssertOnAssertCorrect_CorrectValue.
         /// </summary>
@@ -96,10 +97,10 @@
         private static IEnumerable<Parameter>
             GetDataForAssertOnAssertCorrect_IncorrectArgumentValue()
         {
-            yield return new DoubleParameter("-10.0", "1.0" ,  "100.0");
-            yield return new DoubleParameter("0.9", "1.0" ,    "100.0");
-            yield return new DoubleParameter("100.1", "1.0" ,  "100.0");
-            yield return new DoubleParameter("1000.0", "1.0" , "100.0");
+            yield return new DoubleParameter("-10.0",  "1.0", "100.0");
+            yield return new DoubleParameter("0.9",    "1.0", "100.0");
+            yield return new DoubleParameter("100.1",  "1.0", "100.0");
+            yield return new DoubleParameter("1000.0", "1.0", "100.0");
         }
 
         /// <summary>

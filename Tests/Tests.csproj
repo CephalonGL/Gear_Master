@@ -49,7 +49,6 @@
         <Compile Include="LoggerTests\LoggerTest.cs" />
         <Compile Include="ModelTests\ParameterTests\DoubleParameterTest.cs" />
         <Compile Include="ModelTests\ParameterTests\IntParameterTests.cs" />
-        <Compile Include="ModelTests\ParameterTests\ParameterTest.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="ViewModelTests\MainVMTest.cs" />
         <Compile Include="ViewModelTests\ParameterVMTest.cs" />
