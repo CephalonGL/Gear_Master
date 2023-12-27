@@ -35,11 +35,14 @@
 
             var fileWriter = File.AppendText(SavingPath);
 
-            var loggingString = loggingObjects == null ?
-                "Логгируемый объект(ы) был null." :
-                JsonConvert.SerializeObject(loggingObjects);
-
-            fileWriter.Write(loggingString);
+            if (loggingObjects == null)
+            {
+                Log("Логгируемый объект(ы) был null.\n");
+            }
+            else
+            {
+                fileWriter.Write(JsonConvert.SerializeObject(loggingObjects));
+            }
 
             fileWriter.Close();
         }
