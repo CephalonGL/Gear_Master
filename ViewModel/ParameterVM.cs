@@ -14,8 +14,8 @@
         /// <param name="parameter">Хранимый параметр.</param>
         public ParameterVM(string description, Parameter parameter)
         {
-            this.Parameter   = parameter;
-            this.Description = description;
+            Parameter   = parameter;
+            Description = description;
         }
 
         /// <summary>

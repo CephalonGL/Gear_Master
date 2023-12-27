@@ -19,7 +19,6 @@
         /// <summary>
         /// Проверяет корректность введённых данных.
         /// </summary>
-        /// <returns>True, если значение является корректным, иначе - false.</returns>
         public override void AssertCorrect()
         {
             if (!double.TryParse(Value, out var value))
@@ -27,17 +26,17 @@
                 throw new FormatException();
             }
 
-            if (!double.TryParse(Value, out var minValue))
+            if (!double.TryParse(MinValue, out var minValue))
             {
                 throw new FormatException();
             }
 
-            if (!double.TryParse(Value, out var maxValue))
+            if (!double.TryParse(MaxValue, out var maxValue))
             {
                 throw new FormatException();
             }
 
-            if (value < minValue &&  maxValue < value)
+            if (value < minValue || maxValue < value)
             {
                 throw new ArgumentException();
             }

@@ -1,5 +1,6 @@
 ﻿namespace GearMaster
 {
+    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
@@ -36,7 +37,21 @@
 
             ToothCountParameter.DataContext =
                 MainVM.ParametersVM.Parameters[ParameterType.ToothCount];
+
+            ParameterTextBoxes = new Dictionary<ParameterType, ParameterControl>
+                                 {
+                                     { ParameterType.OuterRadius, OuterRadiusParameter },
+                                     { ParameterType.HoleRadius, HoleRadiusParameter },
+                                     { ParameterType.Thickness, ThicknessParameter },
+                                     { ParameterType.ToothHeight, ToothHeightParameter },
+                                     { ParameterType.ToothCount, ToothCountParameter }
+                                 };
         }
+
+        /// <summary>
+        /// Хранит типы параметров для элементов управления.
+        /// </summary>
+        private Dictionary<ParameterType, ParameterControl> ParameterTextBoxes;
 
         /// <summary>
         /// Содержит главный класс ViewModel.
@@ -51,63 +66,26 @@
         private void BuildButton_OnClick(object sender, RoutedEventArgs e)
         {
             MainVM.BuildGearCommand.Execute(sender);
-
-            //LightUpTextBoxesWithIncorrectValues();
+            LightUpTextBoxesWithIncorrectValues();
             ErrorMessageTextBlock.Text = MainVM.ErrorMessage;
         }
 
-        // /// <summary>
-        // /// Подсвечивает текстбоксы в зависимости от корректности введённых данных.
-        // /// </summary>
-        // public void LightUpTextBoxesWithIncorrectValues()
-        // {
-        //     var correctBackground   = Brushes.White;
-        //     var incorrectBackground = Brushes.PaleVioletRed;
-        //
-        //     if (MainVM.ParametersCorrectness[ParameterType.OuterRadius])
-        //     {
-        //         OuterRadius.Background = correctBackground;
-        //     }
-        //     else
-        //     {
-        //         OuterRadius.Background = incorrectBackground;
-        //     }
-        //
-        //     if (MainVM.ParametersCorrectness[ParameterType.HoleRadius])
-        //     {
-        //         HoleRadius.Background = correctBackground;
-        //     }
-        //     else
-        //     {
-        //         OuterRadius.Background = incorrectBackground;
-        //     }
-        //
-        //     if (MainVM.ParametersCorrectness[ParameterType.Thickness])
-        //     {
-        //         Thickness.Background = correctBackground;
-        //     }
-        //     else
-        //     {
-        //         Thickness.Background = incorrectBackground;
-        //     }
-        //
-        //     if (MainVM.ParametersCorrectness[ParameterType.ToothHeight])
-        //     {
-        //         ToothHeight.Background = correctBackground;
-        //     }
-        //     else
-        //     {
-        //         ToothHeight.Background = incorrectBackground;
-        //     }
-        //
-        //     if (MainVM.ParametersCorrectness[ParameterType.ToothCount])
-        //     {
-        //         ToothCount.Background = correctBackground;
-        //     }
-        //     else
-        //     {
-        //         ToothCount.Background = incorrectBackground;
-        //     }
-        // }
+        /// <summary>
+        /// Подсвечивает текстбоксы в зависимости от корректности введённых данных.
+        /// </summary>
+        private void LightUpTextBoxesWithIncorrectValues()
+        {
+            var correctBackground   = Brushes.White;
+            var incorrectBackground = Brushes.LightCoral;
+
+            foreach (var parameterCorrectness in MainVM.ParametersVM.ParametersCorrectness)
+            {
+                var parameterControl   = ParameterTextBoxes[parameterCorrectness.Key];
+                var isParameterCorrect = parameterCorrectness.Value;
+
+                parameterControl.ParameterValueTextBox.Background =
+                    isParameterCorrect ? correctBackground : incorrectBackground;
+            }
+        }
     }
 }

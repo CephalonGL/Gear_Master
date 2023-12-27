@@ -80,7 +80,57 @@
         public (bool isCorrect, string errorMessage) ValidateParameters()
         {
             var errorMessages = new List<string>();
+            BorderValidation(errorMessages);
 
+            if (errorMessages.Count == 0)
+            {
+                CrossValidation(errorMessages);
+            }
+
+            var isValidationCorrect = errorMessages.Count == 0;
+            var errorMessage        = string.Empty;
+
+            if (errorMessages.Count > 0)
+            {
+                for (var i = 0; i < errorMessages.Count; i++)
+                {
+                    errorMessage += $"{errorMessages[i]}\n";
+                }
+            }
+
+            return (isValidationCorrect, errorMessage);
+        }
+
+        private void CrossValidation(List<string> errorMessages)
+        {
+            var toothHeight = double.Parse(Parameters[ParameterType.ToothHeight].Value);
+            var outerRadius = double.Parse(Parameters[ParameterType.OuterRadius].Value);
+
+            if (toothHeight >= outerRadius)
+            {
+                ParametersCorrectness[ParameterType.ToothHeight] = false;
+                ParametersCorrectness[ParameterType.OuterRadius] = false;
+
+                errorMessages.Add($"Высота зуба ({toothHeight}) должна быть меньше "
+                                  + $"внешнего радиуса ({outerRadius}).");
+            }
+
+            var holeRadius = double.Parse(Parameters[ParameterType.HoleRadius].Value);
+
+            if (holeRadius + toothHeight >= outerRadius)
+            {
+                ParametersCorrectness[ParameterType.HoleRadius]  = false;
+                ParametersCorrectness[ParameterType.ToothHeight] = false;
+                ParametersCorrectness[ParameterType.OuterRadius] = false;
+
+                errorMessages.Add($"Сумма радиуса отверстия ({holeRadius}) и "
+                                  + $"высоты зуба ({toothHeight}) должна быть меньше "
+                                  + $"внешнего радиуса ({outerRadius}).");
+            }
+        }
+
+        private void BorderValidation(List<string> errorMessages)
+        {
             foreach (var parameterKeyValuePair in Parameters)
             {
                 try
@@ -103,21 +153,6 @@
                                       + $"находится вне допустимого диапазона.");
                 }
             }
-
-            var isValidationCorrect = true;
-            var errorMessage        = string.Empty;
-
-            if (errorMessages.Count > 0)
-            {
-                for (var i = 0; i < errorMessages.Count; i++)
-                {
-                    errorMessage += $"{errorMessages[i]}\n";
-                }
-
-                isValidationCorrect = false;
-            }
-
-            return (isValidationCorrect, errorMessage);
         }
 
         /// <summary>

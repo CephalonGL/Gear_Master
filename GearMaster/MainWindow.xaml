@@ -2,7 +2,7 @@
     Height="400"
     ResizeMode="NoResize"
     Title="Gear Master"
-    Width="360"
+    Width="600"
     mc:Ignorable="d"
     x:Class="GearMaster.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -30,6 +30,6 @@
             Width="100"
             x:Name="BuildButton" />
 
-        <TextBlock x:Name="ErrorMessageTextBlock" />
+        <TextBlock Text="{Binding ErrorMessage}" x:Name="ErrorMessageTextBlock" />
     </StackPanel>
 </Window>

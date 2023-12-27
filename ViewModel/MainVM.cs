@@ -37,11 +37,16 @@
         /// Параметры шестерни
         /// </summary>
         public ParametersVM ParametersVM { get; set; }
-        
+
         /// <summary>
         /// Команда построения модели в САПР.
         /// </summary>
         public RelayCommand BuildGearCommand => new RelayCommand(BuildGear);
+        
+        /// <summary>
+        /// Запускает валидацию параметров.
+        /// </summary>
+        public RelayCommand ValidationCommand => new RelayCommand(ValidateParameters);
 
         /// <summary>
         /// Команда построения модели в САПР.
@@ -50,6 +55,21 @@
         {
             var validationResult = ParametersVM.ValidateParameters();
             ErrorMessage = validationResult.errorMessage;
+
+            if (validationResult.isCorrect)
+            {
+                Builder.BuildGear(ParametersVM.ExportParameters());
+            }
+        }
+        
+        /// <summary>
+        /// Команда построения модели в САПР.
+        /// </summary>
+        private void ValidateParameters()
+        {
+            var validationResult = ParametersVM.ValidateParameters();
+            ErrorMessage = validationResult.errorMessage;
+
             if (validationResult.isCorrect)
             {
                 Builder.BuildGear(ParametersVM.ExportParameters());

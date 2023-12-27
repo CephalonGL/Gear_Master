@@ -25,17 +25,17 @@
                 throw new FormatException();
             }
             
-            if (!int.TryParse(Value, out var minValue))
+            if (!int.TryParse(MinValue, out var minValue))
             {
                 throw new FormatException();
             }
             
-            if (!int.TryParse(Value, out var maxValue))
+            if (!int.TryParse(MaxValue, out var maxValue))
             {
                 throw new FormatException();
             }
 
-            if (value < minValue &&  maxValue < value)
+            if (value < minValue || maxValue < value)
             {
                 throw new ArgumentException();
             }
