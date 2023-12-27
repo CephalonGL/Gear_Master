@@ -82,7 +82,7 @@
         /// </summary>
         /// <param name="parameter">Параметр.</param>
         [TestCaseSource(nameof(GetDataForAssertOnAssertCorrect_UnparsebleIncorrectValue))]
-        [Description("Позитивный тест валидации параметров.")]
+        [Description("Негативный тест валидации параметров.")]
         public void AssertOnAssertCorrect_UnparsebleIncorrectValue(Parameter parameter)
         {
             Assert.Throws<FormatException>(() => parameter.AssertCorrect());
@@ -108,7 +108,7 @@
         /// </summary>
         /// <param name="parameter">Параметр.</param>
         [TestCaseSource(nameof(GetDataForAssertOnAssertCorrect_IncorrectArgumentValue))]
-        [Description("Позитивный тест валидации параметров.")]
+        [Description("Негативный тест валидации параметров.")]
         public void AssertOnAssertCorrect_IncorrectArgumentValue(Parameter parameter)
         {
             Assert.Throws<ArgumentException>(() => parameter.AssertCorrect());
