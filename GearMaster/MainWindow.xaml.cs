@@ -66,7 +66,7 @@
         /// <param name="e">Аргументы события.</param>
         private void BuildButton_OnClick(object sender, RoutedEventArgs e)
         {
-            MainVM.BuildGearCommand.Execute(sender);
+            MainVM.BuildGear();
             LightUpTextBoxesWithIncorrectValues();
             ErrorMessageTextBlock.Text = MainVM.ErrorMessage;
         }

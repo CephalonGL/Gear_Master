@@ -43,12 +43,7 @@
         /// <summary>
         /// Команда построения модели в САПР.
         /// </summary>
-        public RelayCommand BuildGearCommand => new RelayCommand(BuildGear);
-
-        /// <summary>
-        /// Команда построения модели в САПР.
-        /// </summary>
-        private void BuildGear()
+        public void BuildGear()
         {
             var validationResult = ParametersVM.ValidateParameters();
             ErrorMessage = validationResult.errorMessage;
