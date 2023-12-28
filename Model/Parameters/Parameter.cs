@@ -38,7 +38,6 @@
         /// <summary>
         /// Проверяет корректность введённых данных
         /// </summary>
-        /// <returns></returns>
         public abstract void AssertCorrect();
     }
 }

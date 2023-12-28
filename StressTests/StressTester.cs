@@ -13,6 +13,11 @@
     public class StressTester
     {
         /// <summary>
+        /// Количество гигабайт в байте.
+        /// </summary>
+        private const double GIGABYTE_IN_BYTE = 0.000000000931322574615478515625;
+
+        /// <summary>
         /// Запускает нагрузочное тестирование.
         /// </summary>
         [CommandMethod("StressTest")]
@@ -49,7 +54,5 @@
             streamWriter.Dispose();
             Console.Write($"End {new ComputerInfo().TotalPhysicalMemory}");
         }
-
-        private const double GIGABYTE_IN_BYTE = 0.000000000931322574615478515625;
     }
 }
