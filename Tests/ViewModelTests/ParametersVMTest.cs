@@ -148,7 +148,7 @@ namespace Tests
         /// <param name="parametersVm">Представление вида для параметров.</param>
         [TestCaseSource(nameof(GetDataForValidateParameters_IncorrectValue))]
         [Description("Позитивный тест валидации параметров.")]
-        public void AssertOnIsParametersCorrect_IncorrectValue(ParametersVM parametersVm)
+        public void AssertOnValidateParametersCorrect_IncorrectValue(ParametersVM parametersVm)
         {
             var validationResult = parametersVm.ValidateParameters();
 

@@ -16,7 +16,7 @@
         /// </summary>
         [Test]
         [Description("Позитивный тест для сеттера параметра.")]
-        public void Parameter_CorrectValue()
+        public void AssertOnParameter_CorrectValue()
         {
             var parameterVM = new ParameterVM("123", new IntParameter("10", "1", "100"));
             Assert.Pass();
@@ -27,7 +27,7 @@
         /// </summary>
         [Test]
         [Description("Позитивный тест для сеттера описания.")]
-        public void SetDescription_CorrectValue()
+        public void AssertOnSetDescription_CorrectValue()
         {
             var expected    = "expectedDescription";
             var parameterVM = new ParameterVM(expected, new IntParameter("10", "1", "100"));
@@ -40,7 +40,7 @@
         /// </summary>
         [Test]
         [Description("Позитивный тест для сеттера описания.")]
-        public void GetDescription_CorrectValue()
+        public void AssertOnGetDescription_CorrectValue()
         {
             var parameterVM = new ParameterVM("description", new IntParameter("10", "1", "100"));
             Assert.Pass();
@@ -51,7 +51,7 @@
         /// </summary>
         [Test]
         [Description("Позитивный тест для сеттера значения параметра.")]
-        public void SetValue_CorrectValue()
+        public void AssertOnSetValue_CorrectValue()
         {
             var parameterVM = new ParameterVM("description", new IntParameter("10", "1", "100"));
             parameterVM.Value = "11";
@@ -64,7 +64,7 @@
         /// </summary>
         [Test]
         [Description("Позитивный тест для геттера значения параметра.")]
-        public void GetValue_CorrectValue()
+        public void AssertOnGetValue_CorrectValue()
         {
             var parameterVM = new ParameterVM("description", new IntParameter("10", "1", "100"));
             var expected    = "11";
@@ -78,7 +78,7 @@
         /// </summary>
         [Test]
         [Description("Позитивный тест вызова метода AssertCorrect.")]
-        public void AssertCorrect_CorrectValue()
+        public void AssertOnAssertCorrect_CorrectValue()
         {
             var parameterVM = new ParameterVM("description", new IntParameter("10", "1", "100"));
             parameterVM.AssertCorrect();
@@ -90,7 +90,7 @@
         /// </summary>
         [Test]
         [Description("Негативный тест вызова метода AssertCorrect.")]
-        public void AssertCorrect_IncorrectValue()
+        public void AssertOnAssertCorrect_IncorrectValue()
         {
             var parameterVM = new ParameterVM("description", new IntParameter("-10", "1", "100"));
 
