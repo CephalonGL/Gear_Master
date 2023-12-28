@@ -19,7 +19,7 @@
             var outerRadius = new DoubleParameter("100", "1",   "1000");
             var holeRadius  = new DoubleParameter("15",  "1",   "999");
             var thickness   = new DoubleParameter("10",  "1",   "1000");
-            var toothHeight = new DoubleParameter("30",  "0.1", "999");
+            var toothHeight = new DoubleParameter("30",  "0.5", "999");
             var toothCount  = new IntParameter("14", "3", "1000");
 
             var outerRadiusDescription =

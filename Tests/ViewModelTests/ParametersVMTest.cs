@@ -91,7 +91,7 @@ namespace Tests
 
         private static IEnumerable<ParametersVM> GetDataForValidateParameters_CorrectValue()
         {
-            yield return GenerateParameters("1.2",  "1",   "1",    "0.1", "3");
+            yield return GenerateParameters("2",  "1",   "1",    "0.5", "3");
             yield return GenerateParameters("100",  "15",  "10",   "30",  "14");
             yield return GenerateParameters("1000", "400", "1000", "200", "1000");
         }
